@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="pl" data-j="pl" data-tytul-pl="Michał Frycz – montażysta krótkich filmów i systemy AI" data-tytul-en="Michał Frycz – short-form video editor & AI systems">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Michał Frycz – montażysta krótkich filmów i systemy AI</title>
+<meta name="description" content="Michał Frycz: montaż krótkich filmów, animacja w kodzie i własne systemy AI do produkcji wideo. Projekty, CV, kontakt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wspolne.css">
+<script src="jezyk.js"></script>
+<style>
+/* ===== START: ściana filmów → wizytówka ===== */
+.s1{height:340vh;position:relative}
+.s1 .przyk{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;perspective:1400px}
+.sciana{position:absolute;inset:0;display:grid;grid-template-columns:repeat(7,1fr);grid-auto-rows:calc((100vw/7)*16/9);gap:6px;padding:6px;align-content:center;transform-style:preserve-3d}
+.kafel{position:relative;border-radius:6px;overflow:hidden;background:#151515;will-change:transform,opacity}
+.kafel video{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.8)}
+.zaslona{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(10,10,10,.3),rgba(10,10,10,.88));pointer-events:none}
+.tytul{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;pointer-events:none;padding:0 16px}
+.tytul h1{font:900 clamp(52px,11vw,190px)/.86 "Schibsted Grotesk";letter-spacing:-.045em;text-transform:uppercase}
+.tytul h1 .slowo{display:inline-block;white-space:nowrap}
+.tytul h1 .lit{display:inline-block;will-change:transform}
+.tytul p{font:500 clamp(17px,1.6vw,22px)/1.4 "Schibsted Grotesk";color:#e2e2de;margin-top:22px;max-width:44ch;text-wrap:balance}
+.wskazowka{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;color:var(--txt2)}
+.wskazowka i{display:block;width:1px;height:46px;background:linear-gradient(var(--txt),transparent);transform-origin:top;animation:kreska 1.8s var(--ease) infinite}
+@keyframes kreska{0%{transform:scaleY(0)}60%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+.kadr{position:absolute;left:50%;top:47%;height:min(76vh,740px);aspect-ratio:9/16;transform:translate(-50%,-50%) scale(.2);opacity:0;will-change:transform,opacity}
+.kadr .film{width:100%;height:100%;border-radius:18px;overflow:hidden;background:#111}
+.kadr .film video{width:100%;height:100%;object-fit:cover}
+.kadr figcaption{position:absolute;top:calc(100% + 12px);left:0;right:0;text-align:center;color:var(--txt2);white-space:nowrap}
+.panel-liczb{position:absolute;left:var(--margines);top:50%;transform:translateY(-50%);width:min(40vw,500px);opacity:0;font-variant-numeric:tabular-nums;z-index:3}
+.wiersz-l{padding:18px 0;border-top:1px solid var(--linia)}
+.wiersz-l:first-child{border-top:0;padding-top:0}
+.wiersz-l b{display:block;font:900 clamp(44px,6vw,100px)/.88 "Schibsted Grotesk";letter-spacing:-.045em;color:#fff}
+.wiersz-l>span{display:block;margin-top:8px;font:500 clamp(15px,1.2vw,17px)/1.4 "Schibsted Grotesk";color:var(--txt2);max-width:34ch}
+.panel-liczb .zrodlo,.liczby-plaskie .zrodlo{color:var(--szary);margin-top:18px}
+/* liczby w zwykłym przepływie: telefon i tryb bez ruchu */
+.liczby-plaskie{display:none;padding:56px var(--margines) 24px}
+.liczby-plaskie .wizyt{display:none;width:min(70vw,320px);margin:0 auto 40px}
+.liczby-plaskie .wizyt video{border-radius:14px;width:100%;aspect-ratio:9/16;object-fit:cover;background:#111}
+.liczby-plaskie .wizyt figcaption{text-align:center;color:var(--txt2);margin-top:10px}
+
+/* ===== PROJEKTY ===== */
+.projekty{padding:clamp(80px,14vh,160px) 0 40px}
+.naglowek-sekcji{padding:0 var(--margines);max-width:1500px;margin:0 auto 24px}
+.naglowek-sekcji h2{font:900 clamp(48px,9vw,150px)/.86 "Schibsted Grotesk";letter-spacing:-.045em;text-transform:uppercase}
+.naglowek-sekcji p{margin-top:22px;color:var(--txt2);max-width:52ch;font-size:clamp(17px,1.4vw,20px)}
+.spis{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px;list-style:none}
+.spis a{display:inline-block;padding:9px 16px;border:1px solid var(--linia);border-radius:999px;text-decoration:none;font-weight:700;font-size:15px;transition:background .3s,color .3s,border-color .3s}
+.spis a:hover{background:var(--txt);color:var(--tlo);border-color:var(--txt)}
+.case{position:relative;max-width:1500px;margin:0 auto;padding:clamp(70px,12vh,140px) var(--margines);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(32px,6vw,110px);align-items:center;border-top:1px solid var(--linia);scroll-margin-top:0}
+.case.odwr .case-tekst{order:2}
+.case-tekst h3{font:900 clamp(40px,5.4vw,88px)/.88 "Schibsted Grotesk";letter-spacing:-.045em;text-transform:uppercase}
+.case-tekst .rola{display:block;margin-top:16px;color:var(--szary)}
+.case-tekst .opis{margin-top:28px;color:#e6e6e2;max-width:48ch;font-size:clamp(17px,1.35vw,20px)}
+.formaty{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;list-style:none}
+.formaty li{border:1px solid var(--linia);border-radius:999px;padding:7px 12px;color:var(--txt2)}
+.marka-liczby{display:grid;gap:0}
+.marka-liczby>div{padding:22px 0;border-top:1px solid var(--linia)}
+.marka-liczby>div:first-child{border-top:0;padding-top:0}
+.marka-liczby b{display:block;font:900 clamp(64px,10vw,170px)/.85 "Schibsted Grotesk";letter-spacing:-.045em}
+.marka-liczby span{display:block;margin-top:8px;color:var(--txt2)}
+.marka-liczby .zrodlo{color:var(--szary);margin-top:6px}
+.wynik{margin-top:30px}
+.wynik b{display:block;font:900 clamp(64px,9vw,150px)/.85 "Schibsted Grotesk";letter-spacing:-.045em}
+.wynik p{margin-top:12px;color:var(--txt2);max-width:46ch}
+.wynik .zrodlo{color:var(--szary);margin-top:10px}
+.kopiuj{margin-top:26px;display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid var(--linia);color:var(--txt);font:700 14px "Schibsted Grotesk";padding:10px 16px;border-radius:999px;cursor:pointer;min-height:44px;transition:border-color .3s,background .3s,color .3s}
+.kopiuj:hover{border-color:var(--txt)}
+.kopiuj.ok{background:var(--txt);color:var(--tlo)}
+.kopiuj svg{width:16px;height:16px}
+.telefony{display:flex;justify-content:center;align-items:center;gap:clamp(10px,1.6vw,22px);perspective:1200px;min-height:min(78vh,700px)}
+.tel{position:relative;flex:0 1 31%;max-width:260px;will-change:transform}
+.tel.jeden{flex-basis:56%;max-width:340px}
+.tel .film{aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#151515;box-shadow:0 30px 80px -30px rgba(0,0,0,.9)}
+.tel video{width:100%;height:100%;object-fit:cover}
+.tel figcaption{margin-top:12px;color:var(--txt2);line-height:1.35}
+.tel figcaption b{display:block;font:900 22px/1 "Schibsted Grotesk";letter-spacing:-.03em;color:var(--txt);margin-bottom:4px}
+
+/* ===== SYSTEMY ===== */
+.systemy{background:var(--jasne-tlo);color:var(--jasne-txt);padding:clamp(90px,14vh,170px) var(--margines)}
+.systemy .naglowek-sekcji{padding:0;margin-bottom:clamp(40px,7vh,80px)}
+.systemy .naglowek-sekcji p{color:#2c2c2a}
+.systemy-in{max-width:1500px;margin:0 auto}
+.system{display:grid;grid-template-columns:60px minmax(0,1.1fr) minmax(0,1.6fr);gap:clamp(16px,3vw,48px);padding:28px 0;border-top:1px solid rgba(10,10,10,.16);align-items:baseline}
+.system:last-child{border-bottom:1px solid rgba(10,10,10,.16)}
+.system h3{font:900 clamp(26px,2.6vw,40px)/1 "Schibsted Grotesk";letter-spacing:-.035em;text-transform:uppercase}
+.system p{color:#2c2c2a;max-width:52ch}
+.system .nr{color:var(--jasne-szary)}
+
+/* ===== UMIEJĘTNOŚCI ===== */
+.umiej{padding:clamp(90px,14vh,170px) 0}
+.tasmy{overflow:hidden;margin:6px 0 clamp(60px,10vh,110px)}
+.tasma{display:flex;width:max-content;will-change:transform}
+.tasma span{font:900 clamp(48px,8vw,130px)/1.02 "Schibsted Grotesk";letter-spacing:-.045em;text-transform:uppercase;white-space:nowrap;padding-right:.5em}
+.tasma.druga span{color:transparent;-webkit-text-stroke:1.5px var(--txt)}
+.umiej-siatka{max-width:1500px;margin:0 auto;padding:0 var(--margines);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(20px,3vw,48px)}
+.umiej-siatka h3{font:900 24px/1 "Schibsted Grotesk";letter-spacing:-.03em;text-transform:uppercase;padding-bottom:14px;border-bottom:1px solid var(--linia);margin-bottom:14px}
+.umiej-duze{display:block;font:900 clamp(36px,3.1vw,60px)/.9 "Schibsted Grotesk";letter-spacing:-.045em;padding-bottom:16px;border-bottom:1px solid var(--linia);margin-bottom:16px;white-space:nowrap}
+.umiej-jezyk{max-width:1500px;margin:clamp(28px,4vw,48px) auto 0;padding:0 var(--margines);color:var(--txt2);font-size:13px}
+.umiej-siatka ul{list-style:none;display:grid;gap:8px;color:var(--txt2)}
+
+/* ===== O MNIE ===== */
+.omnie{max-width:1500px;margin:0 auto;padding:clamp(60px,10vh,120px) var(--margines) clamp(90px,14vh,170px);display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(32px,6vw,110px);align-items:center}
+.zdjecie{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:18px;background:#151515;clip-path:inset(var(--odsl,18%) var(--odsl,18%) var(--odsl,18%) var(--odsl,18%) round 18px)}
+.zdjecie img{width:100%;height:100%;object-fit:cover;transform:scale(var(--skala,1.18))}
+.omnie h2{font:900 clamp(52px,8vw,136px)/.86 "Schibsted Grotesk";letter-spacing:-.045em;text-transform:uppercase}
+.omnie .tekst p{margin-top:22px;color:#e6e6e2;max-width:54ch;font-size:clamp(17px,1.35vw,20px)}
+.fakty{margin-top:34px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px;list-style:none}
+.fakty li{padding:12px 0;border-top:1px solid var(--linia);color:var(--txt2)}
+.fakty li .mono{display:block;color:var(--szary);margin-bottom:2px}
+
+.lol-pas{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.7fr) minmax(0,1fr);gap:clamp(12px,2vw,24px);align-items:end;margin-top:clamp(40px,8vh,90px)}
+.lol-pas img{width:100%;height:auto;border-radius:12px;border:1px solid var(--linia);transform:translateY(40px) rotate(-2deg);opacity:0;transition:transform 1.1s var(--ease),opacity .8s}
+.lol-boczne{display:grid;gap:clamp(12px,2vw,24px)}
+.lol-boczne img:nth-child(1){transition-delay:.12s}.lol-boczne img:nth-child(2){transition-delay:.24s}
+.lol-pas.widac img{transform:none;opacity:1}
+.lol-pas figcaption{color:var(--txt2);max-width:34ch}
+.lol-pas figcaption b{display:block;font:900 clamp(30px,3.4vw,54px)/.95 "Schibsted Grotesk";letter-spacing:-.04em;text-transform:uppercase;color:var(--txt);margin-bottom:12px}
+.rm .lol-pas img{transform:none;opacity:1;transition:none}
+@media (max-width:820px){.lol-pas{grid-template-columns:1fr}.lol-boczne{grid-template-columns:1fr 1fr}}
+
+/* ===== CV ===== */
+.cv-sek{background:var(--jasne-tlo);color:var(--jasne-txt);padding:clamp(90px,14vh,170px) var(--margines)}
+.cv-in{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,6vw,110px);align-items:end}
+.cv-sek h2{font:900 clamp(80px,16vw,280px)/.8 "Schibsted Grotesk";letter-spacing:-.05em;text-transform:uppercase}
+.cv-sek p{color:#2c2c2a;max-width:46ch;font-size:clamp(17px,1.35vw,20px)}
+.cv-akcje{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.cv-sek .mono{color:var(--jasne-szary);margin-top:18px;display:block}
+
+/* ===== KONIEC ===== */
+.koniec{min-height:100vh;min-height:100svh;display:grid;place-items:center;text-align:center;padding:100px 16px 60px;position:relative}
+.koniec h2{font:900 clamp(56px,11vw,190px)/.86 "Schibsted Grotesk";letter-spacing:-.045em;text-transform:uppercase}
+.koniec .wiersz-k{display:block;overflow:hidden;padding-bottom:.06em}
+.koniec .wiersz-k>span{display:inline-block;transform:translateY(110%) rotate(8deg);transition:transform 1s var(--ease)}
+.koniec.widac .wiersz-k>span{transform:none}
+.kontakt{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:40px}
+.stopka{position:absolute;left:0;right:0;bottom:18px;display:flex;justify-content:space-between;gap:16px;padding:0 var(--margines);color:var(--szary);flex-wrap:wrap}
+
+@media (max-width:1000px){
+  .system{grid-template-columns:44px minmax(0,1fr)}
+  .system p{grid-column:2}
+  .umiej-siatka{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:820px){
+  .sciana{grid-template-columns:repeat(4,1fr);grid-auto-rows:calc((100vw/4)*16/9)}
+  .panel-liczb{display:none}
+  .liczby-plaskie{display:block}
+  .case{grid-template-columns:1fr}
+  .case.odwr .case-tekst{order:0}
+  .telefony{min-height:0;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;margin:0 calc(var(--margines)*-1);padding-left:var(--margines);padding-right:var(--margines)}
+  .tel{flex:0 0 58%;scroll-snap-align:start}
+  .tel.jeden{flex-basis:70%}
+  .omnie,.cv-in{grid-template-columns:1fr}
+  .zdjecie{max-width:420px}
+  .fakty{grid-template-columns:1fr}
+  .stopka{position:static;margin-top:60px;justify-content:center}
+  .koniec{min-height:auto;padding-top:120px}
+}
+@media (max-width:520px){.umiej-siatka{grid-template-columns:1fr;row-gap:36px}}
+
+/* ===== bez ruchu: układ statyczny, filmy na żądanie ===== */
+.rm .s1{height:100vh;height:100svh}
+.rm .kadr,.rm .panel-liczb,.rm .wskazowka{display:none}
+.rm .liczby-plaskie{display:block}
+.rm .liczby-plaskie .wizyt{display:block}
+.rm .koniec .wiersz-k>span{transform:none;transition:none}
+.rm .wskazowka i{animation:none}
+@media print{.ziarno,.pasek,.sciana,.wskazowka{display:none}}
+</style>
+</head>
+<body>
+<div class="ziarno" aria-hidden="true"></div>
+<a class="pasek-skip" href="#projekty" style="position:absolute;left:-999px">Przejdź do projektów</a>
+
+<header class="pasek">
+  <a class="marka" href="#start">Michał Frycz</a>
+  <nav aria-label="Menu">
+    <a class="szeroki" href="#projekty"><span class="pl">Projekty</span><span class="en">Work</span></a>
+    <a class="szeroki" href="#systemy"><span class="pl">Systemy AI</span><span class="en">AI systems</span></a>
+    <a class="szeroki" href="#o-mnie"><span class="pl">O mnie</span><span class="en">About</span></a>
+    <a href="#cv">CV</a>
+    <div class="jezyki" role="group" aria-label="Język / Language">
+      <button type="button" data-jezyk="pl" aria-pressed="true">PL</button>
+      <button type="button" data-jezyk="en" aria-pressed="false">EN</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+<!-- 1. START -->
+<section class="s1" id="start" aria-label="Michał Frycz">
+  <div class="przyk">
+    <div class="sciana" id="sciana" aria-hidden="true"></div>
+    <div class="zaslona" id="zaslona"></div>
+    <div class="tytul" id="tytul">
+      <h1 id="imie">Michał Frycz</h1>
+      <p><span class="pl">Montażysta krótkich filmów i twórca systemów AI do wideo. Psychologia widza plus automatyzacja.</span><span class="en">Short-form video editor who builds his own AI video systems. Viewer psychology plus automation.</span></p>
+    </div>
+    <div class="wskazowka mono" id="wskazowka" aria-hidden="true"><span class="pl">przewiń</span><span class="en">scroll</span><i></i></div>
+    <figure class="kadr" id="kadr">
+      <div class="film"><video src="../media-wspolne/wizytowka.mp4" muted loop playsinline autoplay preload="auto" aria-label="Reklama Złap Termin „5 dni roboczych”"></video></div>
+      <figcaption class="mono"><span class="pl">reklama sprzedażowa – 803 tys. wyświetleń</span><span class="en">sales ad – 803K views</span></figcaption>
+    </figure>
+    <div class="panel-liczb" id="licznik">
+      <div class="wiersz-l"><b class="licz" data-do="15.6" data-dz="1" data-suf-pl=" mln" data-suf-en="M" id="liczba-glowna">15,6 mln</b><span><span class="pl">wyświetleń konta Złap Termin na TikToku, które prowadzę od 07/2025</span><span class="en">TikTok views on the Złap Termin account I have run since 07/2025</span></span></div>
+      <div class="wiersz-l"><b>1,2 <span class="pl" style="display:inline;margin:0;font:inherit;color:inherit">mln</span><span class="en" style="display:inline;margin:0;font:inherit;color:inherit">M</span></b><span><span class="pl">jeden film – „Dwa typy ludzi na żółtym świetle”</span><span class="en">one video – “Two types of people at a yellow light”</span></span></div>
+      <div class="wiersz-l"><b>80 <span class="pl" style="display:inline;margin:0;font:inherit;color:inherit">tys.</span><span class="en" style="display:inline;margin:0;font:inherit;color:inherit">K</span></b><span><span class="pl">obserwujących na moim własnym koncie</span><span class="en">followers on my own account</span></span></div>
+      <p class="zrodlo mono"><span class="pl">TikTok, odczyt 18.11.2026 · 230 filmów ZT</span><span class="en">TikTok, read 18 Nov 2026 · 230 ZT videos</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- liczby w przepływie (telefon / bez ruchu) -->
+<section class="liczby-plaskie" aria-label="Liczby">
+  <figure class="wizyt"><video src="../media-wspolne/wizytowka.mp4" muted loop playsinline controls preload="none"></video><figcaption class="mono"><span class="pl">reklama sprzedażowa – 803 tys. wyświetleń</span><span class="en">sales ad – 803K views</span></figcaption></figure>
+  <div class="wiersz-l"><b class="licz" data-do="15.6" data-dz="1" data-suf-pl=" mln" data-suf-en="M">15,6 mln</b><span><span class="pl">wyświetleń konta Złap Termin na TikToku, które prowadzę od 07/2025</span><span class="en">TikTok views on the Złap Termin account I have run since 07/2025</span></span></div>
+  <div class="wiersz-l"><b class="licz" data-do="1.2" data-dz="1" data-suf-pl=" mln" data-suf-en="M">1,2 mln</b><span><span class="pl">jeden film – „Dwa typy ludzi na żółtym świetle”</span><span class="en">one video – “Two types of people at a yellow light”</span></span></div>
+  <div class="wiersz-l"><b class="licz" data-do="80" data-dz="0" data-suf-pl=" tys." data-suf-en="K">80 tys.</b><span><span class="pl">obserwujących na moim własnym koncie</span><span class="en">followers on my own account</span></span></div>
+  <p class="zrodlo mono"><span class="pl">TikTok, odczyt 18.11.2026 · 230 filmów ZT</span><span class="en">TikTok, read 18 Nov 2026 · 230 ZT videos</span></p>
+</section>
+
+<!-- 2. PROJEKTY (branże zamiast marek; Złap Termin jako jedyny przykład z nazwy) -->
+<section class="projekty" id="projekty" aria-labelledby="projekty-h">
+  <div class="naglowek-sekcji odslon">
+    <h2 id="projekty-h"><span class="podzial pl">Projekty</span><span class="podzial en">Work</span></h2>
+    <p><span class="pl">Cztery branże, w których robię filmy. Każda ma własny link – możesz wysłać jeden.</span><span class="en">Four industries I make videos for. Each has its own link, so you can share just one.</span></p>
+    <ul class="spis">
+      <li><a href="#zlap-termin"><span class="pl">Prawo jazdy</span><span class="en">Driving tests</span></a></li>
+      <li><a href="#reklamy"><span class="pl">Reklamy sprzedażowe</span><span class="en">Sales ads</span></a></li>
+      <li><a href="#branza-medyczna"><span class="pl">Branża medyczna</span><span class="en">Healthcare</span></a></li>
+      <li><a href="#marka-osobista"><span class="pl">Marka osobista</span><span class="en">Personal brand</span></a></li>
+    </ul>
+  </div>
+
+  <article class="case" id="zlap-termin" aria-labelledby="c1">
+    <div class="case-tekst odslon">
+      <h3 id="c1"><span class="podzial pl">Prawo jazdy</span><span class="podzial en">Driving tests</span></h3>
+      <span class="rola mono"><span class="pl">Złap Termin · Social Media Manager · od 07/2025</span><span class="en">Złap Termin · Social Media Manager · since 07/2025</span></span>
+      <p class="opis"><span class="pl">Skecze w aucie, POV z egzaminu i memy z sytuacji, które zna każdy kursant. Piszę, montuję i publikuję – 230 filmów od 07/2025.</span><span class="en">In-car sketches, exam POVs and memes about moments every learner driver knows. I write, edit and publish – 230 videos since 07/2025.</span></p>
+      <div class="wynik">
+        <b class="licz" data-do="15.6" data-dz="1" data-suf-pl=" mln" data-suf-en="M">15,6 mln</b>
+        <p><span class="pl">wyświetleń na TikToku. Najlepszy film 1,2 mln. Na Instagramie 3,94 mln wyświetleń i +44% obserwujących w 3 miesiące.</span><span class="en">TikTok views. Best video 1.2M. On Instagram: 3.94M views and +44% followers in 3 months.</span></p>
+        <p class="zrodlo mono"><span class="pl">TikTok: 230 filmów, odczyt 18.11.2026 · IG: 02–05.2026</span><span class="en">TikTok: 230 videos, read 18 Nov 2026 · IG: Feb–May 2026</span></p>
+      </div>
+      <button class="kopiuj" type="button" data-kotwica="zlap-termin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><span class="pl">Kopiuj link do projektu</span><span class="en">Copy project link</span></button>
+    </div>
+    <div class="telefony">
+      <figure class="tel"><div class="film"><video data-src="../media-wspolne/katalog/52.mp4" poster="../media-wspolne/katalog/52.jpg" muted loop playsinline preload="none"></video></div><figcaption class="mono"><b><span class="pl">1,2 mln</span><span class="en">1.2M</span></b><span class="pl">Dwa typy ludzi na żółtym świetle</span><span class="en">Two types of people at a yellow light</span></figcaption></figure>
+      <figure class="tel"><div class="film"><video data-src="../media-wspolne/katalog/53.mp4" poster="../media-wspolne/katalog/53.jpg" muted loop playsinline preload="none"></video></div><figcaption class="mono"><b><span class="pl">767 tys.</span><span class="en">767K</span></b><span class="pl">Wjazd do galerii jak egzamin</span><span class="en">Mall car park as a driving test</span></figcaption></figure>
+      <figure class="tel"><div class="film"><video data-src="../media-wspolne/katalog/55.mp4" poster="../media-wspolne/katalog/55.jpg" muted loop playsinline preload="none"></video></div><figcaption class="mono"><b><span class="pl">529 tys.</span><span class="en">529K</span></b><span class="pl">POV: wrzucasz bieg instruktorowi</span><span class="en">POV: you shift the instructor’s gear</span></figcaption></figure>
+    </div>
+  </article>
+
+  <article class="case odwr" id="reklamy" aria-labelledby="c2">
+    <div class="case-tekst odslon">
+      <h3 id="c2"><span class="podzial pl">Reklamy sprzedażowe</span><span class="podzial en">Sales ads</span></h3>
+      <span class="rola mono"><span class="pl">Kampanie w miastach</span><span class="en">City campaigns</span></span>
+      <p class="opis"><span class="pl">Filmy bez twarzy, które w 20 sekund pokazują usługę i prowadzą do zapisu: animacja ekranu aplikacji, lektor i napisy. Osobne wersje pod różne miasta.</span><span class="en">Faceless videos that show the service in 20 seconds and lead to sign-up: app-screen animation, voiceover and captions. Separate cuts for different cities.</span></p>
+      <div class="wynik">
+        <b class="licz" data-do="803" data-dz="0" data-suf-pl=" tys." data-suf-en="K">803 tys.</b>
+        <p><span class="pl">wyświetleń najlepszej reklamy. Kolejne: 107 tys. i 10,5 tys.</span><span class="en">views on the best ad. Next ones: 107K and 10.5K.</span></p>
+        <p class="zrodlo mono"><span class="pl">TikTok, odczyt 18.11.2026</span><span class="en">TikTok, read 18 Nov 2026</span></p>
+      </div>
+      <button class="kopiuj" type="button" data-kotwica="reklamy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><span class="pl">Kopiuj link do projektu</span><span class="en">Copy project link</span></button>
+    </div>
+    <div class="telefony">
+      <figure class="tel"><div class="film"><video data-src="../media-wspolne/katalog/29.mp4" poster="../media-wspolne/katalog/29.jpg" muted loop playsinline preload="none"></video></div><figcaption class="mono"><b><span class="pl">803 tys.</span><span class="en">803K</span></b><span class="pl">„5 dni roboczych”</span><span class="en">“5 working days”</span></figcaption></figure>
+      <figure class="tel"><div class="film"><video data-src="../media-wspolne/katalog/28.mp4" poster="../media-wspolne/katalog/28.jpg" muted loop playsinline preload="none"></video></div><figcaption class="mono"><b><span class="pl">107 tys.</span><span class="en">107K</span></b><span class="pl">„Znowu nie zdałeś egzaminu”</span><span class="en">“Failed your test again?”</span></figcaption></figure>
+      <figure class="tel"><div class="film"><video data-src="../media-wspolne/katalog/39.mp4" poster="../media-wspolne/katalog/39.jpg" muted loop playsinline preload="none"></video></div><figcaption class="mono"><b><span class="pl">Animacja ekranu</span><span class="en">Screen animation</span></b><span class="pl">Autorezerwacja w aplikacji</span><span class="en">In-app auto-booking</span></figcaption></figure>
+    </div>
+  </article>
+
+  <article class="case" id="branza-medyczna" aria-labelledby="c3">
+    <div class="case-tekst odslon">
+      <h3 id="c3"><span class="podzial pl">Branża medyczna</span><span class="podzial en">Healthcare</span></h3>
+      <span class="rola mono"><span class="pl">Content &amp; Social Media Specialist · od 05/2026</span><span class="en">Content &amp; Social Media Specialist · since 05/2026</span></span>
+      <p class="opis"><span class="pl">Zdrowie tłumaczone tak, żeby nie przewijać dalej: animowany lekarz, postać 3D, explainery z twarzą i reklamy.</span><span class="en">Health explained so people don’t scroll past: an animated doctor, a 3D character, face-to-camera explainers and ads.</span></p>
+      <ul class="formaty mono"><li><span class="pl">animacja postaci</span><span class="en">character animation</span></li><li><span class="pl">sceny 3D</span><span class="en">3D scenes</span></li><li>explainery</li><li><span class="pl">reklamy 15 s</span><span class="en">15-second ads</span></li></ul>
+      <button class="kopiuj" type="button" data-kotwica="branza-medyczna"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><span class="pl">Kopiuj link do projektu</span><span class="en">Copy project link</span></button>
+    </div>
+    <div class="telefony">
+      <figure class="tel"><div class="film"><video data-src="../media-wspolne/katalog/05.mp4" poster="../media-wspolne/katalog/05.jpg" muted loop playsinline preload="none"></video></div><figcaption class="mono"><b><span class="pl">Postać</span><span class="en">Character</span></b><span class="pl">Animowany lekarz</span><span class="en">Animated doctor</span></figcaption></figure>
+      <figure class="tel"><div class="film"><video data-src="../media-wspolne/katalog/71.mp4" poster="../media-wspolne/katalog/71.jpg" muted loop playsinline preload="none"></video></div><figcaption class="mono"><b>3D</b><span class="pl">Postać 3D tłumaczy objawy</span><span class="en">3D character explains symptoms</span></figcaption></figure>
+      <figure class="tel"><div class="film"><video data-src="../media-wspolne/katalog/06.mp4" poster="../media-wspolne/katalog/06.jpg" muted loop playsinline preload="none"></video></div><figcaption class="mono"><b>Explainer</b><span class="pl">Twarz, zdjęcia i napisy</span><span class="en">Face, photos and captions</span></figcaption></figure>
+    </div>
+  </article>
+
+  <article class="case odwr" id="marka-osobista" aria-labelledby="c4">
+    <div class="case-tekst odslon">
+      <h3 id="c4"><span class="podzial pl">Marka osobista</span><span class="podzial en">Personal brand</span></h3>
+      <span class="rola mono"><span class="pl">Od tego się zaczęło</span><span class="en">Where it all started</span></span>
+      <p class="opis"><span class="pl">Zanim robiłem filmy dla firm, zbudowałem własne konto – bez budżetu i bez zespołu. Tam nauczyłem się, co zatrzymuje kciuk w pierwszej sekundzie i co trzyma widza do końca.</span><span class="en">Before making videos for companies, I built my own account – no budget, no team. That’s where I learned what stops the thumb in the first second and what keeps a viewer to the end.</span></p>
+      <button class="kopiuj" type="button" data-kotwica="marka-osobista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><span class="pl">Kopiuj link do projektu</span><span class="en">Copy project link</span></button>
+    </div>
+    <div class="marka-liczby odslon">
+      <div><b class="licz" data-do="146" data-dz="0" data-suf-pl=" mln" data-suf-en="M">146 mln</b><span class="pl">wyświetleń łącznie</span><span class="en">views in total</span></div>
+      <div><b class="licz" data-do="80" data-dz="0" data-suf-pl=" tys." data-suf-en="K">80 tys.</b><span class="pl">obserwujących</span><span class="en">followers</span></div>
+      <div><b class="licz" data-do="1.5" data-dz="1" data-suf-pl=" mln" data-suf-en="M">1,5 mln</b><span class="pl">najlepszy film</span><span class="en">best video</span></div>
+      <p class="zrodlo mono"><span class="pl">TikTok, stan 18.11.2026</span><span class="en">TikTok, as of 18 Nov 2026</span></p>
+    </div>
+  </article>
+</section>
+
+<!-- 3. SYSTEMY AI (bez nazw narzędzi) -->
+<section class="systemy jasne" id="systemy" aria-labelledby="systemy-h">
+  <div class="systemy-in">
+    <div class="naglowek-sekcji odslon"><h2 id="systemy-h"><span class="podzial pl">Systemy AI</span><span class="podzial en">AI systems</span></h2><p><span class="pl">Do każdego etapu filmu zbudowałem własne narzędzie. Dzięki temu na kreatywę zostaje więcej czasu.</span><span class="en">I built my own tool for every stage of a video. That leaves more time for the creative part.</span></p></div>
+    <div class="system odslon"><span class="nr mono">01</span><h3><span class="podzial pl">Montaż</span><span class="podzial en">Editing</span></h3><p><span class="pl">Z nagrania i scenariusza powstaje gotowy projekt z warstwami: cięcia co do zdania, b-rolle, dźwięki. Potem dopracowuję go ręcznie.</span><span class="en">Footage plus script becomes a ready, layered project: cuts on every sentence, b-roll, sound. Then I refine it by hand.</span></p></div>
+    <div class="system odslon"><span class="nr mono">02</span><h3><span class="podzial pl">Napisy</span><span class="podzial en">Captions</span></h3><p><span class="pl">Napisy dobrane do filmu – do tempa i sensu zdania – od razu na osi czasu, gotowe do poprawek.</span><span class="en">Captions matched to the video – its pace and the meaning of each line – placed straight on the timeline, ready to tweak.</span></p></div>
+    <div class="system odslon"><span class="nr mono">03</span><h3><span class="podzial pl">Pętla retencji</span><span class="podzial en">Retention loop</span></h3><p><span class="pl">Krzywą utrzymania widzów nakładam na zdania scenariusza. Widzę, przy którym zdaniu ludzie odpadają, i poprawiam następny film.</span><span class="en">I map the audience-retention curve onto script sentences, see the exact line where viewers drop off, and fix the next video.</span></p></div>
+    <div class="system odslon"><span class="nr mono">04</span><h3><span class="podzial pl">Research reklam</span><span class="podzial en">Ad research</span></h3><p><span class="pl">888 filmów i reklam konkurencji rozłożonych na powtarzalne wzorce: hook, tempo, sposób pokazania produktu.</span><span class="en">888 competitor videos and ads broken down into reusable patterns: hook, pacing, how the product is shown.</span></p></div>
+  </div>
+</section>
+
+<!-- 4. UMIEJĘTNOŚCI -->
+<section class="umiej" id="umiejetnosci" aria-labelledby="umiej-h">
+  <div class="naglowek-sekcji odslon"><h2 id="umiej-h"><span class="podzial pl">Umiejętności</span><span class="podzial en">Skills</span></h2></div>
+  <div class="tasmy" aria-hidden="true">
+    <div class="tasma" id="tasma1"><span>Premiere Pro</span><span>Remotion</span><span>HyperFrames</span><span>ElevenLabs</span><span>Premiere Pro</span><span>Remotion</span><span>HyperFrames</span><span>ElevenLabs</span></div>
+    <div class="tasma druga" id="tasma2"><span>Claude Code</span><span>WhisperX</span><span>Veo</span><span>Claude Code</span><span>WhisperX</span><span>Veo</span><span>Claude Code</span><span>WhisperX</span><span>Veo</span></div>
+  </div>
+  <div class="umiej-siatka odslon">
+    <div class="umiej-kol"><b class="umiej-duze"><span class="pl">Viral</span><span class="en">Viral</span></b><ul><li><span class="pl">filmy viralowe na TikToka i Reelsy</span><span class="en">viral TikToks and Reels</span></li><li><span class="pl">nagrane i zmontowane albo w całości z AI</span><span class="en">shot and edited, or fully AI-generated</span></li></ul></div>
+    <div class="umiej-kol"><b class="umiej-duze"><span class="pl">Reklamy</span><span class="en">Ads</span></b><ul><li><span class="pl">filmy sprzedażowe</span><span class="en">sales videos</span></li><li><span class="pl">reklamy AI i 3D</span><span class="en">AI and 3D ads</span></li><li><span class="pl">z moim głosem albo głosem AI</span><span class="en">with my own voice or an AI voice</span></li></ul></div>
+    <div class="umiej-kol"><b class="umiej-duze"><span class="pl">Postać</span><span class="en">Mascot</span></b><ul><li><span class="pl">postać marki, która gra w filmach</span><span class="en">a brand character that acts in the videos</span></li><li><span class="pl">animacja ekranu aplikacji</span><span class="en">app-screen animation</span></li></ul></div>
+    <div class="umiej-kol"><b class="umiej-duze"><span class="pl">Scenariusz</span><span class="en">Script</span></b><ul><li><span class="pl">hook, scenariusz, puenta</span><span class="en">hook, script, punchline</span></li><li><span class="pl">wnioski z retencji do kolejnego filmu</span><span class="en">retention insights fed into the next video</span></li></ul></div>
+  </div>
+  <p class="umiej-jezyk mono odslon"><span class="pl">Języki: polski, angielski C1</span><span class="en">Languages: Polish, English C1</span></p>
+</section>
+
+<!-- 5. O MNIE -->
+<section class="omnie" id="o-mnie" aria-labelledby="omnie-h">
+  <div class="zdjecie" id="zdjecie"><img src="media/michal.jpg" alt="Michał Frycz przy stanowisku montażowym" width="720" height="964" loading="lazy"></div>
+  <div class="tekst odslon">
+    <h2 id="omnie-h"><span class="podzial pl">Ciekawski. Uparty.</span><span class="podzial en">Curious. Stubborn.</span></h2>
+    <p><span class="pl">Kiedyś grałem zawodowo w League of Legends i doszedłem do rangi Challenger. Ten sam upór wkładam w filmy: wkurza mnie, kiedy film nie daje efektu, więc szukam przyczyny, aż ją znajdę.</span><span class="en">I used to play League of Legends professionally and reached Challenger rank. I bring the same stubbornness to video: it bugs me when a video doesn’t deliver, so I dig until I find out why.</span></p>
+    <p><span class="pl">Interesuje mnie psychologia widza i automatyzacja. Stąd filmy, które trzymają uwagę, i systemy, które je składają. Najbardziej jestem dumny z tego, jak szybko się rozwijam.</span><span class="en">I’m into viewer psychology and automation – hence videos that hold attention and systems that assemble them. What I’m proudest of is how fast I grow.</span></p>
+    <ul class="fakty">
+      <li><span class="mono"><span class="pl">Miasto</span><span class="en">Based in</span></span><span class="pl">Warszawa, praca zdalna</span><span class="en">Warsaw, remote</span></li>
+      <li><span class="mono"><span class="pl">Tryb pracy</span><span class="en">How I work</span></span><span class="pl">w ciszy, w normalnych godzinach</span><span class="en">quietly, during normal hours</span></li>
+      <li><span class="mono"><span class="pl">Kinematografia, którą lubię</span><span class="en">Cinematography I love</span></span><span class="pl">Siedem, Peaky Blinders, Oppenheimer</span><span class="en">Se7en, Peaky Blinders, Oppenheimer</span></li>
+      <li><span class="mono"><span class="pl">Po pracy</span><span class="en">After hours</span></span><span class="pl">rodzina, tenis stołowy, siłownia</span><span class="en">family, table tennis, the gym</span></li>
+    </ul>
+  </div>
+  <figure class="lol-pas odslon" aria-labelledby="lol-podpis">
+    <div class="lol-glowny"><img src="media/lol-challenger.jpg" alt="Profil w League of Legends: ranga Challenger, 500 LP" width="600" height="410" loading="lazy"></div>
+    <div class="lol-boczne">
+      <img src="media/lol-gm.jpg" alt="Grandmaster, 319 LP, 74% wygranych" width="300" height="240" loading="lazy">
+      <img src="media/lol-diament.jpg" alt="Diament 1, 53 wygrane i 2 przegrane" width="284" height="240" loading="lazy">
+    </div>
+    <figcaption id="lol-podpis"><b><span class="pl">Challenger · 500 LP</span><span class="en">Challenger · 500 LP</span></b><span class="pl">Grandmaster z 74% wygranych, Diament 1 z bilansem 53 wygrane – 2 przegrane. Ten sam upór dziś wkładam w filmy.</span><span class="en">Grandmaster at a 74% win rate, Diamond 1 at 53 wins – 2 losses. Today I put the same stubbornness into video.</span></figcaption>
+  </figure>
+</section>
+
+<!-- 6. CV -->
+<section class="cv-sek jasne" id="cv" aria-labelledby="cv-h">
+  <div class="cv-in">
+    <h2 id="cv-h" class="odslon"><span class="podzial">CV</span></h2>
+    <div>
+      <p><span class="pl">Jedna strona, liczby przy każdym punkcie. Wersja animowana ma tę samą treść – i da się ją wydrukować.</span><span class="en">One page, a number on every line. The animated version has the same content – and it prints.</span></p>
+      <div class="cv-akcje">
+        <a class="przycisk pelny" href="../cv/Michal_Frycz_CV_wideo_PL.pdf" data-href-pl="../cv/Michal_Frycz_CV_wideo_PL.pdf" data-href-en="../cv/Michal_Frycz_CV_wideo_EN.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg><span class="pl">Pobierz CV (PDF)</span><span class="en">Download CV (PDF)</span></a>
+        <a class="przycisk" href="cv.html" data-wew="cv.html"><span class="pl">Animowane CV</span><span class="en">Animated CV</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+      </div>
+      <span class="mono"><span class="pl">PDF: montaż wideo short-form i AI · 1 strona</span><span class="en">PDF: short-form &amp; AI video editor · 1 page</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- 7. KONIEC -->
+<section class="koniec" id="koniec" aria-labelledby="koniec-h">
+  <div>
+    <h2 id="koniec-h"><span class="pl"><span class="wiersz-k"><span>Właśnie</span></span><span class="wiersz-k"><span>mnie</span> <span>szukasz</span></span></span><span class="en"><span class="wiersz-k"><span>You were</span></span><span class="wiersz-k"><span>looking</span> <span>for me</span></span></span></h2>
+    <div class="kontakt">
+      <a class="przycisk pelny" href="mailto:frycz.wideo@gmail.com">frycz.wideo@gmail.com</a>
+      <a class="przycisk" href="tel:+48533766075">+48 533 766 075</a>
+    </div>
+  </div>
+  <footer class="stopka mono"><span>© 2026 Michał Frycz</span><span class="pl">Liczby: TikTok / Instagram, odczyty z datą przy każdej</span><span class="en">Numbers: TikTok / Instagram, each with its read date</span></footer>
+</section>
+</main>
+
+<script>
+(function(){
+const root=document.documentElement;
+const mqRM=matchMedia('(prefers-reduced-motion: reduce)');
+let RM=mqRM.matches;root.classList.toggle('rm',RM);
+const ogr=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),wyj=t=>1-Math.pow(1-t,3);
+MF.podziel();
+
+// --- liczby: format zależny od języka
+function fmt(el,v){const j=MF.jezyk(),dz=+el.dataset.dz||0;
+  return v.toLocaleString(j==='en'?'en-US':'pl-PL',{minimumFractionDigits:dz,maximumFractionDigits:dz})+(el.dataset['suf'+(j==='en'?'En':'Pl')]||'');}
+const liczniki=[...document.querySelectorAll('.licz')];
+liczniki.forEach(el=>{el._p=1;el.textContent=fmt(el,+el.dataset.do)});
+addEventListener('jezyk',()=>liczniki.forEach(el=>el.textContent=fmt(el,(+el.dataset.do)*(el._p??1))));
+function animujLicznik(el){
+  if(RM||el._grano){return}el._grano=1;const t0=performance.now(),D=1600;
+  (function k(t){const p=wyj(ogr((t-t0)/D));el._p=p;el.textContent=fmt(el,(+el.dataset.do)*p);if(p<1)requestAnimationFrame(k)})(t0);
+}
+
+// --- ściana: 20 filmów
+const sciana=document.getElementById('sciana');
+const FILMY=["52","03","53","39","05","54","28","06","55","68","29","60","71","61","25","69","62","04","70","40"];
+FILMY.forEach((nr,i)=>{const k=document.createElement('div');k.className='kafel';const v=document.createElement('video');
+  v.src=`../media-wspolne/katalog/${nr}.mp4`;v.poster=`../media-wspolne/katalog/${nr}.jpg`;v.muted=true;v.loop=true;v.playsInline=true;v.preload='metadata';
+  v.addEventListener('loadedmetadata',()=>{v.currentTime=(i*0.7)%5},{once:true});k.appendChild(v);sciana.appendChild(k);});
+const kafle=[...sciana.children];
+// imię na litery (słowa się nie łamią w środku)
+const imie=document.getElementById('imie');
+imie.innerHTML=imie.textContent.split(' ').map(s=>`<span class="slowo">${[...s].map(c=>`<span class="lit">${c}</span>`).join('')}</span>`).join(' ');
+const litery=[...imie.querySelectorAll('.lit')];
+
+const s1=document.querySelector('.s1');
+const kadr=document.getElementById('kadr'),licz=document.getElementById('licznik'),liczGl=document.getElementById('liczba-glowna'),tytul=document.getElementById('tytul'),zaslona=document.getElementById('zaslona'),wsk=document.getElementById('wskazowka');
+const postep=el=>{const r=el.getBoundingClientRect();return ogr(-r.top/Math.max(1,el.offsetHeight-innerHeight));};
+const casy=[...document.querySelectorAll('.case')].map(c=>({el:c,tel:[...c.querySelectorAll('.tel')]}));
+const zdjecie=document.getElementById('zdjecie');
+const tasmy=[document.getElementById('tasma1'),document.getElementById('tasma2')];
+let przes=[0,0],ostY=scrollY,pred=0;
+
+function klatka(){
+  const waski=innerWidth<820;
+  if(!RM){
+    // --- 1. ściana rozjeżdża się w 3D, imię rozsypuje, wizytówka wjeżdża na środek, liczby z lewej
+    const p=postep(s1),a=wyj(ogr(p/0.55)),b=wyj(ogr((p-0.35)/0.4));
+    const cx=innerWidth/2,cy=innerHeight/2;
+    kafle.forEach((k,i)=>{
+      const dx=(k.offsetLeft+k.offsetWidth/2-cx),dy=(k.offsetTop+k.offsetHeight/2-cy);
+      k.style.transform=`translate3d(${dx*a*.9}px,${dy*a*.9}px,${-a*600+((i*37)%5)*a*120}px) rotateY(${dx/cx*a*55}deg) rotateX(${-dy/cy*a*40}deg) scale(${1+a*1.6})`;
+      k.style.opacity=1-a*.8;
+    });
+    zaslona.style.opacity=1-a*.6;
+    litery.forEach((l,i)=>{const n=litery.length,o=(i-n/2)/n;l.style.transform=`translate(${o*a*900}px,${Math.sin(i*2.1)*a*260}px) rotate(${o*a*90}deg)`;l.style.opacity=1-a*1.2;});
+    tytul.querySelector('p').style.opacity=1-a*2;wsk.style.opacity=1-a*4;
+    const c=wyj(ogr((p-0.6)/0.3));
+    const px=waski?0:c*Math.min(innerWidth*0.2,340);
+    kadr.style.opacity=b;
+    kadr.style.transform=`translate(calc(-50% + ${px}px),-50%) scale(${(.25+b*.75)*(waski?.82:1)}) rotate(${(1-b)*-8}deg)`;
+    kadr.querySelector('.film').style.boxShadow=`0 0 ${b*120}px ${b*10}px rgba(244,244,242,.12),0 40px 120px -30px #000`;
+    licz.style.opacity=waski?0:c;
+    licz.style.transform=`translate(${(c-1)*120}px,-50%)`;
+    liczGl._p=c;liczGl.textContent=fmt(liczGl,15.6*c);
+    // wideo ściany gra tylko, gdy jest co oglądać
+    const sGra=p<0.6&&s1.getBoundingClientRect().bottom>0;
+    if(sGra!==klatka.sGra){klatka.sGra=sGra;kafle.forEach(k=>{const v=k.firstChild;sGra?v.play().catch(()=>{}):v.pause()})}
+  }
+  if(RM)return;
+  // --- 3. projekty: telefony wjeżdżają w 3D i płyną z różną prędkością
+  const vh=innerHeight;
+  casy.forEach(({el,tel})=>{
+    const r=el.getBoundingClientRect();if(r.bottom<-200||r.top>vh+200)return;
+    const t=ogr((vh-r.top)/(vh+r.height)),wej=wyj(ogr(t/0.38));
+    tel.forEach((f,i)=>{
+      const sz=[60,-40,110][i%3]*(waski?.3:1),kier=i%2?1:-1;
+      f.style.transform=waski?`translateY(${(0.5-t)*sz}px)`:
+        `translateY(${(0.5-t)*sz*2+(1-wej)*220}px) rotateX(${(1-wej)*38}deg) rotateY(${(1-wej)*kier*24+(0.5-t)*kier*10}deg) rotateZ(${(1-wej)*kier*-6}deg) scale(${.82+wej*.18})`;
+      f.style.opacity=.15+wej*.85;
+    });
+  });
+  // --- 4. taśmy narzędzi: przyspieszają i przechylają się z prędkością przewijania
+  const v=scrollY-ostY;ostY=scrollY;pred+=(v-pred)*.2;
+  // --- 5. zdjęcie: odsłania się przycięciem
+  const rz=zdjecie.getBoundingClientRect(),tz=ogr((vh-rz.top)/(vh*0.9));
+  zdjecie.style.setProperty('--odsl',((1-wyj(tz))*18).toFixed(2)+'%');
+  zdjecie.style.setProperty('--skala',(1.18-wyj(tz)*.18).toFixed(3));
+}
+let raf=false;addEventListener('scroll',()=>{if(!raf){raf=true;requestAnimationFrame(()=>{klatka();raf=false})}},{passive:true});
+addEventListener('resize',klatka);
+
+// taśmy jadą w pętli, prędkość przewijania dokłada pędu i przechyłu
+let tT=performance.now();
+(function tasma(t){
+  const dt=Math.min(50,t-tT);tT=t;
+  if(!RM){
+    const ped=1+Math.min(8,Math.abs(pred)*.25);
+    tasmy.forEach((el,i)=>{const w=el.scrollWidth/2;przes[i]=(przes[i]+dt*.05*ped)%w;
+      el.style.transform=`translateX(${i?-w+przes[i]:-przes[i]}px) skewX(${ogr(-pred*.4,-14,14)}deg)`;});
+    pred*=.92;
+  }else tasmy.forEach(el=>el.style.transform='none');
+  requestAnimationFrame(tasma);
+})(tT);
+
+// wejście strony: kafle wpadają kaskadą, litery spadają
+function wejscie(){
+  if(RM)return;
+  kafle.forEach((k,i)=>k.animate([{opacity:0,transform:`translateY(${-160-(i%5)*60}px) rotate(${(i%2?1:-1)*14}deg) scale(.6)`},{opacity:1,transform:'none'}],
+    {duration:900,delay:(i%7)*45+Math.floor(i/7)*70,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards',composite:'add'}));
+  litery.forEach((l,i)=>l.animate([{opacity:0,transform:`translateY(-120%) rotate(${(i%2?1:-1)*25}deg)`},{opacity:1,transform:'none'}],
+    {duration:800,delay:500+i*55,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards',composite:'add'}));
+}
+
+// odsłanianie sekcji i liczniki
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('widac');e.target.querySelectorAll('.licz').forEach(animujLicznik)}}),{threshold:.2,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.odslon,.koniec,.liczby-plaskie').forEach(el=>io.observe(el));
+document.querySelectorAll('.koniec .wiersz-k>span').forEach((s,i)=>s.style.transitionDelay=((i%3)*.09)+'s');
+
+// filmy w projektach: ładują się i grają dopiero na ekranie
+const ioV=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;
+  if(e.isIntersecting){if(!v.src)v.src=v.dataset.src;if(!RM)v.play().catch(()=>{})}else v.pause();}),{rootMargin:'200px 0px'});
+document.querySelectorAll('.tel video').forEach(v=>ioV.observe(v));
+const ioS=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target.querySelector('video');if(!v)return;e.isIntersecting&&!RM?v.play().catch(()=>{}):v.pause()}));
+ioS.observe(kadr);
+
+// bez ruchu: filmy stoją, sterowanie ręczne
+function ustawRM(){
+  root.classList.toggle('rm',RM);
+  document.querySelectorAll('video').forEach(v=>{if(RM){v.pause();v.removeAttribute('autoplay');if(v.closest('.tel,.wizyt'))v.controls=true}else if(v.closest('.tel'))v.controls=false});
+  if(RM){kafle.forEach(k=>{k.style.transform='none';k.style.opacity=1});litery.forEach(l=>{l.style.transform='none';l.style.opacity=1});tytul.querySelector('p').style.opacity=1;zaslona.style.opacity=1;
+    document.querySelectorAll('.tel').forEach(f=>{f.style.transform='none';f.style.opacity=1});zdjecie.style.setProperty('--odsl','0%');zdjecie.style.setProperty('--skala','1');}
+  else kafle.forEach(k=>k.firstChild.play().catch(()=>{}));
+  klatka();
+}
+mqRM.addEventListener('change',e=>{RM=e.matches;ustawRM()});
+ustawRM();wejscie();
+
+// kopiowanie linku do jednego projektu (z językiem)
+document.querySelectorAll('.kopiuj').forEach(b=>b.addEventListener('click',async()=>{
+  const u=new URL(location.href);u.hash=b.dataset.kotwica;u.searchParams.set('lang',MF.jezyk());
+  try{await navigator.clipboard.writeText(u.href)}catch(e){const t=document.createElement('textarea');t.value=u.href;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}
+  b.classList.add('ok');const sp=b.querySelectorAll('span'),stare=[...sp].map(s=>s.textContent);sp[0].textContent='Skopiowano';sp[1].textContent='Copied';
+  setTimeout(()=>{b.classList.remove('ok');sp.forEach((s,i)=>s.textContent=stare[i])},1800);
+}));
+})();
+</script>
+</body>
+</html>
