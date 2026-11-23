@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pl">
+<html lang="pl" data-j="pl" data-tytul-pl="Prace – Michał Frycz" data-tytul-en="Work – Michał Frycz">
 <head>
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../praca/wspolne.css">
+<script src="../praca/jezyk.js"></script>
 <style>
 /* Strona „prace” – pokazuje zrobione rzeczy. Kolory i krój z ../praca/wspolne.css (paleta Figa).
    Klasy z prefiksem pr- – żeby nie zderzyły się z klasami wspólnego arkusza. */
@@ -177,28 +178,29 @@ body{background:var(--tlo)}
 </head>
 <body>
 <div class="ziarno" aria-hidden="true"></div>
-<a class="sr-only" href="#filmy" style="position:absolute;left:-9999px">Przejdź do prac</a>
+<a class="sr-only" href="#filmy" style="position:absolute;left:-9999px"><span class="pl">Przejdź do prac</span><span class="en">Skip to work</span></a>
 
 <header class="pasek">
   <a class="marka" href="#">Michał Frycz</a>
   <nav aria-label="Strona">
-    <a class="szeroki" href="../praca/">O mnie</a>
-    <a class="szeroki" href="../cv/Michal_Frycz_CV_wideo_PL.pdf">CV</a>
-    <a href="#kontakt">Kontakt</a>
+    <a class="szeroki" href="../praca/" data-wew="../praca/"><span class="pl">O mnie</span><span class="en">About</span></a>
+    <a class="szeroki" href="../cv/Michal_Frycz_CV_wideo_PL.pdf" data-href-pl="../cv/Michal_Frycz_CV_wideo_PL.pdf" data-href-en="../cv/Michal_Frycz_CV_wideo_EN.pdf">CV</a>
+    <a href="#kontakt"><span class="pl">Kontakt</span><span class="en">Contact</span></a>
+    <div class="jezyki" role="group" aria-label="Język / Language"><button type="button" data-jezyk="pl" aria-pressed="true">PL</button><button type="button" data-jezyk="en" aria-pressed="false">EN</button></div>
   </nav>
 </header>
 
 <main>
 <section class="pr-start pr-szer" aria-labelledby="tytul">
   <div>
-    <h1 id="tytul">Co <em>zrobiłem</em></h1>
-    <p class="pr-lead">Filmy, które piszę i montuję, oraz narzędzia, agenci i aplikacja, które zbudowałem w&nbsp;Claude Code, żeby robić je szybciej i lepiej. Same prace, bez oferty.</p>
+    <h1 id="tytul"><span class="pl">Co <em>zrobiłem</em></span><span class="en">What I’ve <em>made</em></span></h1>
+    <p class="pr-lead"><span class="pl">Filmy, które piszę i montuję, oraz narzędzia, agenci i aplikacja, które zbudowałem w&nbsp;Claude Code, żeby robić je szybciej i lepiej. Same prace, bez oferty.</span><span class="en">Videos I write and edit, plus the tools, agents and app I built in&nbsp;Claude Code to make them faster and better. Just the work, no sales pitch.</span></p>
     <div class="przyciski">
-      <a class="przycisk pelny" href="#filmy">Zobacz filmy</a>
-      <button type="button" class="przycisk" data-showreel>Showreel, 55 s</button>
+      <a class="przycisk pelny" href="#filmy"><span class="pl">Zobacz filmy</span><span class="en">See the videos</span></a>
+      <button type="button" class="przycisk" data-showreel><span class="pl">Showreel, 55 s</span><span class="en">Showreel, 55 s</span></button>
     </div>
   </div>
-  <figure class="pr-monitor" aria-label="Podgląd filmów">
+  <figure class="pr-monitor" aria-label="Podgląd filmów / Video preview">
     <div class="pr-ekran" id="ekran">
       <video muted playsinline preload="auto" poster="../media-wspolne/katalog/52.jpg" src="../media-wspolne/katalog/52.mp4"></video>
       <video class="ukryty" muted playsinline preload="none"></video>
@@ -211,12 +213,12 @@ body{background:var(--tlo)}
   <div class="pr-szer">
     <span class="pr-tc" id="tc" aria-hidden="true">00:00:00:00</span>
     <div class="pr-sciezka" id="sciezka">
-      <a class="pr-klip" style="--k:var(--klip1);--w:3" href="#filmy"><span>Filmy</span><i>21</i></a>
-      <a class="pr-klip" style="--k:var(--klip2);--w:2.4" href="#narzedzia"><span>Narzędzia</span><i>6</i></a>
-      <a class="pr-klip" style="--k:var(--klip3);--w:1.6" href="#agenci"><span>Agenci</span><i>6</i></a>
-      <a class="pr-klip" style="--k:var(--klip4);--w:1.2" href="#automatyzacje"><span>Automaty</span><i>3</i></a>
-      <a class="pr-klip" style="--k:var(--klip5);--w:1.3" href="#aplikacja"><span>Aplikacja</span><i>1</i></a>
-      <a class="pr-klip" style="--k:var(--klip6);--w:1.2" href="#strony"><span>Strony</span><i>11</i></a>
+      <a class="pr-klip" style="--k:var(--klip1);--w:3" href="#filmy"><span><span class="pl">Filmy</span><span class="en">Videos</span></span><i>21</i></a>
+      <a class="pr-klip" style="--k:var(--klip2);--w:2.4" href="#narzedzia"><span><span class="pl">Narzędzia</span><span class="en">Tools</span></span><i>6</i></a>
+      <a class="pr-klip" style="--k:var(--klip3);--w:1.6" href="#agenci"><span><span class="pl">Agenci</span><span class="en">Agents</span></span><i>6</i></a>
+      <a class="pr-klip" style="--k:var(--klip4);--w:1.2" href="#automatyzacje"><span><span class="pl">Automaty</span><span class="en">Automation</span></span><i>3</i></a>
+      <a class="pr-klip" style="--k:var(--klip5);--w:1.3" href="#aplikacja"><span><span class="pl">Aplikacja</span><span class="en">App</span></span><i>1</i></a>
+      <a class="pr-klip" style="--k:var(--klip6);--w:1.2" href="#strony"><span><span class="pl">Strony</span><span class="en">Websites</span></span><i>11</i></a>
       <span class="pr-glowica" id="glowica" aria-hidden="true"></span>
     </div>
   </div>
@@ -226,63 +228,63 @@ body{background:var(--tlo)}
 <section class="pr-sekcja" id="filmy" aria-labelledby="h-filmy">
  <div class="pr-szer">
   <div class="pr-glowa">
-    <h2 id="h-filmy">Filmy</h2>
-    <p>21 filmów z dwóch branż: skecze, POV, memy, reklamy sprzedażowe, animacje i explainery. Najedź, żeby zobaczyć ruch. Kliknij, żeby obejrzeć całość z dźwiękiem.</p>
+    <h2 id="h-filmy"><span class="pl">Filmy</span><span class="en">Videos</span></h2>
+    <p><span class="pl">21 filmów z dwóch branż: skecze, POV, memy, reklamy sprzedażowe, animacje i explainery. Najedź, żeby zobaczyć ruch. Kliknij, żeby obejrzeć całość z dźwiękiem.</span><span class="en">21 videos from two industries: sketches, POVs, memes, sales ads, animations and explainers. Hover to see them move. Click to watch the full video with sound.</span></p>
   </div>
 
   <div class="pr-grupa">
     <div class="pr-grupa-g">
-      <h3>Prawo jazdy – Złap Termin</h3>
-      <p>Prowadzę konto od 07/2025: piszę, nagrywam, montuję. <b>230 filmów</b>, <b>15,6 mln</b> wyświetleń na TikToku, najlepszy <b>1,2 mln</b>. <span class="mono">odczyt 18.11.2026</span></p>
+      <h3><span class="pl">Prawo jazdy – Złap Termin</span><span class="en">Driving tests – Złap Termin</span></h3>
+      <p><span class="pl">Prowadzę konto od 07/2025: piszę, nagrywam, montuję. <b>230 filmów</b>, <b>15,6 mln</b> wyświetleń na TikToku, najlepszy <b>1,2 mln</b>. <span class="mono">odczyt 18.11.2026</span></span><span class="en">I’ve run the account since 07/2025: I write, film and edit. <b>230 videos</b>, <b>15.6M</b> TikTok views, best video <b>1.2M</b>. <span class="mono">as of 18 Nov 2026</span></span></p>
     </div>
     <div class="pr-siatka">
-      <button class="pr-film" data-nr="52" data-t="Dwa typy ludzi na żółtym świetle"><figure><div class="pr-kadr"></div><figcaption><strong>Dwa typy ludzi na żółtym świetle</strong><span>mem, twarz do kamery</span><span class="pr-wysw">1,2 mln wyświetleń</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="53" data-t="Wjazd do galerii jak egzamin"><figure><div class="pr-kadr"></div><figcaption><strong>Wjazd do galerii jak egzamin</strong><span>POV, nagranie z auta</span><span class="pr-wysw">767 tys. wyświetleń</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="55" data-t="POV: na egzaminie wrzucasz bieg instruktorowi"><figure><div class="pr-kadr"></div><figcaption><strong>POV: wrzucasz bieg instruktorowi</strong><span>skecz w aucie</span><span class="pr-wysw">529 tys. wyświetleń</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="54" data-t="Strój na Halloween, który cię przerazi"><figure><div class="pr-kadr"></div><figcaption><strong>Strój na Halloween, który cię przerazi</strong><span>skecz</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="60" data-t="Egzaminator daje ci radę zaraz po zdanym egzaminie"><figure><div class="pr-kadr"></div><figcaption><strong>Rada egzaminatora po zdanym egzaminie</strong><span>skecz w aucie</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="61" data-t="Małe przypomnienie, żebyś w końcu zrobił prawko"><figure><div class="pr-kadr"></div><figcaption><strong>Przypomnienie, żebyś zrobił prawko</strong><span>mem, ujęcie z auta</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="62" data-t="POV: umierasz, ale najpierw musisz połączyć się z Bluetoothem"><figure><div class="pr-kadr"></div><figcaption><strong>POV: najpierw połącz się z Bluetoothem</strong><span>skecz w aucie</span></figcaption></figure></button>
-    </div>
-  </div>
-
-  <div class="pr-grupa">
-    <div class="pr-grupa-g">
-      <h3>Reklamy sprzedażowe – Złap Termin</h3>
-      <p>Filmy bez twarzy, które w 20 sekund pokazują usługę: animacja ekranu aplikacji, lektor, napisy. Osobne wersje pod różne miasta.</p>
-    </div>
-    <div class="pr-siatka">
-      <button class="pr-film" data-nr="29" data-t="„5 dni roboczych” – reklama"><figure><div class="pr-kadr"></div><figcaption><strong>„5 dni roboczych”</strong><span>reklama, lektor i napisy</span><span class="pr-wysw">803 tys. wyświetleń</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="28" data-t="„Znowu nie zdałeś egzaminu” – reklama"><figure><div class="pr-kadr"></div><figcaption><strong>„Znowu nie zdałeś egzaminu”</strong><span>reklama</span><span class="pr-wysw">107 tys. wyświetleń</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="25" data-t="Gdańsk i Warszawa – reklama miejska"><figure><div class="pr-kadr"></div><figcaption><strong>Gdańsk i Warszawa</strong><span>reklama pod miasta</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="39" data-t="Autorezerwacja – animacja ekranu aplikacji"><figure><div class="pr-kadr"></div><figcaption><strong>Autorezerwacja</strong><span>animacja ekranu aplikacji</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="52" data-t-en="Two types of people at a yellow light" data-t="Dwa typy ludzi na żółtym świetle"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Dwa typy ludzi na żółtym świetle</span><span class="en">Two types of people at a yellow light</span></strong><span><span class="pl">mem, twarz do kamery</span><span class="en">meme, talking to camera</span></span><span class="pr-wysw"><span class="pl">1,2 mln wyświetleń</span><span class="en">1.2M views</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="53" data-t-en="Mall car park as a driving test" data-t="Wjazd do galerii jak egzamin"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Wjazd do galerii jak egzamin</span><span class="en">Mall car park as a driving test</span></strong><span><span class="pl">POV, nagranie z auta</span><span class="en">POV, filmed in the car</span></span><span class="pr-wysw"><span class="pl">767 tys. wyświetleń</span><span class="en">767K views</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="55" data-t-en="POV: you shift the instructor’s gear at the test" data-t="POV: na egzaminie wrzucasz bieg instruktorowi"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">POV: wrzucasz bieg instruktorowi</span><span class="en">POV: you shift the instructor’s gear</span></strong><span><span class="pl">skecz w aucie</span><span class="en">in-car sketch</span></span><span class="pr-wysw"><span class="pl">529 tys. wyświetleń</span><span class="en">529K views</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="54" data-t-en="A Halloween costume that will scare you" data-t="Strój na Halloween, który cię przerazi"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Strój na Halloween, który cię przerazi</span><span class="en">A Halloween costume that will scare you</span></strong><span><span class="pl">skecz</span><span class="en">sketch</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="60" data-t-en="The examiner’s advice right after you pass" data-t="Egzaminator daje ci radę zaraz po zdanym egzaminie"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Rada egzaminatora po zdanym egzaminie</span><span class="en">The examiner’s advice after you pass</span></strong><span><span class="pl">skecz w aucie</span><span class="en">in-car sketch</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="61" data-t-en="A small reminder to finally get your licence" data-t="Małe przypomnienie, żebyś w końcu zrobił prawko"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Przypomnienie, żebyś zrobił prawko</span><span class="en">A reminder to finally get your licence</span></strong><span><span class="pl">mem, ujęcie z auta</span><span class="en">meme, shot from the car</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="62" data-t-en="POV: you’re dying, but first you need to connect to Bluetooth" data-t="POV: umierasz, ale najpierw musisz połączyć się z Bluetoothem"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">POV: najpierw połącz się z Bluetoothem</span><span class="en">POV: first connect to Bluetooth</span></strong><span><span class="pl">skecz w aucie</span><span class="en">in-car sketch</span></span></figcaption></figure></button>
     </div>
   </div>
 
   <div class="pr-grupa">
     <div class="pr-grupa-g">
-      <h3>Branża medyczna</h3>
-      <p>Od 05/2026 jako Content &amp; Social Media Specialist. Zdrowie tłumaczone tak, żeby widz nie przewinął: animowana postać lekarza, postać 3D, explainery z twarzą, reklamy.</p>
+      <h3><span class="pl">Reklamy sprzedażowe – Złap Termin</span><span class="en">Sales ads – Złap Termin</span></h3>
+      <p><span class="pl">Filmy bez twarzy, które w 20 sekund pokazują usługę: animacja ekranu aplikacji, lektor, napisy. Osobne wersje pod różne miasta.</span><span class="en">Faceless videos that show the service in 20 seconds: app screen animation, voice-over, captions. Separate versions for different cities.</span></p>
     </div>
     <div class="pr-siatka">
-      <button class="pr-film" data-nr="05" data-t="Animowany lekarz – wymówki"><figure><div class="pr-kadr"></div><figcaption><strong>Animowany lekarz – wymówki</strong><span>animacja postaci</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="71" data-t="Tarczyca – postać 3D tłumaczy, kiedy iść do lekarza"><figure><div class="pr-kadr"></div><figcaption><strong>Tarczyca – postać 3D</strong><span>animacja 3D i AI</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="06" data-t="Dlaczego państwo zmienia przepisy"><figure><div class="pr-kadr"></div><figcaption><strong>Dlaczego państwo zmienia przepisy</strong><span>explainer: twarz, zdjęcia, napisy</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="68" data-t="Morfologia – co znaczą wyniki"><figure><div class="pr-kadr"></div><figcaption><strong>Morfologia – co znaczą wyniki</strong><span>twarz i grafika 3D</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="69" data-t="Testuję mity o zdrowiu"><figure><div class="pr-kadr"></div><figcaption><strong>Testuję mity o zdrowiu</strong><span>twarz do kamery</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="70" data-t="Dlaczego ziewanie jest zaraźliwe"><figure><div class="pr-kadr"></div><figcaption><strong>Dlaczego ziewanie jest zaraźliwe</strong><span>ciekawostka, twarz do kamery</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="03" data-t="Reklama sprzedażowa A"><figure><div class="pr-kadr"></div><figcaption><strong>Reklama sprzedażowa A</strong><span>reklama</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="04" data-t="Reklama sprzedażowa B"><figure><div class="pr-kadr"></div><figcaption><strong>Reklama sprzedażowa B</strong><span>reklama</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="29" data-t-en="“5 working days” – ad" data-t="„5 dni roboczych” – reklama"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">„5 dni roboczych”</span><span class="en">“5 working days”</span></strong><span><span class="pl">reklama, lektor i napisy</span><span class="en">ad, voice-over and captions</span></span><span class="pr-wysw"><span class="pl">803 tys. wyświetleń</span><span class="en">803K views</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="28" data-t-en="“Failed your test again?” – ad" data-t="„Znowu nie zdałeś egzaminu” – reklama"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">„Znowu nie zdałeś egzaminu”</span><span class="en">“Failed your test again?”</span></strong><span><span class="pl">reklama</span><span class="en">ad</span></span><span class="pr-wysw"><span class="pl">107 tys. wyświetleń</span><span class="en">107K views</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="25" data-t-en="Gdańsk and Warsaw – city ad" data-t="Gdańsk i Warszawa – reklama miejska"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Gdańsk i Warszawa</span><span class="en">Gdańsk and Warsaw</span></strong><span><span class="pl">reklama pod miasta</span><span class="en">city-specific ad</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="39" data-t-en="Auto-booking – app screen animation" data-t="Autorezerwacja – animacja ekranu aplikacji"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Autorezerwacja</span><span class="en">Auto-booking</span></strong><span><span class="pl">animacja ekranu aplikacji</span><span class="en">app screen animation</span></span></figcaption></figure></button>
+    </div>
+  </div>
+
+  <div class="pr-grupa">
+    <div class="pr-grupa-g">
+      <h3><span class="pl">Branża medyczna</span><span class="en">Healthcare</span></h3>
+      <p><span class="pl">Od 05/2026 jako Content &amp; Social Media Specialist. Zdrowie tłumaczone tak, żeby widz nie przewinął: animowana postać lekarza, postać 3D, explainery z twarzą, reklamy.</span><span class="en">Since 05/2026 as Content &amp; Social Media Specialist. Health explained so viewers don’t scroll past: an animated doctor, a 3D character, face-to-camera explainers, ads.</span></p>
+    </div>
+    <div class="pr-siatka">
+      <button class="pr-film" data-nr="05" data-t-en="Animated doctor – excuses" data-t="Animowany lekarz – wymówki"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Animowany lekarz – wymówki</span><span class="en">Animated doctor – excuses</span></strong><span><span class="pl">animacja postaci</span><span class="en">character animation</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="71" data-t-en="Thyroid – a 3D character explains when to see a doctor" data-t="Tarczyca – postać 3D tłumaczy, kiedy iść do lekarza"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Tarczyca – postać 3D</span><span class="en">Thyroid – 3D character</span></strong><span><span class="pl">animacja 3D i AI</span><span class="en">3D and AI animation</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="06" data-t-en="Why the state changes the rules" data-t="Dlaczego państwo zmienia przepisy"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Dlaczego państwo zmienia przepisy</span><span class="en">Why the state changes the rules</span></strong><span><span class="pl">explainer: twarz, zdjęcia, napisy</span><span class="en">explainer: face, photos, captions</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="68" data-t-en="Blood count – what the results mean" data-t="Morfologia – co znaczą wyniki"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Morfologia – co znaczą wyniki</span><span class="en">Blood count – what the results mean</span></strong><span><span class="pl">twarz i grafika 3D</span><span class="en">face and 3D graphics</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="69" data-t-en="Testing health myths" data-t="Testuję mity o zdrowiu"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Testuję mity o zdrowiu</span><span class="en">Testing health myths</span></strong><span><span class="pl">twarz do kamery</span><span class="en">talking to camera</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="70" data-t-en="Why yawning is contagious" data-t="Dlaczego ziewanie jest zaraźliwe"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Dlaczego ziewanie jest zaraźliwe</span><span class="en">Why yawning is contagious</span></strong><span><span class="pl">ciekawostka, twarz do kamery</span><span class="en">fun fact, talking to camera</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="03" data-t-en="Sales ad A" data-t="Reklama sprzedażowa A"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Reklama sprzedażowa A</span><span class="en">Sales ad A</span></strong><span><span class="pl">reklama</span><span class="en">ad</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="04" data-t-en="Sales ad B" data-t="Reklama sprzedażowa B"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Reklama sprzedażowa B</span><span class="en">Sales ad B</span></strong><span><span class="pl">reklama</span><span class="en">ad</span></span></figcaption></figure></button>
     </div>
     <div class="pr-siatka szeroka" style="margin-top:clamp(16px,2vw,28px)">
-      <button class="pr-film" data-nr="01" data-t="Czym jest pakiet – explainer animowany"><figure><div class="pr-kadr"></div><figcaption><strong>Czym jest pakiet</strong><span>explainer animowany, poziomy</span></figcaption></figure></button>
-      <button class="pr-film" data-nr="02" data-t="Reklama 15 s"><figure><div class="pr-kadr"></div><figcaption><strong>Reklama 15 s</strong><span>animacja, poziomy</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="01" data-t-en="What the health plan is – animated explainer" data-t="Czym jest pakiet – explainer animowany"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Czym jest pakiet</span><span class="en">What the health plan is</span></strong><span><span class="pl">explainer animowany, poziomy</span><span class="en">animated explainer, landscape</span></span></figcaption></figure></button>
+      <button class="pr-film" data-nr="02" data-t-en="15-second ad" data-t="Reklama 15 s"><figure><div class="pr-kadr"></div><figcaption><strong><span class="pl">Reklama 15 s</span><span class="en">15-second ad</span></strong><span><span class="pl">animacja, poziomy</span><span class="en">animation, landscape</span></span></figcaption></figure></button>
     </div>
   </div>
 
   <div class="pr-poczatek">
-    <b>146 mln</b>
-    <p>Od tego się zaczęło: zanim robiłem filmy dla firm, zbudowałem własne konto na TikToku do 80 tys. obserwujących i 146 mln wyświetleń, bez budżetu i bez zespołu. <span class="mono">stan 18.11.2026</span></p>
+    <b><span class="pl">146 mln</span><span class="en">146M</span></b>
+    <p><span class="pl">Od tego się zaczęło: zanim robiłem filmy dla firm, zbudowałem własne konto na TikToku do 80 tys. obserwujących i 146 mln wyświetleń, bez budżetu i bez zespołu. <span class="mono">stan 18.11.2026</span></span><span class="en">Where it started: before making videos for companies, I grew my own TikTok account to 80K followers and 146M views, with no budget and no team. <span class="mono">as of 18 Nov 2026</span></span></p>
   </div>
  </div>
 </section>
@@ -291,18 +293,18 @@ body{background:var(--tlo)}
 <section class="pr-sekcja pr-jasna" id="narzedzia" aria-labelledby="h-narz">
  <div class="pr-szer">
   <div class="pr-glowa">
-    <h2 id="h-narz">Narzędzia do filmów</h2>
-    <p>Zbudowałem je w Claude Code: opisuję, co ma się dziać, i sprawdzam wynik na prawdziwych filmach. Każde zdejmuje ze mnie jeden powtarzalny krok, więc więcej czasu zostaje na pomysł i montaż.</p>
+    <h2 id="h-narz"><span class="pl">Narzędzia do filmów</span><span class="en">Video tools</span></h2>
+    <p><span class="pl">Zbudowałem je w Claude Code: opisuję, co ma się dziać, i sprawdzam wynik na prawdziwych filmach. Każde zdejmuje ze mnie jeden powtarzalny krok, więc więcej czasu zostaje na pomysł i montaż.</span><span class="en">I built them in Claude Code: I describe what should happen and check the result on real videos. Each one takes a repetitive step off my plate, leaving more time for the idea and the edit.</span></p>
   </div>
 
   <article class="pr-narzedzie">
     <div>
-      <h3>Montaż do Premiere</h3>
-      <dl class="pr-wewy"><dt>WCHODZI</dt><dd>nagranie i scenariusz</dd><dt>WYCHODZI</dt><dd>projekt Premiere z warstwami: cięcia co do zdania, b-rolle, animacje, dźwięki z własnej biblioteki (512 plików)</dd></dl>
-      <p class="pr-dowod">Projekt otwieram w Premiere i dopracowuję ręcznie.</p>
+      <h3><span class="pl">Montaż do Premiere</span><span class="en">Edit to Premiere</span></h3>
+      <dl class="pr-wewy"><dt><span class="pl">WCHODZI</span><span class="en">INPUT</span></dt><dd><span class="pl">nagranie i scenariusz</span><span class="en">footage and script</span></dd><dt><span class="pl">WYCHODZI</span><span class="en">OUTPUT</span></dt><dd><span class="pl">projekt Premiere z warstwami: cięcia co do zdania, b-rolle, animacje, dźwięki z własnej biblioteki (512 plików)</span><span class="en">a layered Premiere project: sentence-accurate cuts, B-roll, animations, sounds from my own library (512 files)</span></dd></dl>
+      <p class="pr-dowod"><span class="pl">Projekt otwieram w Premiere i dopracowuję ręcznie.</span><span class="en">I open the project in Premiere and finish it by hand.</span></p>
     </div>
     <figure class="pr-pokaz" aria-label="Schemat osi czasu projektu">
-      <svg viewBox="0 0 600 300" role="img" aria-label="Oś czasu z warstwami: napisy, animacje, b-roll, nagranie, lektor, dźwięki">
+      <svg viewBox="0 0 600 300" role="img" aria-label="Oś czasu z warstwami / Timeline with layers: captions, animation, B-roll, footage, voice-over, sound">
         <rect width="600" height="300" fill="#1f0c0d"/>
         <g font-family="JetBrains Mono,monospace" font-size="11" fill="#a8908a">
           <text x="16" y="38">00:00</text><text x="166" y="38">00:05</text><text x="316" y="38">00:10</text><text x="466" y="38">00:15</text>
@@ -317,18 +319,18 @@ body{background:var(--tlo)}
           <rect x="52" y="222" width="512" height="22" rx="4" fill="#5d3c3f"/>
           <rect x="94" y="262" width="20" height="22" rx="4" fill="#a8908a"/><rect x="288" y="262" width="20" height="22" rx="4" fill="#a8908a"/><rect x="408" y="262" width="20" height="22" rx="4" fill="#a8908a"/><rect x="468" y="262" width="20" height="22" rx="4" fill="#a8908a"/>
         </g>
-        <g fill="#1f0c0d" font-family="Schibsted Grotesk,sans-serif" font-size="11" font-weight="700"><text x="60" y="77">napisy</text><text x="158" y="117">animacja</text><text x="104" y="157">b-roll</text><text x="60" y="197" fill="#f6ece6">nagranie, cięte co do zdania</text><text x="60" y="237" fill="#f6ece6">lektor</text></g>
+        <g fill="#1f0c0d" font-family="Schibsted Grotesk,sans-serif" font-size="11" font-weight="700"><text x="60" y="77" class="pl">napisy</text><text x="60" y="77" class="en">captions</text><text x="158" y="117" class="pl">animacja</text><text x="158" y="117" class="en">animation</text><text x="104" y="157">b-roll</text><text x="60" y="197" fill="#f6ece6" class="pl">nagranie, cięte co do zdania</text><text x="60" y="197" fill="#f6ece6" class="en">footage, cut by sentence</text><text x="60" y="237" fill="#f6ece6" class="pl">lektor</text><text x="60" y="237" fill="#f6ece6" class="en">voice-over</text></g>
         <line x1="330" y1="44" x2="330" y2="292" stroke="#f6ece6" stroke-width="2"/>
       </svg>
-      <figcaption class="mono">schemat</figcaption>
+      <figcaption class="mono"><span class="pl">schemat</span><span class="en">diagram</span></figcaption>
     </figure>
   </article>
 
   <article class="pr-narzedzie">
     <div>
-      <h3>Napisy dobrane do filmu</h3>
-      <dl class="pr-wewy"><dt>WCHODZI</dt><dd>gotowy montaż z głosem</dd><dt>WYCHODZI</dt><dd>napisy od razu na osi czasu, dzielone po sensie zdania i dopasowane do tempa mówienia, gotowe do poprawek</dd></dl>
-      <p class="pr-dowod">Napisy nie łamią nazw i pytań w pół zdania.</p>
+      <h3><span class="pl">Napisy dobrane do filmu</span><span class="en">Captions fitted to the video</span></h3>
+      <dl class="pr-wewy"><dt><span class="pl">WCHODZI</span><span class="en">INPUT</span></dt><dd><span class="pl">gotowy montaż z głosem</span><span class="en">a finished edit with voice</span></dd><dt><span class="pl">WYCHODZI</span><span class="en">OUTPUT</span></dt><dd><span class="pl">napisy od razu na osi czasu, dzielone po sensie zdania i dopasowane do tempa mówienia, gotowe do poprawek</span><span class="en">captions placed straight on the timeline, split by meaning and timed to the speech, ready to tweak</span></dd></dl>
+      <p class="pr-dowod"><span class="pl">Napisy nie łamią nazw i pytań w pół zdania.</span><span class="en">Captions never break names or questions mid-sentence.</span></p>
     </div>
     <figure class="pr-pokaz filmy" aria-label="Filmy z napisami">
       <video data-podglad="06" muted loop playsinline preload="none" poster="../media-wspolne/katalog/06.jpg" src=""></video>
@@ -339,50 +341,50 @@ body{background:var(--tlo)}
 
   <article class="pr-narzedzie">
     <div>
-      <h3>Pętla retencji</h3>
-      <dl class="pr-wewy"><dt>WCHODZI</dt><dd>krzywa utrzymania widzów z TikToka, 48 godzin po publikacji</dd><dt>WYCHODZI</dt><dd>zdanie scenariusza, przy którym ludzie odpadają, i trzy zmiany do następnego filmu</dd></dl>
-      <p class="pr-dowod">87 pomiarów krzywych widzów z 3 kont.</p>
+      <h3><span class="pl">Pętla retencji</span><span class="en">Retention loop</span></h3>
+      <dl class="pr-wewy"><dt><span class="pl">WCHODZI</span><span class="en">INPUT</span></dt><dd><span class="pl">krzywa utrzymania widzów z TikToka, 48 godzin po publikacji</span><span class="en">the TikTok audience retention curve, 48 hours after posting</span></dd><dt><span class="pl">WYCHODZI</span><span class="en">OUTPUT</span></dt><dd><span class="pl">zdanie scenariusza, przy którym ludzie odpadają, i trzy zmiany do następnego filmu</span><span class="en">the script line where people drop off, plus three changes for the next video</span></dd></dl>
+      <p class="pr-dowod"><span class="pl">87 pomiarów krzywych widzów z 3 kont.</span><span class="en">87 retention curves measured across 3 accounts.</span></p>
     </div>
     <figure class="pr-pokaz" aria-label="Krzywa utrzymania nałożona na zdania">
-      <svg viewBox="0 0 600 300" role="img" aria-label="Krzywa utrzymania widzów spada najmocniej przy zdaniu trzecim">
+      <svg viewBox="0 0 600 300" role="img" aria-label="Krzywa utrzymania / Retention curve: biggest drop at line 3">
         <rect width="600" height="300" fill="#1f0c0d"/>
         <g stroke="#321816"><line x1="50" y1="40" x2="580" y2="40"/><line x1="50" y1="100" x2="580" y2="100"/><line x1="50" y1="160" x2="580" y2="160"/><line x1="50" y1="220" x2="580" y2="220"/></g>
         <g font-family="JetBrains Mono,monospace" font-size="11" fill="#a8908a"><text x="14" y="44">100%</text><text x="20" y="104">75%</text><text x="20" y="164">50%</text><text x="20" y="224">25%</text></g>
         <rect x="236" y="34" width="92" height="192" fill="#8a1f1a" opacity=".35"/>
         <path d="M50 40 C80 52 110 62 140 70 S200 84 236 92 C262 118 290 150 328 160 S420 170 470 176 S550 186 580 190" fill="none" stroke="#df8f75" stroke-width="3"/>
         <g stroke="#5d3c3f" stroke-dasharray="3 4"><line x1="140" y1="34" x2="140" y2="232"/><line x1="236" y1="34" x2="236" y2="232"/><line x1="328" y1="34" x2="328" y2="232"/><line x1="470" y1="34" x2="470" y2="232"/></g>
-        <g font-family="Schibsted Grotesk,sans-serif" font-size="12" font-weight="700" fill="#dcc8c0"><text x="60" y="256">hook</text><text x="150" y="256">zdanie 2</text><text x="246" y="256" fill="#f6ece6">zdanie 3</text><text x="338" y="256">zdanie 4</text><text x="480" y="256">puenta</text></g>
-        <text x="246" y="280" font-family="Schibsted Grotesk,sans-serif" font-size="12" fill="#df8f75">tu odpada najwięcej widzów</text>
+        <g font-family="Schibsted Grotesk,sans-serif" font-size="12" font-weight="700" fill="#dcc8c0"><text x="60" y="256">hook</text><text x="150" y="256" class="pl">zdanie 2</text><text x="150" y="256" class="en">line 2</text><text x="246" y="256" fill="#f6ece6" class="pl">zdanie 3</text><text x="246" y="256" fill="#f6ece6" class="en">line 3</text><text x="338" y="256" class="pl">zdanie 4</text><text x="338" y="256" class="en">line 4</text><text x="480" y="256" class="pl">puenta</text><text x="480" y="256" class="en">punchline</text></g>
+        <text x="246" y="280" font-family="Schibsted Grotesk,sans-serif" font-size="12" fill="#df8f75" class="pl">tu odpada najwięcej widzów</text><text x="246" y="280" font-family="Schibsted Grotesk,sans-serif" font-size="12" fill="#df8f75" class="en">most viewers drop off here</text>
       </svg>
-      <figcaption class="mono">ilustracja</figcaption>
+      <figcaption class="mono"><span class="pl">ilustracja</span><span class="en">illustration</span></figcaption>
     </figure>
   </article>
 
   <article class="pr-narzedzie">
     <div>
-      <h3>Research filmów i reklam</h3>
-      <dl class="pr-wewy"><dt>WCHODZI</dt><dd>temat filmu albo profil konkurencji</dd><dt>WYCHODZI</dt><dd>teczka przykładów: hook z pierwszych 3 sekund, tempo, sposób pokazania produktu i co z tego wziąć do mojego filmu</dd></dl>
-      <p class="pr-dowod">888 filmów i reklam rozłożonych na powtarzalne wzorce.</p>
+      <h3><span class="pl">Research filmów i reklam</span><span class="en">Video and ad research</span></h3>
+      <dl class="pr-wewy"><dt><span class="pl">WCHODZI</span><span class="en">INPUT</span></dt><dd><span class="pl">temat filmu albo profil konkurencji</span><span class="en">a video topic or a competitor’s profile</span></dd><dt><span class="pl">WYCHODZI</span><span class="en">OUTPUT</span></dt><dd><span class="pl">teczka przykładów: hook z pierwszych 3 sekund, tempo, sposób pokazania produktu i co z tego wziąć do mojego filmu</span><span class="en">a folder of examples: the first-3-seconds hook, pacing, how the product is shown, and what to take into my video</span></dd></dl>
+      <p class="pr-dowod"><span class="pl">888 filmów i reklam rozłożonych na powtarzalne wzorce.</span><span class="en">888 videos and ads broken down into repeatable patterns.</span></p>
     </div>
     <figure class="pr-pokaz" aria-label="Przykładowy rozbiór reklamy">
       <table class="pr-tabela">
-        <thead><tr><th scope="col">Element</th><th scope="col">Co widać</th></tr></thead>
+        <thead><tr><th scope="col"><span class="pl">Element</span><span class="en">Element</span></th><th scope="col"><span class="pl">Co widać</span><span class="en">What you see</span></th></tr></thead>
         <tbody>
-          <tr><td>Hook 0–3 s</td><td>pytanie do widza i zbliżenie na telefon</td></tr>
-          <tr><td>Tempo</td><td>cięcie co 1,5 s, zero pauz</td></tr>
-          <tr><td>Produkt</td><td>ekran aplikacji dopiero w 8. sekundzie</td></tr>
-          <tr><td>Do wzięcia</td><td>ekran wcześniej, w 3. sekundzie</td></tr>
+          <tr><td>Hook 0–3 s</td><td><span class="pl">pytanie do widza i zbliżenie na telefon</span><span class="en">a question to the viewer and a phone close-up</span></td></tr>
+          <tr><td><span class="pl">Tempo</span><span class="en">Pacing</span></td><td><span class="pl">cięcie co 1,5 s, zero pauz</span><span class="en">a cut every 1.5 s, no pauses</span></td></tr>
+          <tr><td><span class="pl">Produkt</span><span class="en">Product</span></td><td><span class="pl">ekran aplikacji dopiero w 8. sekundzie</span><span class="en">app screen only at second 8</span></td></tr>
+          <tr><td><span class="pl">Do wzięcia</span><span class="en">Takeaway</span></td><td><span class="pl">ekran wcześniej, w 3. sekundzie</span><span class="en">show the screen earlier, at second 3</span></td></tr>
         </tbody>
       </table>
-      <figcaption class="mono">ilustracja</figcaption>
+      <figcaption class="mono"><span class="pl">ilustracja</span><span class="en">illustration</span></figcaption>
     </figure>
   </article>
 
   <article class="pr-narzedzie">
     <div>
-      <h3>Biblioteka animacji</h3>
-      <dl class="pr-wewy"><dt>WCHODZI</dt><dd>zdanie ze scenariusza</dd><dt>WYCHODZI</dt><dd>gotowa animacja do wstawienia w film: mapa placówek, sieć połączeń, licznik, ekran aplikacji, postać lekarza</dd></dl>
-      <p class="pr-dowod">66 gotowych klocków animacji.</p>
+      <h3><span class="pl">Biblioteka animacji</span><span class="en">Animation library</span></h3>
+      <dl class="pr-wewy"><dt><span class="pl">WCHODZI</span><span class="en">INPUT</span></dt><dd><span class="pl">zdanie ze scenariusza</span><span class="en">a line from the script</span></dd><dt><span class="pl">WYCHODZI</span><span class="en">OUTPUT</span></dt><dd><span class="pl">gotowa animacja do wstawienia w film: mapa placówek, sieć połączeń, licznik, ekran aplikacji, postać lekarza</span><span class="en">a ready animation to drop into the video: clinic map, network, counter, app screen, doctor character</span></dd></dl>
+      <p class="pr-dowod"><span class="pl">66 gotowych klocków animacji.</span><span class="en">66 ready-made animation blocks.</span></p>
     </div>
     <figure class="pr-pokaz filmy" aria-label="Przykładowe animacje">
       <video data-podglad="21" muted loop playsinline preload="none" poster="../media-wspolne/katalog/21.jpg" src=""></video>
@@ -393,17 +395,17 @@ body{background:var(--tlo)}
 
   <article class="pr-narzedzie">
     <div>
-      <h3>Kontrola przed wydaniem</h3>
-      <dl class="pr-wewy"><dt>WCHODZI</dt><dd>gotowy plik filmu</dd><dt>WYCHODZI</dt><dd>lista rzeczy do poprawy, zanim film zobaczy ktokolwiek</dd></dl>
-      <p class="pr-dowod">Fakty w filmie sprawdzam na nowo w źródle przed każdą publikacją.</p>
+      <h3><span class="pl">Kontrola przed wydaniem</span><span class="en">Pre-release check</span></h3>
+      <dl class="pr-wewy"><dt><span class="pl">WCHODZI</span><span class="en">INPUT</span></dt><dd><span class="pl">gotowy plik filmu</span><span class="en">the finished video file</span></dd><dt><span class="pl">WYCHODZI</span><span class="en">OUTPUT</span></dt><dd><span class="pl">lista rzeczy do poprawy, zanim film zobaczy ktokolwiek</span><span class="en">a list of fixes before anyone sees the video</span></dd></dl>
+      <p class="pr-dowod"><span class="pl">Fakty w filmie sprawdzam na nowo w źródle przed każdą publikacją.</span><span class="en">I re-check every fact against its source before each release.</span></p>
     </div>
     <figure class="pr-pokaz" aria-label="Co sprawdza kontrola">
       <ul class="pr-lista">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span>obraz i dźwięk w każdej sekundzie</span><span class="mono">ok</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span>szczyt głośności</span><span class="mono">ok</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span>czarne klatki</span><span class="mono">ok</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span>pusty kadr</span><span class="mono">ok</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span>napisy w kadrze i bez literówek</span><span class="mono">ok</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span><span class="pl">obraz i dźwięk w każdej sekundzie</span><span class="en">picture and sound in every second</span></span><span class="mono">ok</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span><span class="pl">szczyt głośności</span><span class="en">peak loudness</span></span><span class="mono">ok</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span><span class="pl">czarne klatki</span><span class="en">black frames</span></span><span class="mono">ok</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span><span class="pl">pusty kadr</span><span class="en">empty frame</span></span><span class="mono">ok</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span><span class="pl">napisy w kadrze i bez literówek</span><span class="en">captions in frame, no typos</span></span><span class="mono">ok</span></li>
       </ul>
     </figure>
   </article>
@@ -414,20 +416,20 @@ body{background:var(--tlo)}
 <section class="pr-sekcja" id="agenci" aria-labelledby="h-agenci">
  <div class="pr-szer">
   <div class="pr-glowa">
-    <h2 id="h-agenci">Zespół agentów</h2>
-    <p>Agenci AI z imionami i rolami. Pracują w tle według harmonogramu, a każdą decyzję, która coś zmienia, zostawiają mi do kliknięcia „Tak” albo „Nie” w panelu. Panel działa na komputerze i na telefonie.</p>
+    <h2 id="h-agenci"><span class="pl">Zespół agentów</span><span class="en">Agent team</span></h2>
+    <p><span class="pl">Agenci AI z imionami i rolami. Pracują w tle według harmonogramu, a każdą decyzję, która coś zmienia, zostawiają mi do kliknięcia „Tak” albo „Nie” w panelu. Panel działa na komputerze i na telefonie.</span><span class="en">AI agents with names and roles. They work in the background on a schedule, and every decision that changes something waits for me to click “Yes” or “No” in a dashboard that works on desktop and phone.</span></p>
   </div>
   <div class="pr-zrzuty-ag">
-    <figure><div class="pr-zrzut"><img src="media/panel-komputer.jpg" width="1150" height="575" alt="Panel zespołu na komputerze: tabela agentów ze stanem, bieżącym zadaniem i ostatnim krokiem" loading="lazy"></div><figcaption class="mono">panel zespołu, podgląd na danych próbnych</figcaption></figure>
-    <figure class="pr-tel"><div class="pr-zrzut"><img src="media/panel-telefon.jpg" width="469" height="1015" alt="Panel na telefonie: karta agenta sprzątającego dysk z decyzją do zatwierdzenia" loading="lazy"></div><figcaption class="mono">ta sama karta na telefonie</figcaption></figure>
+    <figure><div class="pr-zrzut"><img src="media/panel-komputer.jpg" width="1150" height="575" alt="Panel zespołu na komputerze: tabela agentów ze stanem, bieżącym zadaniem i ostatnim krokiem" data-alt-en="Team dashboard on desktop: table of agents with status, current task and last step" loading="lazy"></div><figcaption class="mono"><span class="pl">panel zespołu, podgląd na danych próbnych</span><span class="en">team dashboard, preview with sample data</span></figcaption></figure>
+    <figure class="pr-tel"><div class="pr-zrzut"><img src="media/panel-telefon.jpg" width="469" height="1015" alt="Panel na telefonie: karta agenta sprzątającego dysk z decyzją do zatwierdzenia" data-alt-en="Dashboard on a phone: the drive-cleaning agent’s card with a decision to approve" loading="lazy"></div><figcaption class="mono"><span class="pl">ta sama karta na telefonie</span><span class="en">the same card on a phone</span></figcaption></figure>
   </div>
   <ul class="pr-sklad">
-    <li><span class="pr-inicjaly" style="--k:var(--klip1)">AK</span><div><h3>Aleksander Kierownik</h3><p>Przyjmuje zlecenia, rozdziela je między agentów i pilnuje terminów. Codziennie o 21:00 daje mi jedno podsumowanie dnia.</p><span class="pr-stan dziala">działa</span></div></li>
-    <li><span class="pr-inicjaly" style="--k:var(--klip2)">FP</span><div><h3>Florence Porządna</h3><p>Sprząta dysk po pracy czatów. 18.11 przeniosła do Kosza 12 666 plików (3,26 GB), dopiero po mojej akceptacji listy. Teraz co niedzielę.</p><span class="pr-stan dziala">działa</span></div></li>
-    <li><span class="pr-inicjaly" style="--k:var(--klip4)">KK</span><div><h3>Kinga Kompas</h3><p>Przyjmuje zlecenia wysłane z telefonu i odsyła powiadomienia na iPhone’a, gdy coś czeka na moją decyzję.</p><span class="pr-stan test">test udany 19.11</span></div></li>
-    <li><span class="pr-inicjaly" style="--k:var(--klip3)">MO</span><div><h3>Maria Odkrywczyni</h3><p>Szuka firm z aplikacją albo usługą dla klientów, które nie prowadzą social mediów, i ocenia każdą w skali 0–10.</p><span class="pr-stan">wstrzymana</span></div></li>
-    <li><span class="pr-inicjaly" style="--k:var(--klip5)">LW</span><div><h3>Leonardo Wynalazca</h3><p>Raz w tygodniu przegląda błędy i przestoje zespołu i proponuje od 1 do 3 usprawnień z liczbą, po której poznamy efekt.</p><span class="pr-stan">w przygotowaniu</span></div></li>
-    <li><span class="pr-inicjaly" style="--k:var(--klip6)">BZ</span><div><h3>Benjamin Zegarmistrz</h3><p>Co poniedziałek liczy z kalendarza, ile naprawdę mam wolnych godzin w tygodniu.</p><span class="pr-stan">w przygotowaniu</span></div></li>
+    <li><span class="pr-inicjaly" style="--k:var(--klip1)">AK</span><div><h3>Aleksander Kierownik</h3><p><span class="pl">Przyjmuje zlecenia, rozdziela je między agentów i pilnuje terminów. Codziennie o 21:00 daje mi jedno podsumowanie dnia.</span><span class="en">Takes requests, splits them between agents and watches deadlines. Every day at 9 pm he sends me one daily summary.</span></p><span class="pr-stan dziala"><span class="pl">działa</span><span class="en">running</span></span></div></li>
+    <li><span class="pr-inicjaly" style="--k:var(--klip2)">FP</span><div><h3>Florence Porządna</h3><p><span class="pl">Sprząta dysk po pracy czatów. 18.11 przeniosła do Kosza 12 666 plików (3,26 GB), dopiero po mojej akceptacji listy. Teraz co niedzielę.</span><span class="en">Cleans up the drive after AI work sessions. On 18 Nov she moved 12,666 files (3.26 GB) to the Recycle Bin, only after I approved the list. Now every Sunday.</span></p><span class="pr-stan dziala"><span class="pl">działa</span><span class="en">running</span></span></div></li>
+    <li><span class="pr-inicjaly" style="--k:var(--klip4)">KK</span><div><h3>Kinga Kompas</h3><p><span class="pl">Przyjmuje zlecenia wysłane z telefonu i odsyła powiadomienia na iPhone’a, gdy coś czeka na moją decyzję.</span><span class="en">Takes requests sent from my phone and pushes iPhone notifications when something needs my decision.</span></p><span class="pr-stan test"><span class="pl">test udany 19.11</span><span class="en">test passed 19 Nov</span></span></div></li>
+    <li><span class="pr-inicjaly" style="--k:var(--klip3)">MO</span><div><h3>Maria Odkrywczyni</h3><p><span class="pl">Szuka firm z aplikacją albo usługą dla klientów, które nie prowadzą social mediów, i ocenia każdą w skali 0–10.</span><span class="en">Finds companies with an app or customer service that don’t run social media, and scores each one 0–10.</span></p><span class="pr-stan"><span class="pl">wstrzymana</span><span class="en">paused</span></span></div></li>
+    <li><span class="pr-inicjaly" style="--k:var(--klip5)">LW</span><div><h3>Leonardo Wynalazca</h3><p><span class="pl">Raz w tygodniu przegląda błędy i przestoje zespołu i proponuje od 1 do 3 usprawnień z liczbą, po której poznamy efekt.</span><span class="en">Once a week reviews the team’s errors and idle time and proposes 1–3 improvements, each with a number to measure the effect.</span></p><span class="pr-stan"><span class="pl">w przygotowaniu</span><span class="en">in progress</span></span></div></li>
+    <li><span class="pr-inicjaly" style="--k:var(--klip6)">BZ</span><div><h3>Benjamin Zegarmistrz</h3><p><span class="pl">Co poniedziałek liczy z kalendarza, ile naprawdę mam wolnych godzin w tygodniu.</span><span class="en">Every Monday works out from my calendar how many free hours I really have that week.</span></p><span class="pr-stan"><span class="pl">w przygotowaniu</span><span class="en">in progress</span></span></div></li>
   </ul>
  </div>
 </section>
@@ -436,13 +438,13 @@ body{background:var(--tlo)}
 <section class="pr-sekcja" id="automatyzacje" aria-labelledby="h-auto" style="padding-top:0">
  <div class="pr-szer">
   <div class="pr-glowa">
-    <h2 id="h-auto">Automatyzacje</h2>
-    <p>Rzeczy, które dzieją się same o stałej porze. Zostawiają wynik w miejscu, do którego i tak zaglądam: w arkuszu, aplikacji albo powiadomieniu.</p>
+    <h2 id="h-auto"><span class="pl">Automatyzacje</span><span class="en">Automation</span></h2>
+    <p><span class="pl">Rzeczy, które dzieją się same o stałej porze. Zostawiają wynik w miejscu, do którego i tak zaglądam: w arkuszu, aplikacji albo powiadomieniu.</span><span class="en">Things that run by themselves at a fixed time. They leave the result where I look anyway: a spreadsheet, the app or a notification.</span></p>
   </div>
   <ul class="pr-automaty">
-    <li><span class="pr-kiedy">po każdej publikacji</span><h3>Robot retencji</h3><p>Zbiera krzywe utrzymania widzów z kont, które prowadzę, i dokłada je do historii. Z tego korzysta pętla retencji.</p><p class="pr-wysw mono" style="color:var(--akcent)">87 pomiarów, 3 konta</p></li>
-    <li><span class="pr-kiedy">codziennie 20:30</span><h3>Harmonogram publikacji</h3><p>Sprawdza, co naprawdę wyszło na TikToka, uzupełnia arkusz publikacji o tytuły, daty i linki i planuje kolejne filmy na dni robocze.</p></li>
-    <li><span class="pr-kiedy">w nocy, menu o 5:00</span><h3>Rutyny dla aplikacji</h3><p>W nocy analizują treningi, jedzenie i plan dnia, a rano zostawiają w aplikacji propozycje i menu na dzień.</p></li>
+    <li><span class="pr-kiedy"><span class="pl">po każdej publikacji</span><span class="en">after every post</span></span><h3><span class="pl">Robot retencji</span><span class="en">Retention robot</span></h3><p><span class="pl">Zbiera krzywe utrzymania widzów z kont, które prowadzę, i dokłada je do historii. Z tego korzysta pętla retencji.</span><span class="en">Collects audience retention curves from the accounts I run and adds them to the history the retention loop uses.</span></p><p class="pr-wysw mono" style="color:var(--akcent)"><span class="pl">87 pomiarów, 3 konta</span><span class="en">87 measurements, 3 accounts</span></p></li>
+    <li><span class="pr-kiedy"><span class="pl">codziennie 20:30</span><span class="en">daily, 8:30 pm</span></span><h3><span class="pl">Harmonogram publikacji</span><span class="en">Posting schedule</span></h3><p><span class="pl">Sprawdza, co naprawdę wyszło na TikToka, uzupełnia arkusz publikacji o tytuły, daty i linki i planuje kolejne filmy na dni robocze.</span><span class="en">Checks what actually went live on TikTok, fills the posting sheet with titles, dates and links, and plans the next videos on working days.</span></p></li>
+    <li><span class="pr-kiedy"><span class="pl">w nocy, menu o 5:00</span><span class="en">overnight, menu at 5 am</span></span><h3><span class="pl">Rutyny dla aplikacji</span><span class="en">App routines</span></h3><p><span class="pl">W nocy analizują treningi, jedzenie i plan dnia, a rano zostawiają w aplikacji propozycje i menu na dzień.</span><span class="en">Overnight they analyse workouts, meals and the day plan, and in the morning leave suggestions and a daily menu in the app.</span></p></li>
   </ul>
  </div>
 </section>
@@ -451,22 +453,22 @@ body{background:var(--tlo)}
 <section class="pr-sekcja pr-jasna" id="aplikacja" aria-labelledby="h-app">
  <div class="pr-szer">
   <div class="pr-glowa">
-    <h2 id="h-app">Statly <span class="pr-znacznik">w budowie</span></h2>
-    <p>Aplikacja na telefon do planu dnia: jedzenie, treningi, zakupy, cele i asystent. Nie trzeba wypełniać formularzy: mówię normalnie, co zrobiłem, a Claude zapisuje i liczy. Wieczorem coach pyta, jak minął dzień.</p>
+    <h2 id="h-app">Statly <span class="pr-znacznik"><span class="pl">w budowie</span><span class="en">in progress</span></span></h2>
+    <p><span class="pl">Aplikacja na telefon do planu dnia: jedzenie, treningi, zakupy, cele i asystent. Nie trzeba wypełniać formularzy: mówię normalnie, co zrobiłem, a Claude zapisuje i liczy. Wieczorem coach pyta, jak minął dzień.</span><span class="en">A phone app for planning the day: meals, workouts, shopping, goals and an assistant. No forms to fill in: I just say what I did, and Claude logs it and does the maths. In the evening a coach asks how the day went.</span></p>
   </div>
   <div class="pr-telefony">
-    <figure><img src="media/statly-jedzenie.jpg" width="540" height="1080" alt="Ekran Jedzenie: kalorie i białko na dziś, lista zjedzonych posiłków" loading="lazy"><figcaption>Jedzenie</figcaption></figure>
-    <figure><img src="media/statly-trening.jpg" width="540" height="1080" alt="Ekran Trening: zapis treningu jednym zdaniem i analiza trenera" loading="lazy"><figcaption>Trening</figcaption></figure>
-    <figure><img src="media/statly-asystent.jpg" width="540" height="1080" alt="Ekran Asystent: propozycja na dziś i cele" loading="lazy"><figcaption>Asystent</figcaption></figure>
-    <figure><img src="media/statly-coach.jpg" width="540" height="1080" alt="Ekran Coach: wieczorny check-in z oceną dnia" loading="lazy"><figcaption>Coach</figcaption></figure>
-    <figure><img src="media/statly-zakupy.jpg" width="540" height="1080" alt="Ekran Zakupy: lista zakupów i spiżarnia" loading="lazy"><figcaption>Zakupy</figcaption></figure>
+    <figure><img src="media/statly-jedzenie.jpg" width="540" height="1080" alt="Ekran Jedzenie: kalorie i białko na dziś, lista zjedzonych posiłków" data-alt-en="Meals screen: today’s calories and protein, list of meals eaten" loading="lazy"><figcaption><span class="pl">Jedzenie</span><span class="en">Meals</span></figcaption></figure>
+    <figure><img src="media/statly-trening.jpg" width="540" height="1080" alt="Ekran Trening: zapis treningu jednym zdaniem i analiza trenera" data-alt-en="Workout screen: log a workout in one sentence, trainer analysis" loading="lazy"><figcaption><span class="pl">Trening</span><span class="en">Workout</span></figcaption></figure>
+    <figure><img src="media/statly-asystent.jpg" width="540" height="1080" alt="Ekran Asystent: propozycja na dziś i cele" data-alt-en="Assistant screen: today’s suggestion and goals" loading="lazy"><figcaption><span class="pl">Asystent</span><span class="en">Assistant</span></figcaption></figure>
+    <figure><img src="media/statly-coach.jpg" width="540" height="1080" alt="Ekran Coach: wieczorny check-in z oceną dnia" data-alt-en="Coach screen: evening check-in with a day rating" loading="lazy"><figcaption><span class="pl">Coach</span><span class="en">Coach</span></figcaption></figure>
+    <figure><img src="media/statly-zakupy.jpg" width="540" height="1080" alt="Ekran Zakupy: lista zakupów i spiżarnia" data-alt-en="Shopping screen: shopping list and pantry" loading="lazy"><figcaption><span class="pl">Zakupy</span><span class="en">Shopping</span></figcaption></figure>
   </div>
   <ul class="pr-cechy">
-    <li><b>Jedno zdanie zamiast formularza</b><span>„Owsianka z owocami” wystarczy, kalorie i białko liczą się same.</span></li>
-    <li><b>Analiza w nocy</b><span>Rano czeka podsumowanie treningów, wagi i postępów.</span></li>
-    <li><b>Coach wieczorem</b><span>Krótki check-in: jak się czujesz, co blokowało, za co się doceniasz.</span></li>
+    <li><b><span class="pl">Jedno zdanie zamiast formularza</span><span class="en">One sentence instead of a form</span></b><span><span class="pl">„Owsianka z owocami” wystarczy, kalorie i białko liczą się same.</span><span class="en">“Porridge with fruit” is enough – calories and protein add up on their own.</span></span></li>
+    <li><b><span class="pl">Analiza w nocy</span><span class="en">Overnight analysis</span></b><span><span class="pl">Rano czeka podsumowanie treningów, wagi i postępów.</span><span class="en">In the morning there’s a summary of workouts, weight and progress.</span></span></li>
+    <li><b><span class="pl">Coach wieczorem</span><span class="en">Evening coach</span></b><span><span class="pl">Krótki check-in: jak się czujesz, co blokowało, za co się doceniasz.</span><span class="en">A short check-in: how you feel, what got in the way, what you’re proud of.</span></span></li>
   </ul>
-  <p class="pr-uwaga mono">zrzuty z wersji testowej, przykładowe dane</p>
+  <p class="pr-uwaga mono"><span class="pl">zrzuty z wersji testowej, przykładowe dane</span><span class="en">screenshots from the test version, sample data</span></p>
  </div>
 </section>
 
@@ -474,34 +476,34 @@ body{background:var(--tlo)}
 <section class="pr-sekcja" id="strony" aria-labelledby="h-strony">
  <div class="pr-szer">
   <div class="pr-glowa">
-    <h2 id="h-strony">Strony dla małych firm</h2>
-    <p>System, który z kilku informacji o firmie składa gotową stronę: usługi, cennik, opinie, kontakt, wersja na telefon. Powstało 11 stron pokazowych dla warsztatów, hydraulików, fizjoterapeutów i salonów.</p>
+    <h2 id="h-strony"><span class="pl">Strony dla małych firm</span><span class="en">Websites for small businesses</span></h2>
+    <p><span class="pl">Zbudowałem system, który z kilku informacji o firmie składa gotową stronę: usługi, cennik, opinie, kontakt, wersja na telefon. Powstało 11 stron pokazowych dla warsztatów, hydraulików, fizjoterapeutów i salonów.</span><span class="en">I built a system that turns a few facts about a business into a finished website: services, prices, reviews, contact, mobile version. So far 11 demo sites for garages, plumbers, physiotherapists and salons.</span></p>
   </div>
   <div class="pr-strony">
-    <figure class="pr-strona"><div class="pr-zrzut"><img src="media/strona-warsztat-kowalski-demo.jpg" width="1100" height="927" alt="Strona pokazowa warsztatu samochodowego: nagłówek, usługi i przyciski kontaktu" loading="lazy"></div><img class="pr-tel" src="media/strona-warsztat-kowalski-demo-tel.jpg" width="360" height="720" alt="Ta sama strona na telefonie" loading="lazy"><figcaption class="mono">warsztat samochodowy</figcaption></figure>
-    <figure class="pr-strona"><div class="pr-zrzut"><img src="media/strona-hydro-nowak-demo.jpg" width="1100" height="927" alt="Strona pokazowa hydraulika: hasło o dojeździe w 2 godziny i lista usług" loading="lazy"></div><img class="pr-tel" src="media/strona-hydro-nowak-demo-tel.jpg" width="360" height="720" alt="Ta sama strona na telefonie" loading="lazy"><figcaption class="mono">hydraulik</figcaption></figure>
-    <figure class="pr-strona"><div class="pr-zrzut"><img src="media/strona-salon-fryzjerski-salon-demo.jpg" width="1100" height="927" alt="Strona pokazowa salonu fryzjerskiego z cennikiem" loading="lazy"></div><img class="pr-tel" src="media/strona-salon-fryzjerski-salon-demo-tel.jpg" width="360" height="720" alt="Ta sama strona na telefonie" loading="lazy"><figcaption class="mono">salon fryzjerski</figcaption></figure>
+    <figure class="pr-strona"><div class="pr-zrzut"><img src="media/strona-warsztat-kowalski-demo.jpg" width="1100" height="927" alt="Strona pokazowa warsztatu samochodowego: nagłówek, usługi i przyciski kontaktu" data-alt-en="Car repair shop demo site: header, services and contact buttons" loading="lazy"></div><img class="pr-tel" src="media/strona-warsztat-kowalski-demo-tel.jpg" width="360" height="720" alt="Ta sama strona na telefonie" data-alt-en="The same site on a phone" loading="lazy"><figcaption class="mono"><span class="pl">warsztat samochodowy</span><span class="en">car repair shop</span></figcaption></figure>
+    <figure class="pr-strona"><div class="pr-zrzut"><img src="media/strona-hydro-nowak-demo.jpg" width="1100" height="927" alt="Strona pokazowa hydraulika: hasło o dojeździe w 2 godziny i lista usług" data-alt-en="Plumber demo site: “there in 2 hours” headline and list of services" loading="lazy"></div><img class="pr-tel" src="media/strona-hydro-nowak-demo-tel.jpg" width="360" height="720" alt="Ta sama strona na telefonie" data-alt-en="The same site on a phone" loading="lazy"><figcaption class="mono"><span class="pl">hydraulik</span><span class="en">plumber</span></figcaption></figure>
+    <figure class="pr-strona"><div class="pr-zrzut"><img src="media/strona-salon-fryzjerski-salon-demo.jpg" width="1100" height="927" alt="Strona pokazowa salonu fryzjerskiego z cennikiem" data-alt-en="Hair salon demo site with price list" loading="lazy"></div><img class="pr-tel" src="media/strona-salon-fryzjerski-salon-demo-tel.jpg" width="360" height="720" alt="Ta sama strona na telefonie" data-alt-en="The same site on a phone" loading="lazy"><figcaption class="mono"><span class="pl">salon fryzjerski</span><span class="en">hair salon</span></figcaption></figure>
   </div>
-  <p class="pr-uwaga mono">nazwy firm i numery telefonów na zrzutach są fikcyjne</p>
+  <p class="pr-uwaga mono"><span class="pl">nazwy firm i numery telefonów na zrzutach są fikcyjne</span><span class="en">business names and phone numbers in the screenshots are fictional</span></p>
  </div>
 </section>
 
 <section class="pr-koniec" id="kontakt" aria-labelledby="h-kontakt">
  <div class="pr-szer">
-  <h2 id="h-kontakt">Pogadajmy</h2>
+  <h2 id="h-kontakt"><span class="pl">Pogadajmy</span><span class="en">Let’s talk</span></h2>
   <div class="pr-kontakt"><a href="mailto:frycz.wideo@gmail.com">frycz.wideo@gmail.com</a><a href="tel:+48533766075">+48 533 766 075</a></div>
   <div class="przyciski">
-    <a class="przycisk pelny" href="../cv/Michal_Frycz_CV_wideo_PL.pdf">Pobierz CV (PDF)</a>
-    <a class="przycisk" href="../praca/">O mnie i doświadczenie</a>
-    <button type="button" class="przycisk" data-showreel>Showreel, 55 s</button>
+    <a class="przycisk pelny" href="../cv/Michal_Frycz_CV_wideo_PL.pdf" data-href-pl="../cv/Michal_Frycz_CV_wideo_PL.pdf" data-href-en="../cv/Michal_Frycz_CV_wideo_EN.pdf"><span class="pl">Pobierz CV (PDF)</span><span class="en">Download CV (PDF)</span></a>
+    <a class="przycisk" href="../praca/" data-wew="../praca/"><span class="pl">O mnie i doświadczenie</span><span class="en">About me and experience</span></a>
+    <button type="button" class="przycisk" data-showreel><span class="pl">Showreel, 55 s</span><span class="en">Showreel, 55 s</span></button>
   </div>
  </div>
 </section>
 </main>
-<footer class="pr-stopka"><div class="pr-szer mono">© 2026 Michał Frycz · Warszawa, praca zdalna · liczby z TikToka z datą odczytu przy każdej</div></footer>
+<footer class="pr-stopka"><div class="pr-szer mono"><span class="pl">© 2026 Michał Frycz · Warszawa, praca zdalna · liczby z TikToka z datą odczytu przy każdej</span><span class="en">© 2026 Michał Frycz · Warsaw, remote work · TikTok numbers with the date they were read</span></div></footer>
 
 <dialog class="pr-okno" id="okno" aria-label="Film">
-  <button type="button" class="pr-zamknij" id="zamknij">Zamknij ✕</button>
+  <button type="button" class="pr-zamknij" id="zamknij"><span class="pl">Zamknij</span><span class="en">Close</span> ✕</button>
   <div><video id="okno-film" controls playsinline preload="none"></video><p id="okno-tytul"></p></div>
 </dialog>
 
@@ -510,19 +512,20 @@ body{background:var(--tlo)}
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const dotyk=matchMedia('(hover: none)').matches;
 const P='../media-wspolne/katalog/';
+const EN=()=>document.documentElement.dataset.j==='en';
+const tytul=b=>EN()&&b.dataset.tEn?b.dataset.tEn:b.dataset.t;
 
 /* kafle filmów: plakat od razu, ruch po najechaniu (komputer) albo w polu widzenia (telefon) */
 const kafle=[...document.querySelectorAll('.pr-film')];
 kafle.forEach(b=>{
   const nr=b.dataset.nr,k=b.querySelector('.pr-kadr');
-  k.innerHTML=`<img src="${P}${nr}.jpg" alt="" loading="lazy"><video muted loop playsinline preload="none"></video><span class="pr-graj"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Obejrzyj</span>`;
-  b.setAttribute('aria-label','Obejrzyj film: '+b.dataset.t);
+  k.innerHTML=`<img src="${P}${nr}.jpg" alt="" loading="lazy"><video muted loop playsinline preload="none"></video><span class="pr-graj"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg><span class="pl">Obejrzyj</span><span class="en">Watch</span></span>`;
   const v=k.querySelector('video');
   const graj=()=>{if(RM)return;if(!v.src)v.src=P+nr+'.mp4';v.play().then(()=>b.classList.add('gra')).catch(()=>{})};
   const stop=()=>{v.pause();b.classList.remove('gra')};
   if(!dotyk){b.addEventListener('pointerenter',graj);b.addEventListener('pointerleave',stop);b.addEventListener('focus',graj);b.addEventListener('blur',stop)}
   b._graj=graj;b._stop=stop;
-  b.addEventListener('click',()=>otworz(nr,b.dataset.t));
+  b.addEventListener('click',()=>otworz(nr,tytul(b)));
 });
 if(dotyk&&!RM){const io=new IntersectionObserver(es=>es.forEach(e=>{e.isIntersecting?e.target._graj():e.target._stop()}),{threshold:.65});kafle.forEach(b=>io.observe(b))}
 
@@ -539,14 +542,21 @@ okno.addEventListener('click',e=>{if(e.target===okno)zamknij()});
 okno.addEventListener('close',()=>{film.pause();film.removeAttribute('src');film.load()});
 
 /* monitor w otwarciu: kolejne podglądy po 6 s */
-const lista=[['52','Dwa typy ludzi na żółtym świetle'],['05','Animowany lekarz – wymówki'],['29','„5 dni roboczych”'],['71','Tarczyca – postać 3D'],['53','Wjazd do galerii jak egzamin'],['39','Autorezerwacja']];
+const lista=[['52','Dwa typy ludzi na żółtym świetle','Two types of people at a yellow light'],['05','Animowany lekarz – wymówki','Animated doctor – excuses'],['29','„5 dni roboczych”','“5 working days”'],['71','Tarczyca – postać 3D','Thyroid – 3D character'],['53','Wjazd do galerii jak egzamin','Mall car park as a driving test'],['39','Autorezerwacja','Auto-booking']];
 const [a,b]=document.querySelectorAll('#ekran video'),tyt=document.getElementById('ekran-tytul'),etc=document.getElementById('ekran-tc');
 let i=0,akt=a,nast=b;
 if(!RM){a.play().catch(()=>{});
   a.addEventListener('timeupdate',()=>{});
-  setInterval(()=>{i=(i+1)%lista.length;const[nr,t]=lista[i];nast.src=P+nr+'.mp4';nast.poster=P+nr+'.jpg';nast.currentTime=0;nast.play().catch(()=>{});nast.classList.remove('ukryty');akt.classList.add('ukryty');tyt.textContent=t;[akt,nast]=[nast,akt]},6000);
+  setInterval(()=>{i=(i+1)%lista.length;const[nr,tp,te]=lista[i],t=EN()?te:tp;nast.src=P+nr+'.mp4';nast.poster=P+nr+'.jpg';nast.currentTime=0;nast.play().catch(()=>{});nast.classList.remove('ukryty');akt.classList.add('ukryty');tyt.textContent=t;[akt,nast]=[nast,akt]},6000);
   const tik=()=>{const s=akt.currentTime||0;etc.textContent='00:00:'+String(Math.floor(s)).padStart(2,'0')+':'+String(Math.floor((s%1)*25)).padStart(2,'0');requestAnimationFrame(tik)};tik();
 }
+
+/* język: opisy przycisków, obrazków i podpis monitora */
+function jezyk(){const en=EN();
+  kafle.forEach(b=>b.setAttribute('aria-label',(en?'Watch video: ':'Obejrzyj film: ')+tytul(b)));
+  document.querySelectorAll('img[data-alt-en]').forEach(im=>{if(!im.dataset.altPl)im.dataset.altPl=im.alt;im.alt=en?im.dataset.altEn:im.dataset.altPl});
+  const l=lista[i];tyt.textContent=en?l[2]:l[1];}
+addEventListener('jezyk',jezyk);jezyk();
 
 /* oś czasu: głowica i kod czasu idą za przewijaniem, aktywny klip = bieżąca sekcja */
 const sciezka=document.getElementById('sciezka'),glowica=document.getElementById('glowica'),tc=document.getElementById('tc');
