@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prace – Michał Frycz</title>
+<meta name="description" content="Co zrobił Michał Frycz: filmy, narzędzia do montażu zbudowane w Claude Code, zespół agentów AI, automatyzacje, aplikacja Statly i strony dla małych firm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../praca/wspolne.css">
+<style>
+/* Strona „prace” – pokazuje zrobione rzeczy. Kolory i krój z ../praca/wspolne.css (paleta Figa).
+   Klasy z prefiksem pr- – żeby nie zderzyły się z klasami wspólnego arkusza. */
+:root{--kafel:#22100f;--rama:#321816;--jasne-txt2:#5d3c3f;--klip1:#df8f75;--klip2:#c45a44;--klip3:#8a1f1a;--klip4:#a8908a;--klip5:#dcc8c0;--klip6:#5d3c3f}
+body{background:var(--tlo)}
+.pasek{position:absolute}/* tu nawigację po przewinięciu przejmuje oś czasu */
+.pr-szer{padding-inline:var(--margines);max-width:1440px;margin-inline:auto}
+
+/* ===== otwarcie ===== */
+.pr-start{min-height:100svh;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:clamp(24px,5vw,80px);align-items:center;padding-top:96px;padding-bottom:40px}
+.pr-start h1{font:900 clamp(56px,10.5vw,168px)/.84 "Schibsted Grotesk";letter-spacing:-.045em;text-transform:uppercase;text-wrap:balance}
+.pr-start h1 em{font-style:normal;color:var(--akcent)}
+.pr-lead{margin-top:28px;max-width:46ch;font:500 clamp(18px,1.6vw,22px)/1.45 "Schibsted Grotesk";color:var(--txt2);text-wrap:pretty}
+.pr-start .przyciski{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.pr-monitor{justify-self:end;width:min(100%,360px)}
+.pr-ekran{position:relative;aspect-ratio:9/16;border-radius:18px;overflow:hidden;background:#0d0405;box-shadow:0 30px 80px -30px #000,0 0 0 1px var(--rama)}
+.pr-ekran video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s var(--ease)}
+.pr-ekran video.ukryty{opacity:0}
+.pr-podpis{display:flex;justify-content:space-between;gap:12px;margin-top:12px;color:var(--szary)}
+.pr-podpis b{color:var(--txt2);font-weight:400}
+
+/* ===== oś czasu (nawigacja) ===== */
+.pr-os{position:sticky;top:0;z-index:70;background:rgba(22,7,9,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-block:1px solid var(--rama)}
+.pr-os .pr-szer{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;padding-block:10px}
+.pr-tc{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:13px;color:var(--akcent);font-variant-numeric:tabular-nums;min-width:11ch}
+.pr-sciezka{position:relative;display:flex;gap:3px;height:40px}
+.pr-klip{position:relative;flex:var(--w,1) 1 0;min-width:0;display:flex;align-items:center;gap:8px;padding:0 10px;border-radius:5px;background:color-mix(in srgb,var(--k) 22%,#160709);border:1px solid color-mix(in srgb,var(--k) 55%,transparent);color:var(--txt);text-decoration:none;font:700 13px/1 "Schibsted Grotesk";white-space:nowrap;overflow:hidden;transition:background .3s}
+.pr-klip span{overflow:hidden;text-overflow:ellipsis}
+.pr-klip i{font:400 11px "JetBrains Mono",monospace;font-style:normal;color:var(--txt2);font-variant-numeric:tabular-nums}
+@media (hover:hover){.pr-klip:hover{background:color-mix(in srgb,var(--k) 55%,#160709)}}
+.pr-klip[aria-current=true]{background:color-mix(in srgb,var(--k) 55%,#160709)}
+.pr-glowica{position:absolute;top:-6px;bottom:-6px;left:0;width:2px;background:var(--txt);pointer-events:none;transform:translateX(var(--x,0px))}
+.pr-glowica::before{content:"";position:absolute;top:-2px;left:-5px;border:6px solid transparent;border-top:8px solid var(--txt);border-bottom:0}
+@media (max-width:820px){.pr-klip i{display:none}.pr-klip{padding:0 6px;font-size:11px;justify-content:center}.pr-os .pr-szer{grid-template-columns:1fr}.pr-tc{display:none}.pr-sciezka{height:34px}}
+
+/* ===== sekcje ===== */
+.pr-sekcja{padding-block:clamp(88px,11vw,160px);scroll-margin-top:60px}
+.pr-jasna{background:var(--jasne-tlo);color:var(--jasne-txt)}
+.pr-jasna ::selection{background:var(--tlo);color:var(--txt)}
+.pr-glowa{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,64px);align-items:end;margin-bottom:clamp(40px,6vw,80px)}
+.pr-glowa h2{font:900 clamp(44px,7vw,112px)/.88 "Schibsted Grotesk";letter-spacing:-.04em;text-transform:uppercase;text-wrap:balance}
+.pr-glowa p{font:500 clamp(17px,1.4vw,20px)/1.5 "Schibsted Grotesk";color:var(--txt2);max-width:52ch;text-wrap:pretty}
+.pr-jasna .pr-glowa p{color:var(--jasne-txt2)}
+@media (max-width:1180px){.pr-glowa{grid-template-columns:1fr}}
+.pr-uwaga{color:var(--szary);margin-top:20px}
+.pr-jasna .pr-uwaga{color:var(--jasne-szary)}
+
+/* ===== filmy ===== */
+.pr-grupa{margin-top:clamp(56px,7vw,96px)}
+.pr-grupa:first-of-type{margin-top:0}
+.pr-grupa-g{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 24px;padding-bottom:16px;margin-bottom:20px;border-bottom:1px solid var(--rama)}
+.pr-grupa-g h3{font:900 clamp(24px,2.6vw,36px)/1.05 "Schibsted Grotesk";letter-spacing:-.02em}
+.pr-grupa-g p{color:var(--txt2);max-width:62ch}
+.pr-grupa-g p b{color:var(--akcent);font-weight:700}
+.pr-siatka{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(200px,42vw),1fr));gap:clamp(10px,1.4vw,20px)}
+.pr-siatka.szeroka{grid-template-columns:repeat(auto-fill,minmax(min(440px,100%),1fr))}
+.pr-film{all:unset;box-sizing:border-box;display:block;cursor:pointer;min-width:0}
+.pr-film .pr-kadr{position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:var(--kafel);box-shadow:0 0 0 1px var(--rama)}
+.szeroka .pr-film .pr-kadr{aspect-ratio:16/9}
+.pr-kadr img,.pr-kadr video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pr-kadr video{opacity:0;transition:opacity .35s}
+.pr-film.gra .pr-kadr video{opacity:1}
+.pr-graj{position:absolute;left:10px;bottom:10px;display:flex;align-items:center;gap:6px;padding:7px 11px 7px 9px;border-radius:999px;background:rgba(22,7,9,.78);color:var(--txt);font:700 12px "Schibsted Grotesk";transition:background .3s,transform .5s var(--ease)}
+.pr-graj svg{width:12px;height:12px}
+.pr-film:hover .pr-graj,.pr-film:focus-visible .pr-graj{background:var(--przycisk);transform:translateY(-2px)}
+.pr-film:focus-visible .pr-kadr{outline:2px solid var(--txt);outline-offset:3px}
+.pr-film figcaption{padding-top:10px;display:grid;gap:3px}
+.pr-film figcaption strong{font:700 15px/1.3 "Schibsted Grotesk";color:var(--txt);text-wrap:balance}
+.pr-film figcaption span{font-size:13px;color:var(--szary)}
+.pr-film figcaption .pr-wysw{color:var(--akcent);font:400 12px "JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+.pr-poczatek{margin-top:clamp(56px,7vw,96px);padding:clamp(24px,3vw,40px);border-radius:16px;background:var(--kafel);display:grid;grid-template-columns:auto 1fr;gap:clamp(16px,3vw,48px);align-items:center}
+.pr-poczatek b{font:900 clamp(40px,5vw,72px)/.9 "Schibsted Grotesk";letter-spacing:-.04em;color:var(--akcent);white-space:nowrap}
+.pr-poczatek p{color:var(--txt2);max-width:58ch}
+@media (max-width:620px){.pr-poczatek{grid-template-columns:1fr}}
+
+/* ===== narzędzia ===== */
+.pr-narzedzie{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,80px);align-items:center;padding-block:clamp(40px,5vw,64px);border-top:1px solid rgba(31,12,13,.16)}
+.pr-narzedzie:last-child{border-bottom:1px solid rgba(31,12,13,.16)}
+.pr-narzedzie h3{font:900 clamp(28px,3.4vw,48px)/.95 "Schibsted Grotesk";letter-spacing:-.03em;text-wrap:balance}
+.pr-wewy{margin-top:20px;display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:17px;line-height:1.45}
+.pr-wewy dt{font:400 12px/1.9 "JetBrains Mono",monospace;color:var(--jasne-szary);letter-spacing:.04em}
+.pr-wewy dd{color:var(--jasne-txt)}
+.pr-dowod{margin-top:18px;color:var(--akcent-jasny);font-weight:700}
+.pr-pokaz{position:relative;border-radius:14px;overflow:hidden;background:#1f0c0d;color:var(--txt);box-shadow:0 24px 60px -32px rgba(31,12,13,.55)}
+.pr-pokaz svg{display:block;width:100%;height:auto}
+.pr-pokaz figcaption{position:absolute;right:12px;top:10px;color:var(--szary)}
+.pr-pokaz.filmy{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px;background:#1f0c0d}
+.pr-pokaz.filmy video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:8px;background:#000}
+.pr-lista{list-style:none;padding:clamp(20px,3vw,36px);display:grid;gap:12px;font-size:16px}
+.pr-lista li{display:grid;grid-template-columns:22px 1fr auto;gap:12px;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--rama)}
+.pr-lista li:last-child{border-bottom:0;padding-bottom:0}
+.pr-lista svg{width:18px;height:18px;color:var(--akcent)}
+.pr-lista .mono{color:var(--szary)}
+.pr-tabela{width:100%;border-collapse:collapse;font-size:15px}
+.pr-tabela th,.pr-tabela td{text-align:left;padding:12px clamp(12px,2vw,24px);border-bottom:1px solid var(--rama);vertical-align:top}
+.pr-tabela th{font:400 11px "JetBrains Mono",monospace;color:var(--szary);letter-spacing:.06em;text-transform:uppercase;padding-top:clamp(16px,2.6vw,30px)}
+.pr-tabela td:first-child{color:var(--akcent);white-space:nowrap}
+.pr-tabela tr:last-child td{border-bottom:0;padding-bottom:clamp(16px,2.6vw,30px)}
+@media (max-width:900px){.pr-narzedzie{grid-template-columns:1fr}}
+
+/* ===== agenci ===== */
+.pr-zrzut{border-radius:14px;overflow:hidden;box-shadow:0 0 0 1px var(--rama),0 40px 90px -40px #000}
+.pr-zrzut img{width:100%;height:auto}
+.pr-zrzuty-ag{display:grid;grid-template-columns:minmax(0,3.2fr) minmax(0,1fr);gap:clamp(12px,2vw,24px);align-items:start}
+.pr-zrzuty-ag figcaption{margin-top:10px;color:var(--szary)}
+@media (max-width:760px){.pr-zrzuty-ag{grid-template-columns:1fr}.pr-zrzuty-ag .pr-tel{max-width:300px}}
+.pr-sklad{list-style:none;margin-top:clamp(48px,6vw,80px);display:grid;grid-template-columns:repeat(auto-fill,minmax(min(330px,100%),1fr));gap:0 clamp(24px,4vw,64px)}
+.pr-sklad li{display:grid;grid-template-columns:48px 1fr;gap:16px;padding-block:22px;border-top:1px solid var(--rama)}
+.pr-inicjaly{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font:700 15px "Schibsted Grotesk";background:color-mix(in srgb,var(--k) 30%,#160709);border:1px solid var(--k);color:var(--txt)}
+.pr-sklad h3{font:700 19px/1.2 "Schibsted Grotesk"}
+.pr-sklad p{margin-top:6px;color:var(--txt2);font-size:16px;line-height:1.5}
+.pr-stan{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font:400 12px "JetBrains Mono",monospace;color:var(--szary)}
+.pr-stan::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--szary)}
+.pr-stan.dziala{color:#9fd8b0}.pr-stan.dziala::before{background:#5fbf7f}
+.pr-stan.test{color:var(--akcent)}.pr-stan.test::before{background:var(--akcent)}
+
+/* ===== automatyzacje ===== */
+.pr-automaty{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,2vw,24px)}
+.pr-automaty li{padding:clamp(22px,2.6vw,36px);border-radius:16px;background:var(--kafel);display:flex;flex-direction:column;gap:12px}
+.pr-automaty .pr-kiedy{font:400 12px "JetBrains Mono",monospace;color:var(--akcent);font-variant-numeric:tabular-nums}
+.pr-automaty h3{font:900 clamp(22px,2vw,28px)/1.05 "Schibsted Grotesk";letter-spacing:-.02em}
+.pr-automaty p{color:var(--txt2)}
+@media (max-width:900px){.pr-automaty{grid-template-columns:1fr}}
+
+/* ===== aplikacja ===== */
+.pr-znacznik{display:inline-block;vertical-align:middle;margin-left:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--akcent-jasny);color:var(--akcent-jasny);font:700 13px/1 "Schibsted Grotesk";letter-spacing:0;text-transform:none;transform:translateY(-.35em)}
+.pr-telefony{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(10px,1.6vw,22px);align-items:start}
+.pr-telefony figure{border-radius:22px;overflow:hidden;background:#140806;padding:6px;box-shadow:0 30px 60px -34px rgba(31,12,13,.7)}
+.pr-telefony figure:nth-child(even){margin-top:clamp(24px,4vw,56px)}
+.pr-telefony img{border-radius:16px;width:100%;height:auto}
+.pr-telefony figcaption{color:#dcc8c0;font:700 13px "Schibsted Grotesk";padding:10px 6px 4px}
+@media (max-width:900px){.pr-telefony{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;margin-inline:calc(var(--margines)*-1);padding-inline:var(--margines);scroll-padding-inline:var(--margines)}.pr-telefony figure{flex:0 0 min(62vw,260px);scroll-snap-align:start}.pr-telefony figure:nth-child(even){margin-top:0}}
+.pr-cechy{list-style:none;margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px clamp(24px,4vw,56px)}
+.pr-cechy b{display:block;font:900 20px/1.2 "Schibsted Grotesk"}
+.pr-cechy span{display:block;margin-top:6px;color:var(--jasne-txt2)}
+@media (max-width:760px){.pr-cechy{grid-template-columns:1fr}}
+
+/* ===== strony ===== */
+.pr-strony{display:grid;gap:clamp(40px,6vw,88px)}
+.pr-strona{position:relative;display:grid;grid-template-columns:minmax(0,1fr);padding-right:clamp(48px,10vw,150px)}
+.pr-strona:nth-child(even){padding-right:0;padding-left:clamp(48px,10vw,150px)}
+.pr-strona .pr-tel{position:absolute;right:0;bottom:-28px;width:clamp(96px,16vw,220px);height:auto;border-radius:16px;overflow:hidden;box-shadow:0 0 0 6px #140806,0 30px 60px -20px #000}
+.pr-strona:nth-child(even) .pr-tel{right:auto;left:0}
+.pr-strona figcaption{margin-top:14px;color:var(--szary)}
+
+/* ===== koniec ===== */
+.pr-koniec{padding-block:clamp(88px,11vw,160px);border-top:1px solid var(--rama)}
+.pr-koniec h2{font:900 clamp(44px,8vw,128px)/.86 "Schibsted Grotesk";letter-spacing:-.045em;text-transform:uppercase}
+.pr-kontakt{margin-top:36px;display:flex;flex-wrap:wrap;gap:12px 28px;font:700 clamp(20px,2.4vw,32px)/1.2 "Schibsted Grotesk"}
+.pr-kontakt a{text-decoration:none;border-bottom:2px solid var(--akcent);padding-bottom:2px}
+.pr-kontakt a:hover{color:var(--akcent)}
+.pr-koniec .przyciski{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px}
+.pr-stopka{padding-block:28px;color:var(--szary);border-top:1px solid var(--rama)}
+
+/* ===== okno filmu ===== */
+.pr-okno{position:fixed;inset:0;z-index:200;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:clamp(12px,3vw,40px);border:0;background:rgba(22,7,9,.95);display:none;place-items:center;color:var(--txt)}
+.pr-okno[open]{display:grid}.pr-okno::backdrop{background:transparent}
+.pr-okno video{display:block;max-width:100%;max-height:calc(100svh - 120px);border-radius:14px;background:#000}
+.pr-okno p{margin-top:12px;text-align:center;color:var(--txt2)}
+.pr-zamknij{position:absolute;top:14px;right:14px;min-width:48px;min-height:48px;border-radius:999px;border:1px solid rgba(246,236,230,.35);background:var(--przycisk);color:#fff;font:700 15px "Schibsted Grotesk";padding:0 18px;cursor:pointer}
+
+@media (max-width:820px){.pr-start{grid-template-columns:1fr;padding-top:88px}.pr-monitor{justify-self:start;width:min(64vw,280px)}}
+@media (prefers-reduced-motion:reduce){.ziarno{animation:none}*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="ziarno" aria-hidden="true"></div>
+<a class="sr-only" href="#filmy" style="position:absolute;left:-9999px">Przejdź do prac</a>
+
+<header class="pasek">
+  <a class="marka" href="#">Michał Frycz</a>
+  <nav aria-label="Strona">
+    <a class="szeroki" href="../praca/">O mnie</a>
+    <a class="szeroki" href="../cv/Michal_Frycz_CV_wideo_PL.pdf">CV</a>
+    <a href="#kontakt">Kontakt</a>
+  </nav>
+</header>
+
+<main>
+<section class="pr-start pr-szer" aria-labelledby="tytul">
+  <div>
+    <h1 id="tytul">Co <em>zrobiłem</em></h1>
+    <p class="pr-lead">Filmy, które piszę i montuję, oraz narzędzia, agenci i aplikacja, które zbudowałem w&nbsp;Claude Code, żeby robić je szybciej i lepiej. Same prace, bez oferty.</p>
+    <div class="przyciski">
+      <a class="przycisk pelny" href="#filmy">Zobacz filmy</a>
+      <button type="button" class="przycisk" data-showreel>Showreel, 55 s</button>
+    </div>
+  </div>
+  <figure class="pr-monitor" aria-label="Podgląd filmów">
+    <div class="pr-ekran" id="ekran">
+      <video muted playsinline preload="auto" poster="../media-wspolne/katalog/52.jpg" src="../media-wspolne/katalog/52.mp4"></video>
+      <video class="ukryty" muted playsinline preload="none"></video>
+    </div>
+    <figcaption class="pr-podpis mono"><span id="ekran-tytul">Dwa typy ludzi na żółtym świetle</span><b id="ekran-tc">00:00:00</b></figcaption>
+  </figure>
+</section>
+
+<nav class="pr-os" aria-label="Oś czasu prac">
+  <div class="pr-szer">
+    <span class="pr-tc" id="tc" aria-hidden="true">00:00:00:00</span>
+    <div class="pr-sciezka" id="sciezka">
+      <a class="pr-klip" style="--k:var(--klip1);--w:3" href="#filmy"><span>Filmy</span><i>21</i></a>
+      <a class="pr-klip" style="--k:var(--klip2);--w:2.4" href="#narzedzia"><span>Narzędzia</span><i>6</i></a>
+      <a class="pr-klip" style="--k:var(--klip3);--w:1.6" href="#agenci"><span>Agenci</span><i>6</i></a>
+      <a class="pr-klip" style="--k:var(--klip4);--w:1.2" href="#automatyzacje"><span>Automaty</span><i>3</i></a>
+      <a class="pr-klip" style="--k:var(--klip5);--w:1.3" href="#aplikacja"><span>Aplikacja</span><i>1</i></a>
+      <a class="pr-klip" style="--k:var(--klip6);--w:1.2" href="#strony"><span>Strony</span><i>11</i></a>
+      <span class="pr-glowica" id="glowica" aria-hidden="true"></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== FILMY ===== -->
+<section class="pr-sekcja" id="filmy" aria-labelledby="h-filmy">
+ <div class="pr-szer">
+  <div class="pr-glowa">
+    <h2 id="h-filmy">Filmy</h2>
+    <p>21 filmów z dwóch branż: skecze, POV, memy, reklamy sprzedażowe, animacje i explainery. Najedź, żeby zobaczyć ruch. Kliknij, żeby obejrzeć całość z dźwiękiem.</p>
+  </div>
+
+  <div class="pr-grupa">
+    <div class="pr-grupa-g">
+      <h3>Prawo jazdy – Złap Termin</h3>
+      <p>Prowadzę konto od 07/2025: piszę, nagrywam, montuję. <b>230 filmów</b>, <b>15,6 mln</b> wyświetleń na TikToku, najlepszy <b>1,2 mln</b>. <span class="mono">odczyt 18.11.2026</span></p>
+    </div>
+    <div class="pr-siatka">
+      <button class="pr-film" data-nr="52" data-t="Dwa typy ludzi na żółtym świetle"><figure><div class="pr-kadr"></div><figcaption><strong>Dwa typy ludzi na żółtym świetle</strong><span>mem, twarz do kamery</span><span class="pr-wysw">1,2 mln wyświetleń</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="53" data-t="Wjazd do galerii jak egzamin"><figure><div class="pr-kadr"></div><figcaption><strong>Wjazd do galerii jak egzamin</strong><span>POV, nagranie z auta</span><span class="pr-wysw">767 tys. wyświetleń</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="55" data-t="POV: na egzaminie wrzucasz bieg instruktorowi"><figure><div class="pr-kadr"></div><figcaption><strong>POV: wrzucasz bieg instruktorowi</strong><span>skecz w aucie</span><span class="pr-wysw">529 tys. wyświetleń</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="54" data-t="Strój na Halloween, który cię przerazi"><figure><div class="pr-kadr"></div><figcaption><strong>Strój na Halloween, który cię przerazi</strong><span>skecz</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="60" data-t="Egzaminator daje ci radę zaraz po zdanym egzaminie"><figure><div class="pr-kadr"></div><figcaption><strong>Rada egzaminatora po zdanym egzaminie</strong><span>skecz w aucie</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="61" data-t="Małe przypomnienie, żebyś w końcu zrobił prawko"><figure><div class="pr-kadr"></div><figcaption><strong>Przypomnienie, żebyś zrobił prawko</strong><span>mem, ujęcie z auta</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="62" data-t="POV: umierasz, ale najpierw musisz połączyć się z Bluetoothem"><figure><div class="pr-kadr"></div><figcaption><strong>POV: najpierw połącz się z Bluetoothem</strong><span>skecz w aucie</span></figcaption></figure></button>
+    </div>
+  </div>
+
+  <div class="pr-grupa">
+    <div class="pr-grupa-g">
+      <h3>Reklamy sprzedażowe – Złap Termin</h3>
+      <p>Filmy bez twarzy, które w 20 sekund pokazują usługę: animacja ekranu aplikacji, lektor, napisy. Osobne wersje pod różne miasta.</p>
+    </div>
+    <div class="pr-siatka">
+      <button class="pr-film" data-nr="29" data-t="„5 dni roboczych” – reklama"><figure><div class="pr-kadr"></div><figcaption><strong>„5 dni roboczych”</strong><span>reklama, lektor i napisy</span><span class="pr-wysw">803 tys. wyświetleń</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="28" data-t="„Znowu nie zdałeś egzaminu” – reklama"><figure><div class="pr-kadr"></div><figcaption><strong>„Znowu nie zdałeś egzaminu”</strong><span>reklama</span><span class="pr-wysw">107 tys. wyświetleń</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="25" data-t="Gdańsk i Warszawa – reklama miejska"><figure><div class="pr-kadr"></div><figcaption><strong>Gdańsk i Warszawa</strong><span>reklama pod miasta</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="39" data-t="Autorezerwacja – animacja ekranu aplikacji"><figure><div class="pr-kadr"></div><figcaption><strong>Autorezerwacja</strong><span>animacja ekranu aplikacji</span></figcaption></figure></button>
+    </div>
+  </div>
+
+  <div class="pr-grupa">
+    <div class="pr-grupa-g">
+      <h3>Branża medyczna</h3>
+      <p>Od 05/2026 jako Content &amp; Social Media Specialist. Zdrowie tłumaczone tak, żeby widz nie przewinął: animowana postać lekarza, postać 3D, explainery z twarzą, reklamy.</p>
+    </div>
+    <div class="pr-siatka">
+      <button class="pr-film" data-nr="05" data-t="Animowany lekarz – wymówki"><figure><div class="pr-kadr"></div><figcaption><strong>Animowany lekarz – wymówki</strong><span>animacja postaci</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="71" data-t="Tarczyca – postać 3D tłumaczy, kiedy iść do lekarza"><figure><div class="pr-kadr"></div><figcaption><strong>Tarczyca – postać 3D</strong><span>animacja 3D i AI</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="06" data-t="Dlaczego państwo zmienia przepisy"><figure><div class="pr-kadr"></div><figcaption><strong>Dlaczego państwo zmienia przepisy</strong><span>explainer: twarz, zdjęcia, napisy</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="68" data-t="Morfologia – co znaczą wyniki"><figure><div class="pr-kadr"></div><figcaption><strong>Morfologia – co znaczą wyniki</strong><span>twarz i grafika 3D</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="69" data-t="Testuję mity o zdrowiu"><figure><div class="pr-kadr"></div><figcaption><strong>Testuję mity o zdrowiu</strong><span>twarz do kamery</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="70" data-t="Dlaczego ziewanie jest zaraźliwe"><figure><div class="pr-kadr"></div><figcaption><strong>Dlaczego ziewanie jest zaraźliwe</strong><span>ciekawostka, twarz do kamery</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="03" data-t="Reklama sprzedażowa A"><figure><div class="pr-kadr"></div><figcaption><strong>Reklama sprzedażowa A</strong><span>reklama</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="04" data-t="Reklama sprzedażowa B"><figure><div class="pr-kadr"></div><figcaption><strong>Reklama sprzedażowa B</strong><span>reklama</span></figcaption></figure></button>
+    </div>
+    <div class="pr-siatka szeroka" style="margin-top:clamp(16px,2vw,28px)">
+      <button class="pr-film" data-nr="01" data-t="Czym jest pakiet – explainer animowany"><figure><div class="pr-kadr"></div><figcaption><strong>Czym jest pakiet</strong><span>explainer animowany, poziomy</span></figcaption></figure></button>
+      <button class="pr-film" data-nr="02" data-t="Reklama 15 s"><figure><div class="pr-kadr"></div><figcaption><strong>Reklama 15 s</strong><span>animacja, poziomy</span></figcaption></figure></button>
+    </div>
+  </div>
+
+  <div class="pr-poczatek">
+    <b>146 mln</b>
+    <p>Od tego się zaczęło: zanim robiłem filmy dla firm, zbudowałem własne konto na TikToku do 80 tys. obserwujących i 146 mln wyświetleń, bez budżetu i bez zespołu. <span class="mono">stan 18.11.2026</span></p>
+  </div>
+ </div>
+</section>
+
+<!-- ===== NARZĘDZIA ===== -->
+<section class="pr-sekcja pr-jasna" id="narzedzia" aria-labelledby="h-narz">
+ <div class="pr-szer">
+  <div class="pr-glowa">
+    <h2 id="h-narz">Narzędzia do filmów</h2>
+    <p>Zbudowałem je w Claude Code: opisuję, co ma się dziać, i sprawdzam wynik na prawdziwych filmach. Każde zdejmuje ze mnie jeden powtarzalny krok, więc więcej czasu zostaje na pomysł i montaż.</p>
+  </div>
+
+  <article class="pr-narzedzie">
+    <div>
+      <h3>Montaż do Premiere</h3>
+      <dl class="pr-wewy"><dt>WCHODZI</dt><dd>nagranie i scenariusz</dd><dt>WYCHODZI</dt><dd>projekt Premiere z warstwami: cięcia co do zdania, b-rolle, animacje, dźwięki z własnej biblioteki (512 plików)</dd></dl>
+      <p class="pr-dowod">Projekt otwieram w Premiere i dopracowuję ręcznie.</p>
+    </div>
+    <figure class="pr-pokaz" aria-label="Schemat osi czasu projektu">
+      <svg viewBox="0 0 600 300" role="img" aria-label="Oś czasu z warstwami: napisy, animacje, b-roll, nagranie, lektor, dźwięki">
+        <rect width="600" height="300" fill="#1f0c0d"/>
+        <g font-family="JetBrains Mono,monospace" font-size="11" fill="#a8908a">
+          <text x="16" y="38">00:00</text><text x="166" y="38">00:05</text><text x="316" y="38">00:10</text><text x="466" y="38">00:15</text>
+          <text x="16" y="78">V4</text><text x="16" y="118">V3</text><text x="16" y="158">V2</text><text x="16" y="198">V1</text><text x="16" y="238">A1</text><text x="16" y="278">A2</text>
+        </g>
+        <g stroke="#321816"><line x1="50" y1="48" x2="600" y2="48"/><line x1="50" y1="88" x2="600" y2="88"/><line x1="50" y1="128" x2="600" y2="128"/><line x1="50" y1="168" x2="600" y2="168"/><line x1="50" y1="208" x2="600" y2="208"/><line x1="50" y1="248" x2="600" y2="248"/></g>
+        <g rx="4">
+          <rect x="52" y="62" width="70" height="22" rx="4" fill="#f4e6da"/><rect x="126" y="62" width="88" height="22" rx="4" fill="#f4e6da"/><rect x="218" y="62" width="60" height="22" rx="4" fill="#f4e6da"/><rect x="282" y="62" width="96" height="22" rx="4" fill="#f4e6da"/><rect x="382" y="62" width="74" height="22" rx="4" fill="#f4e6da"/><rect x="460" y="62" width="104" height="22" rx="4" fill="#f4e6da"/>
+          <rect x="150" y="102" width="120" height="22" rx="4" fill="#c45a44"/><rect x="410" y="102" width="110" height="22" rx="4" fill="#c45a44"/>
+          <rect x="96" y="142" width="96" height="22" rx="4" fill="#df8f75"/><rect x="290" y="142" width="104" height="22" rx="4" fill="#df8f75"/><rect x="470" y="142" width="80" height="22" rx="4" fill="#df8f75"/>
+          <rect x="52" y="182" width="512" height="22" rx="4" fill="#8a1f1a"/>
+          <rect x="52" y="222" width="512" height="22" rx="4" fill="#5d3c3f"/>
+          <rect x="94" y="262" width="20" height="22" rx="4" fill="#a8908a"/><rect x="288" y="262" width="20" height="22" rx="4" fill="#a8908a"/><rect x="408" y="262" width="20" height="22" rx="4" fill="#a8908a"/><rect x="468" y="262" width="20" height="22" rx="4" fill="#a8908a"/>
+        </g>
+        <g fill="#1f0c0d" font-family="Schibsted Grotesk,sans-serif" font-size="11" font-weight="700"><text x="60" y="77">napisy</text><text x="158" y="117">animacja</text><text x="104" y="157">b-roll</text><text x="60" y="197" fill="#f6ece6">nagranie, cięte co do zdania</text><text x="60" y="237" fill="#f6ece6">lektor</text></g>
+        <line x1="330" y1="44" x2="330" y2="292" stroke="#f6ece6" stroke-width="2"/>
+      </svg>
+      <figcaption class="mono">schemat</figcaption>
+    </figure>
+  </article>
+
+  <article class="pr-narzedzie">
+    <div>
+      <h3>Napisy dobrane do filmu</h3>
+      <dl class="pr-wewy"><dt>WCHODZI</dt><dd>gotowy montaż z głosem</dd><dt>WYCHODZI</dt><dd>napisy od razu na osi czasu, dzielone po sensie zdania i dopasowane do tempa mówienia, gotowe do poprawek</dd></dl>
+      <p class="pr-dowod">Napisy nie łamią nazw i pytań w pół zdania.</p>
+    </div>
+    <figure class="pr-pokaz filmy" aria-label="Filmy z napisami">
+      <video data-podglad="06" muted loop playsinline preload="none" poster="../media-wspolne/katalog/06.jpg" src=""></video>
+      <video data-podglad="04" muted loop playsinline preload="none" poster="../media-wspolne/katalog/04.jpg" src=""></video>
+      <video data-podglad="29" muted loop playsinline preload="none" poster="../media-wspolne/katalog/29.jpg" src=""></video>
+    </figure>
+  </article>
+
+  <article class="pr-narzedzie">
+    <div>
+      <h3>Pętla retencji</h3>
+      <dl class="pr-wewy"><dt>WCHODZI</dt><dd>krzywa utrzymania widzów z TikToka, 48 godzin po publikacji</dd><dt>WYCHODZI</dt><dd>zdanie scenariusza, przy którym ludzie odpadają, i trzy zmiany do następnego filmu</dd></dl>
+      <p class="pr-dowod">87 pomiarów krzywych widzów z 3 kont.</p>
+    </div>
+    <figure class="pr-pokaz" aria-label="Krzywa utrzymania nałożona na zdania">
+      <svg viewBox="0 0 600 300" role="img" aria-label="Krzywa utrzymania widzów spada najmocniej przy zdaniu trzecim">
+        <rect width="600" height="300" fill="#1f0c0d"/>
+        <g stroke="#321816"><line x1="50" y1="40" x2="580" y2="40"/><line x1="50" y1="100" x2="580" y2="100"/><line x1="50" y1="160" x2="580" y2="160"/><line x1="50" y1="220" x2="580" y2="220"/></g>
+        <g font-family="JetBrains Mono,monospace" font-size="11" fill="#a8908a"><text x="14" y="44">100%</text><text x="20" y="104">75%</text><text x="20" y="164">50%</text><text x="20" y="224">25%</text></g>
+        <rect x="236" y="34" width="92" height="192" fill="#8a1f1a" opacity=".35"/>
+        <path d="M50 40 C80 52 110 62 140 70 S200 84 236 92 C262 118 290 150 328 160 S420 170 470 176 S550 186 580 190" fill="none" stroke="#df8f75" stroke-width="3"/>
+        <g stroke="#5d3c3f" stroke-dasharray="3 4"><line x1="140" y1="34" x2="140" y2="232"/><line x1="236" y1="34" x2="236" y2="232"/><line x1="328" y1="34" x2="328" y2="232"/><line x1="470" y1="34" x2="470" y2="232"/></g>
+        <g font-family="Schibsted Grotesk,sans-serif" font-size="12" font-weight="700" fill="#dcc8c0"><text x="60" y="256">hook</text><text x="150" y="256">zdanie 2</text><text x="246" y="256" fill="#f6ece6">zdanie 3</text><text x="338" y="256">zdanie 4</text><text x="480" y="256">puenta</text></g>
+        <text x="246" y="280" font-family="Schibsted Grotesk,sans-serif" font-size="12" fill="#df8f75">tu odpada najwięcej widzów</text>
+      </svg>
+      <figcaption class="mono">ilustracja</figcaption>
+    </figure>
+  </article>
+
+  <article class="pr-narzedzie">
+    <div>
+      <h3>Research filmów i reklam</h3>
+      <dl class="pr-wewy"><dt>WCHODZI</dt><dd>temat filmu albo profil konkurencji</dd><dt>WYCHODZI</dt><dd>teczka przykładów: hook z pierwszych 3 sekund, tempo, sposób pokazania produktu i co z tego wziąć do mojego filmu</dd></dl>
+      <p class="pr-dowod">888 filmów i reklam rozłożonych na powtarzalne wzorce.</p>
+    </div>
+    <figure class="pr-pokaz" aria-label="Przykładowy rozbiór reklamy">
+      <table class="pr-tabela">
+        <thead><tr><th scope="col">Element</th><th scope="col">Co widać</th></tr></thead>
+        <tbody>
+          <tr><td>Hook 0–3 s</td><td>pytanie do widza i zbliżenie na telefon</td></tr>
+          <tr><td>Tempo</td><td>cięcie co 1,5 s, zero pauz</td></tr>
+          <tr><td>Produkt</td><td>ekran aplikacji dopiero w 8. sekundzie</td></tr>
+          <tr><td>Do wzięcia</td><td>ekran wcześniej, w 3. sekundzie</td></tr>
+        </tbody>
+      </table>
+      <figcaption class="mono">ilustracja</figcaption>
+    </figure>
+  </article>
+
+  <article class="pr-narzedzie">
+    <div>
+      <h3>Biblioteka animacji</h3>
+      <dl class="pr-wewy"><dt>WCHODZI</dt><dd>zdanie ze scenariusza</dd><dt>WYCHODZI</dt><dd>gotowa animacja do wstawienia w film: mapa placówek, sieć połączeń, licznik, ekran aplikacji, postać lekarza</dd></dl>
+      <p class="pr-dowod">66 gotowych klocków animacji.</p>
+    </div>
+    <figure class="pr-pokaz filmy" aria-label="Przykładowe animacje">
+      <video data-podglad="21" muted loop playsinline preload="none" poster="../media-wspolne/katalog/21.jpg" src=""></video>
+      <video data-podglad="22" muted loop playsinline preload="none" poster="../media-wspolne/katalog/22.jpg" src=""></video>
+      <video data-podglad="39" muted loop playsinline preload="none" poster="../media-wspolne/katalog/39.jpg" src=""></video>
+    </figure>
+  </article>
+
+  <article class="pr-narzedzie">
+    <div>
+      <h3>Kontrola przed wydaniem</h3>
+      <dl class="pr-wewy"><dt>WCHODZI</dt><dd>gotowy plik filmu</dd><dt>WYCHODZI</dt><dd>lista rzeczy do poprawy, zanim film zobaczy ktokolwiek</dd></dl>
+      <p class="pr-dowod">Fakty w filmie sprawdzam na nowo w źródle przed każdą publikacją.</p>
+    </div>
+    <figure class="pr-pokaz" aria-label="Co sprawdza kontrola">
+      <ul class="pr-lista">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span>obraz i dźwięk w każdej sekundzie</span><span class="mono">ok</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span>szczyt głośności</span><span class="mono">ok</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span>czarne klatki</span><span class="mono">ok</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span>pusty kadr</span><span class="mono">ok</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg><span>napisy w kadrze i bez literówek</span><span class="mono">ok</span></li>
+      </ul>
+    </figure>
+  </article>
+ </div>
+</section>
+
+<!-- ===== AGENCI ===== -->
+<section class="pr-sekcja" id="agenci" aria-labelledby="h-agenci">
+ <div class="pr-szer">
+  <div class="pr-glowa">
+    <h2 id="h-agenci">Zespół agentów</h2>
+    <p>Agenci AI z imionami i rolami. Pracują w tle według harmonogramu, a każdą decyzję, która coś zmienia, zostawiają mi do kliknięcia „Tak” albo „Nie” w panelu. Panel działa na komputerze i na telefonie.</p>
+  </div>
+  <div class="pr-zrzuty-ag">
+    <figure><div class="pr-zrzut"><img src="media/panel-komputer.jpg" width="1150" height="575" alt="Panel zespołu na komputerze: tabela agentów ze stanem, bieżącym zadaniem i ostatnim krokiem" loading="lazy"></div><figcaption class="mono">panel zespołu, podgląd na danych próbnych</figcaption></figure>
+    <figure class="pr-tel"><div class="pr-zrzut"><img src="media/panel-telefon.jpg" width="469" height="1015" alt="Panel na telefonie: karta agenta sprzątającego dysk z decyzją do zatwierdzenia" loading="lazy"></div><figcaption class="mono">ta sama karta na telefonie</figcaption></figure>
+  </div>
+  <ul class="pr-sklad">
+    <li><span class="pr-inicjaly" style="--k:var(--klip1)">AK</span><div><h3>Aleksander Kierownik</h3><p>Przyjmuje zlecenia, rozdziela je między agentów i pilnuje terminów. Codziennie o 21:00 daje mi jedno podsumowanie dnia.</p><span class="pr-stan dziala">działa</span></div></li>
+    <li><span class="pr-inicjaly" style="--k:var(--klip2)">FP</span><div><h3>Florence Porządna</h3><p>Sprząta dysk po pracy czatów. 18.11 przeniosła do Kosza 12 666 plików (3,26 GB), dopiero po mojej akceptacji listy. Teraz co niedzielę.</p><span class="pr-stan dziala">działa</span></div></li>
+    <li><span class="pr-inicjaly" style="--k:var(--klip4)">KK</span><div><h3>Kinga Kompas</h3><p>Przyjmuje zlecenia wysłane z telefonu i odsyła powiadomienia na iPhone’a, gdy coś czeka na moją decyzję.</p><span class="pr-stan test">test udany 19.11</span></div></li>
+    <li><span class="pr-inicjaly" style="--k:var(--klip3)">MO</span><div><h3>Maria Odkrywczyni</h3><p>Szuka firm z aplikacją albo usługą dla klientów, które nie prowadzą social mediów, i ocenia każdą w skali 0–10.</p><span class="pr-stan">wstrzymana</span></div></li>
+    <li><span class="pr-inicjaly" style="--k:var(--klip5)">LW</span><div><h3>Leonardo Wynalazca</h3><p>Raz w tygodniu przegląda błędy i przestoje zespołu i proponuje od 1 do 3 usprawnień z liczbą, po której poznamy efekt.</p><span class="pr-stan">w przygotowaniu</span></div></li>
+    <li><span class="pr-inicjaly" style="--k:var(--klip6)">BZ</span><div><h3>Benjamin Zegarmistrz</h3><p>Co poniedziałek liczy z kalendarza, ile naprawdę mam wolnych godzin w tygodniu.</p><span class="pr-stan">w przygotowaniu</span></div></li>
+  </ul>
+ </div>
+</section>
+
+<!-- ===== AUTOMATYZACJE ===== -->
+<section class="pr-sekcja" id="automatyzacje" aria-labelledby="h-auto" style="padding-top:0">
+ <div class="pr-szer">
+  <div class="pr-glowa">
+    <h2 id="h-auto">Automatyzacje</h2>
+    <p>Rzeczy, które dzieją się same o stałej porze. Zostawiają wynik w miejscu, do którego i tak zaglądam: w arkuszu, aplikacji albo powiadomieniu.</p>
+  </div>
+  <ul class="pr-automaty">
+    <li><span class="pr-kiedy">po każdej publikacji</span><h3>Robot retencji</h3><p>Zbiera krzywe utrzymania widzów z kont, które prowadzę, i dokłada je do historii. Z tego korzysta pętla retencji.</p><p class="pr-wysw mono" style="color:var(--akcent)">87 pomiarów, 3 konta</p></li>
+    <li><span class="pr-kiedy">codziennie 20:30</span><h3>Harmonogram publikacji</h3><p>Sprawdza, co naprawdę wyszło na TikToka, uzupełnia arkusz publikacji o tytuły, daty i linki i planuje kolejne filmy na dni robocze.</p></li>
+    <li><span class="pr-kiedy">w nocy, menu o 5:00</span><h3>Rutyny dla aplikacji</h3><p>W nocy analizują treningi, jedzenie i plan dnia, a rano zostawiają w aplikacji propozycje i menu na dzień.</p></li>
+  </ul>
+ </div>
+</section>
+
+<!-- ===== APLIKACJA ===== -->
+<section class="pr-sekcja pr-jasna" id="aplikacja" aria-labelledby="h-app">
+ <div class="pr-szer">
+  <div class="pr-glowa">
+    <h2 id="h-app">Statly <span class="pr-znacznik">w budowie</span></h2>
+    <p>Aplikacja na telefon do planu dnia: jedzenie, treningi, zakupy, cele i asystent. Nie trzeba wypełniać formularzy: mówię normalnie, co zrobiłem, a Claude zapisuje i liczy. Wieczorem coach pyta, jak minął dzień.</p>
+  </div>
+  <div class="pr-telefony">
+    <figure><img src="media/statly-jedzenie.jpg" width="540" height="1080" alt="Ekran Jedzenie: kalorie i białko na dziś, lista zjedzonych posiłków" loading="lazy"><figcaption>Jedzenie</figcaption></figure>
+    <figure><img src="media/statly-trening.jpg" width="540" height="1080" alt="Ekran Trening: zapis treningu jednym zdaniem i analiza trenera" loading="lazy"><figcaption>Trening</figcaption></figure>
+    <figure><img src="media/statly-asystent.jpg" width="540" height="1080" alt="Ekran Asystent: propozycja na dziś i cele" loading="lazy"><figcaption>Asystent</figcaption></figure>
+    <figure><img src="media/statly-coach.jpg" width="540" height="1080" alt="Ekran Coach: wieczorny check-in z oceną dnia" loading="lazy"><figcaption>Coach</figcaption></figure>
+    <figure><img src="media/statly-zakupy.jpg" width="540" height="1080" alt="Ekran Zakupy: lista zakupów i spiżarnia" loading="lazy"><figcaption>Zakupy</figcaption></figure>
+  </div>
+  <ul class="pr-cechy">
+    <li><b>Jedno zdanie zamiast formularza</b><span>„Owsianka z owocami” wystarczy, kalorie i białko liczą się same.</span></li>
+    <li><b>Analiza w nocy</b><span>Rano czeka podsumowanie treningów, wagi i postępów.</span></li>
+    <li><b>Coach wieczorem</b><span>Krótki check-in: jak się czujesz, co blokowało, za co się doceniasz.</span></li>
+  </ul>
+  <p class="pr-uwaga mono">zrzuty z wersji testowej, przykładowe dane</p>
+ </div>
+</section>
+
+<!-- ===== STRONY ===== -->
+<section class="pr-sekcja" id="strony" aria-labelledby="h-strony">
+ <div class="pr-szer">
+  <div class="pr-glowa">
+    <h2 id="h-strony">Strony dla małych firm</h2>
+    <p>System, który z kilku informacji o firmie składa gotową stronę: usługi, cennik, opinie, kontakt, wersja na telefon. Powstało 11 stron pokazowych dla warsztatów, hydraulików, fizjoterapeutów i salonów.</p>
+  </div>
+  <div class="pr-strony">
+    <figure class="pr-strona"><div class="pr-zrzut"><img src="media/strona-warsztat-kowalski-demo.jpg" width="1100" height="927" alt="Strona pokazowa warsztatu samochodowego: nagłówek, usługi i przyciski kontaktu" loading="lazy"></div><img class="pr-tel" src="media/strona-warsztat-kowalski-demo-tel.jpg" width="360" height="720" alt="Ta sama strona na telefonie" loading="lazy"><figcaption class="mono">warsztat samochodowy</figcaption></figure>
+    <figure class="pr-strona"><div class="pr-zrzut"><img src="media/strona-hydro-nowak-demo.jpg" width="1100" height="927" alt="Strona pokazowa hydraulika: hasło o dojeździe w 2 godziny i lista usług" loading="lazy"></div><img class="pr-tel" src="media/strona-hydro-nowak-demo-tel.jpg" width="360" height="720" alt="Ta sama strona na telefonie" loading="lazy"><figcaption class="mono">hydraulik</figcaption></figure>
+    <figure class="pr-strona"><div class="pr-zrzut"><img src="media/strona-salon-fryzjerski-salon-demo.jpg" width="1100" height="927" alt="Strona pokazowa salonu fryzjerskiego z cennikiem" loading="lazy"></div><img class="pr-tel" src="media/strona-salon-fryzjerski-salon-demo-tel.jpg" width="360" height="720" alt="Ta sama strona na telefonie" loading="lazy"><figcaption class="mono">salon fryzjerski</figcaption></figure>
+  </div>
+  <p class="pr-uwaga mono">nazwy firm i numery telefonów na zrzutach są fikcyjne</p>
+ </div>
+</section>
+
+<section class="pr-koniec" id="kontakt" aria-labelledby="h-kontakt">
+ <div class="pr-szer">
+  <h2 id="h-kontakt">Pogadajmy</h2>
+  <div class="pr-kontakt"><a href="mailto:frycz.wideo@gmail.com">frycz.wideo@gmail.com</a><a href="tel:+48533766075">+48 533 766 075</a></div>
+  <div class="przyciski">
+    <a class="przycisk pelny" href="../cv/Michal_Frycz_CV_wideo_PL.pdf">Pobierz CV (PDF)</a>
+    <a class="przycisk" href="../praca/">O mnie i doświadczenie</a>
+    <button type="button" class="przycisk" data-showreel>Showreel, 55 s</button>
+  </div>
+ </div>
+</section>
+</main>
+<footer class="pr-stopka"><div class="pr-szer mono">© 2026 Michał Frycz · Warszawa, praca zdalna · liczby z TikToka z datą odczytu przy każdej</div></footer>
+
+<dialog class="pr-okno" id="okno" aria-label="Film">
+  <button type="button" class="pr-zamknij" id="zamknij">Zamknij ✕</button>
+  <div><video id="okno-film" controls playsinline preload="none"></video><p id="okno-tytul"></p></div>
+</dialog>
+
+<script>
+(()=>{
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const dotyk=matchMedia('(hover: none)').matches;
+const P='../media-wspolne/katalog/';
+
+/* kafle filmów: plakat od razu, ruch po najechaniu (komputer) albo w polu widzenia (telefon) */
+const kafle=[...document.querySelectorAll('.pr-film')];
+kafle.forEach(b=>{
+  const nr=b.dataset.nr,k=b.querySelector('.pr-kadr');
+  k.innerHTML=`<img src="${P}${nr}.jpg" alt="" loading="lazy"><video muted loop playsinline preload="none"></video><span class="pr-graj"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"/></svg>Obejrzyj</span>`;
+  b.setAttribute('aria-label','Obejrzyj film: '+b.dataset.t);
+  const v=k.querySelector('video');
+  const graj=()=>{if(RM)return;if(!v.src)v.src=P+nr+'.mp4';v.play().then(()=>b.classList.add('gra')).catch(()=>{})};
+  const stop=()=>{v.pause();b.classList.remove('gra')};
+  if(!dotyk){b.addEventListener('pointerenter',graj);b.addEventListener('pointerleave',stop);b.addEventListener('focus',graj);b.addEventListener('blur',stop)}
+  b._graj=graj;b._stop=stop;
+  b.addEventListener('click',()=>otworz(nr,b.dataset.t));
+});
+if(dotyk&&!RM){const io=new IntersectionObserver(es=>es.forEach(e=>{e.isIntersecting?e.target._graj():e.target._stop()}),{threshold:.65});kafle.forEach(b=>io.observe(b))}
+
+/* podglądy w narzędziach: grają tylko w polu widzenia */
+const ioP=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting&&!RM){if(!v.getAttribute('src'))v.src=P+v.dataset.podglad+'.mp4';v.play().catch(()=>{})}else v.pause()}),{threshold:.3});
+document.querySelectorAll('[data-podglad]').forEach(v=>{v.removeAttribute('src');ioP.observe(v)});
+
+/* okno z pełnym filmem i dźwiękiem */
+const okno=document.getElementById('okno'),film=document.getElementById('okno-film');
+function otworz(nr,t){film.poster=P+nr+'.jpg';film.src='filmy/'+nr+'.mp4';document.getElementById('okno-tytul').textContent=t;okno.showModal();film.play().catch(()=>{})}
+const zamknij=()=>okno.close();
+document.getElementById('zamknij').onclick=zamknij;
+okno.addEventListener('click',e=>{if(e.target===okno)zamknij()});
+okno.addEventListener('close',()=>{film.pause();film.removeAttribute('src');film.load()});
+
+/* monitor w otwarciu: kolejne podglądy po 6 s */
+const lista=[['52','Dwa typy ludzi na żółtym świetle'],['05','Animowany lekarz – wymówki'],['29','„5 dni roboczych”'],['71','Tarczyca – postać 3D'],['53','Wjazd do galerii jak egzamin'],['39','Autorezerwacja']];
+const [a,b]=document.querySelectorAll('#ekran video'),tyt=document.getElementById('ekran-tytul'),etc=document.getElementById('ekran-tc');
+let i=0,akt=a,nast=b;
+if(!RM){a.play().catch(()=>{});
+  a.addEventListener('timeupdate',()=>{});
+  setInterval(()=>{i=(i+1)%lista.length;const[nr,t]=lista[i];nast.src=P+nr+'.mp4';nast.poster=P+nr+'.jpg';nast.currentTime=0;nast.play().catch(()=>{});nast.classList.remove('ukryty');akt.classList.add('ukryty');tyt.textContent=t;[akt,nast]=[nast,akt]},6000);
+  const tik=()=>{const s=akt.currentTime||0;etc.textContent='00:00:'+String(Math.floor(s)).padStart(2,'0')+':'+String(Math.floor((s%1)*25)).padStart(2,'0');requestAnimationFrame(tik)};tik();
+}
+
+/* oś czasu: głowica i kod czasu idą za przewijaniem, aktywny klip = bieżąca sekcja */
+const sciezka=document.getElementById('sciezka'),glowica=document.getElementById('glowica'),tc=document.getElementById('tc');
+const klipy=[...sciezka.querySelectorAll('.pr-klip')],sekcje=klipy.map(k=>document.querySelector(k.getAttribute('href')));
+function os(){
+  const y=scrollY+innerHeight*.35;let n=-1;
+  sekcje.forEach((s,j)=>{if(s.offsetTop<=y)n=j});
+  let x=0;
+  if(n>=0){const s=sekcje[n],kon=n<sekcje.length-1?sekcje[n+1].offsetTop:document.body.scrollHeight-innerHeight*.65;const p=Math.min(1,Math.max(0,(y-s.offsetTop)/(kon-s.offsetTop)));const k=klipy[n];x=k.offsetLeft+p*k.offsetWidth}
+  glowica.style.setProperty('--x',x+'px');
+  klipy.forEach((k,j)=>k.setAttribute('aria-current',j===n?'true':'false'));
+  const cal=Math.max(0,scrollY/(document.body.scrollHeight-innerHeight))*60;
+  tc.textContent='00:00:'+String(Math.floor(cal)).padStart(2,'0')+':'+String(Math.floor((cal%1)*25)).padStart(2,'0');
+}
+addEventListener('scroll',()=>requestAnimationFrame(os),{passive:true});addEventListener('resize',os);os();
+})();
+</script>
+<script src="../showreel/okno.js"></script>
+</body>
+</html>
