@@ -15,18 +15,19 @@
 <style>
 /* ===== KOLORY: podmiana palety = zmiana tych linijek ===== */
 :root{
-  --tlo:#0a0a0a;          /* tło strony */
-  --txt:#f4f4f2;          /* tekst główny */
-  --szary:#8a8a86;        /* etykiety */
-  --txt-2:#c4c4bf;        /* tekst drugiego planu na ciemnym */
-  --jasne:#f4f4f2;        /* tło jasnych sekcji */
-  --jasne-txt:#0a0a0a;    /* tekst na jasnym */
-  --jasne-txt-2:#3a3a38;  /* tekst drugiego planu na jasnym */
-  --jasne-szary:#6a6a66;  /* etykiety na jasnym */
-  --kafel:#151515;        /* tło filmu przed załadowaniem */
-  --rama:#1d1d1c;         /* obudowa telefonu */
-  --akcent:#f4f4f2;       /* akcent (na razie biel; później fiolet/brąz) */
-  --linia:rgba(244,244,242,.16);
+  --tlo:#0b0712;          /* tło strony */
+  --txt:#f2f1f4;          /* tekst główny */
+  --szary:#91899f;        /* etykiety */
+  --txt-2:#c6c2cc;        /* tekst drugiego planu na ciemnym */
+  --jasne:#f0e5e0;        /* tło jasnych sekcji */
+  --jasne-txt:#110e16;    /* tekst na jasnym */
+  --jasne-txt-2:#4c3e38;  /* tekst drugiego planu na jasnym */
+  --jasne-szary:#72615a;  /* etykiety na jasnym */
+  --kafel:#15111d;        /* tło filmu przed załadowaniem */
+  --rama:#1d1627;         /* obudowa telefonu */
+  --akcent:#b66644;       /* akcent (na razie biel; później fiolet/brąz) */
+  --linia:rgba(242,241,244,.16);
+  --przycisk:#2b1810;       /* brąz przycisków (wybór Michała 23.11) */
   --linia-jasna:rgba(10,10,10,.14);
   --font:"Schibsted Grotesk",system-ui,sans-serif;
   --mono:"JetBrains Mono",ui-monospace,monospace;
@@ -315,6 +316,12 @@ svg.ik{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;strok
   .spokoj .panel-liczb{grid-row:auto;grid-column:auto}
   .spokoj .panel-liczb .wiersz{display:block}
 }
+
+/* ===== KOLORY (wybór Michała 23.11.2026): czerń z nutą fioletu + brąz ===== */
+.liczby b,.panel-liczb b{color:var(--akcent)}
+.przycisk{background:var(--przycisk);color:#fff;box-shadow:inset 0 0 0 1px var(--akcent)}
+.jasna .przycisk{background:var(--przycisk);color:#fff;box-shadow:none}
+::selection{background:var(--akcent);color:var(--tlo)}
 </style>
 </head>
 <body data-ceny="tak">

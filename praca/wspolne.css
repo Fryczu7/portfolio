@@ -1,15 +1,16 @@
 /* Wspólne dla index.html i cv.html (tor B – strona dla pracodawców).
    Kolory tylko tutaj: podmiana palety = zmiana wartości na :root. */
 :root{
-  --tlo:#0a0a0a;          /* czerń strony */
-  --txt:#f4f4f2;          /* biel tekstu */
-  --szary:#8a8a86;        /* etykiety, źródła */
-  --txt2:#c4c4bf;         /* tekst drugiego planu na ciemnym */
-  --linia:rgba(244,244,242,.18);
-  --jasne-tlo:var(--txt); /* sekcje odwrócone */
-  --jasne-txt:var(--tlo);
-  --jasne-szary:#55554f;  /* 6,9:1 na #f4f4f2 */
-  --akcent:var(--txt);    /* tu wejdzie fiolet/brąz w etapie 2 */
+  --tlo:#0b0712;          /* czerń strony */
+  --txt:#f2f1f4;          /* biel tekstu */
+  --szary:#91899f;        /* etykiety, źródła */
+  --txt2:#c6c2cc;         /* tekst drugiego planu na ciemnym */
+  --linia:rgba(242,241,244,.18);
+  --przycisk:#2b1810;   /* brąz przycisków (wybór Michała 23.11) */
+  --jasne-tlo:#f0e5e0; /* sekcje odwrócone */
+  --jasne-txt:#110e16;
+  --jasne-szary:#72615a;  /* 6,9:1 na #f4f4f2 */
+  --akcent:#b66644;    /* tu wejdzie fiolet/brąz w etapie 2 */
   --ease:cubic-bezier(.16,1,.3,1);
   --margines:clamp(16px,5vw,72px);
 }
@@ -67,3 +68,11 @@ html[data-j=pl] .en,html[data-j=en] .pl{display:none!important}
   .podzial .sl>span{transform:none!important;transition:none}
   *{scroll-behavior:auto!important}
 }
+
+/* ===== KOLORY (wybór Michała 23.11.2026): czerń z nutą fioletu + brąz ===== */
+.przycisk.pelny{background:var(--przycisk);color:#fff;border-color:var(--akcent)}
+.przycisk.pelny:hover{background:var(--akcent);color:var(--tlo);border-color:var(--akcent)}
+.jasne .przycisk.pelny{background:var(--przycisk);color:#fff;border-color:var(--przycisk)}
+.jasne .przycisk.pelny:hover{background:transparent;color:var(--przycisk)}
+.wiersz-l b,.licz{color:var(--akcent)}
+::selection{background:var(--akcent);color:var(--tlo)}
