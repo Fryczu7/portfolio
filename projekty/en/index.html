@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Michał Frycz – portfolio</title>
+<meta name="description" content="Short videos with results and AI systems built in Claude: an app, a team of agents, automations.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;900&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../wspolne.css">
+<style>
+/* ===== Linia produkcyjna ===== */
+.pasek{position:fixed;z-index:50;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:16px var(--m);font-weight:700;font-size:15px;background:rgba(22,7,9,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(50,24,22,.6)}
+.pasek__marka{font-weight:900;text-transform:uppercase;letter-spacing:-.02em;text-decoration:none}
+.pasek nav{display:flex;gap:clamp(14px,2.6vw,34px)}
+.pasek nav a{text-decoration:none;color:var(--txt2);transition:color .3s}
+.pasek nav a:hover{color:var(--txt)}
+@media (max-width:720px){.pasek nav a:not(:last-child):not([lang]){display:none}}
+
+/* otwarcie */
+.start{position:relative;min-height:100svh;display:grid;align-items:end;padding:120px var(--m) clamp(40px,7vh,80px);overflow:hidden}
+.start__film{position:absolute;inset:0;z-index:-1}
+.start__film video{width:100%;height:100%;object-fit:cover;opacity:.55;filter:saturate(.8) sepia(.25)}
+.start__film::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,7,9,.35) 0%,rgba(22,7,9,.2) 40%,var(--tlo) 96%),radial-gradient(ellipse at 20% 80%,rgba(138,31,26,.35),transparent 60%)}
+.start h1{font-size:clamp(46px,8.6vw,124px);line-height:.92;font-weight:900;letter-spacing:-.04em;text-transform:uppercase;max-width:11ch}
+.start h1 em{font-style:normal;color:var(--akcent)}
+.start__dol{display:flex;flex-wrap:wrap;gap:28px 48px;align-items:end;justify-content:space-between;margin-top:clamp(28px,4vw,48px)}
+.start__dol p{max-width:46ch;font-size:clamp(18px,1.6vw,22px);color:var(--txt2)}
+.start__akcje{display:flex;gap:12px;flex-wrap:wrap}
+
+/* linia */
+.linia{position:relative;padding:clamp(80px,12vw,160px) var(--m) 40px}
+.linia__naglowek{max-width:1200px;margin:0 auto clamp(48px,7vw,96px)}
+.linia__naglowek h2,.sekcja h2{font-size:clamp(38px,5.6vw,80px);line-height:.95;font-weight:900;letter-spacing:-.035em;text-transform:uppercase;max-width:14ch}
+.linia__naglowek p,.sekcja__wstep{margin-top:20px;max-width:58ch;color:var(--txt2);font-size:clamp(17px,1.4vw,20px)}
+.tasma{position:relative;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:72px 1fr;gap:0 clamp(16px,3vw,40px)}
+.tasma__tor{position:relative;grid-row:1/-1}
+.tasma__tor::before,.tasma__postep{content:"";position:absolute;left:35px;top:0;width:2px;bottom:0;background:var(--rama);border-radius:2px}
+.tasma__postep{background:linear-gradient(180deg,var(--przycisk),var(--akcent));transform-origin:top;transform:scaleY(var(--p,0))}
+.stacja{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(40px,6vw,80px) 0;border-top:1px solid var(--rama)}
+.stacja:first-of-type{border-top:0}
+.stacja__nr{position:absolute;left:calc(-72px - clamp(16px,3vw,40px));top:clamp(40px,6vw,80px);width:72px;display:grid;justify-items:center;gap:8px}
+.stacja__kropka{width:22px;height:22px;border-radius:50%;background:var(--tlo);box-shadow:inset 0 0 0 2px var(--rama);transition:box-shadow .6s var(--ease),background .6s}
+.stacja.aktywna .stacja__kropka{background:var(--akcent);box-shadow:0 0 0 6px rgba(223,143,117,.16)}
+.stacja__nr span{font-size:13px;color:var(--szary)}
+.stacja h3{font-size:clamp(30px,3.6vw,52px);font-weight:900;letter-spacing:-.03em;line-height:1;text-transform:uppercase}
+.stacja__co{margin-top:16px;color:var(--txt2);max-width:44ch}
+.stacja__efekt{margin-top:28px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.stacja__efekt b{font-size:clamp(44px,5vw,72px);font-weight:900;letter-spacing:-.04em;line-height:.9;color:var(--akcent)}
+.stacja__efekt span{color:var(--txt2);max-width:24ch;line-height:1.35;font-size:16px}
+.stacja__narzedzia{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
+.stacja__narzedzia li{list-style:none;font-size:13px;padding:6px 12px;border-radius:999px;background:var(--kafel);color:var(--txt2)}
+.stacja__obraz{position:relative}
+.okno-ui{background:var(--kafel);border-radius:16px;padding:clamp(18px,2.4vw,28px);box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.okno-ui__glowa{display:flex;gap:6px;margin-bottom:18px}
+.okno-ui__glowa i{width:10px;height:10px;border-radius:50%;background:var(--rama)}
+.wiersze{display:grid;gap:10px;font-size:15px}
+.wiersze div{display:flex;justify-content:space-between;gap:16px;padding:12px 14px;border-radius:10px;background:rgba(246,236,230,.04)}
+.wiersze div b{font-weight:700}
+.wiersze div span{color:var(--szary);white-space:nowrap;text-align:right}
+.wiersze .ok{color:var(--akcent)}
+.hooki{display:grid;gap:10px}
+.hooki p{padding:14px 16px;border-radius:12px;background:rgba(246,236,230,.05);font-weight:500;line-height:1.35}
+.hooki p:nth-child(2){background:rgba(223,143,117,.16);color:var(--txt)}
+.hooki small{display:block;color:var(--szary);font-size:12px;margin-top:4px;font-weight:400}
+.fala{display:flex;align-items:center;gap:3px;height:120px}
+.fala i{flex:1;border-radius:3px;background:var(--akcent);opacity:.85;animation:fala 1.6s var(--ease) infinite alternate}
+@keyframes fala{to{transform:scaleY(.35)}}
+.napisy{display:grid;place-items:center;aspect-ratio:9/12;max-width:340px;margin:0 auto;border-radius:16px;background:url(../media/filmy/53.jpg) center/cover;position:relative;overflow:hidden}
+.napisy::before{content:"";position:absolute;inset:0;background:rgba(22,7,9,.35)}
+.napisy p{position:relative;font-size:clamp(24px,2.6vw,34px);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;text-align:center;line-height:1.05;padding:0 16px;text-shadow:0 3px 14px rgba(0,0,0,.6)}
+.napisy p span{color:#ffd84a}
+
+/* sekcje */
+.sekcja{padding:clamp(80px,11vw,150px) var(--m)}
+.sekcja__w{max-width:1200px;margin:0 auto}
+.jasne{background:var(--jasne);color:var(--jtxt)}
+.jasne .sekcja__wstep{color:var(--jtxt2)}
+.jasne ::selection{background:var(--przycisk);color:#fff}
+.filmy{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,1.6vw,20px)}
+.filmy .film--poziom{grid-column:span 2;aspect-ratio:auto;height:100%}
+.filmy__dopisek{display:grid;align-content:end;gap:14px;padding:20px;border-radius:14px;background:rgba(31,12,13,.06);font-size:16px;color:var(--jtxt2)}
+.filmy__dopisek a{color:var(--przycisk);font-weight:700}
+.filmy__grupa{grid-column:1/-1;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-top:clamp(24px,3vw,40px);padding-top:18px;border-top:1px solid rgba(31,12,13,.15)}
+.filmy__grupa:first-child{margin-top:0}
+.filmy__grupa h3{font-size:clamp(22px,2.2vw,30px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase}
+.filmy__grupa p{color:var(--jszary);font-size:15px}
+@media (max-width:900px){.filmy{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* zespół */
+.zespol{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:var(--rama);border-radius:18px;overflow:hidden}
+.agent{background:var(--tlo);padding:clamp(22px,2.4vw,32px);display:grid;gap:10px;align-content:start;min-height:230px;transition:background .5s}
+.agent:hover{background:var(--kafel)}
+.agent__inicjaly{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:18px;background:var(--kafel);color:var(--akcent);box-shadow:inset 0 0 0 1px var(--rama)}
+.agent h3{font-size:22px;font-weight:900;letter-spacing:-.02em;margin-top:6px}
+.agent p{color:var(--txt2);font-size:15.5px;line-height:1.45}
+.agent__stan{font-size:13px;color:var(--szary);display:flex;align-items:center;gap:8px;margin-top:auto}
+.agent__stan::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--szary)}
+.agent__stan.dziala{color:var(--akcent)}.agent__stan.dziala::before{background:var(--akcent)}
+.agent__wynik{font-weight:700;color:var(--txt)}
+@media (max-width:900px){.zespol{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.zespol{grid-template-columns:1fr}}
+
+/* Statly */
+.statly h2{font-size:clamp(34px,4.4vw,60px)}
+.statly{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr);gap:clamp(32px,5vw,80px);align-items:center}
+.statly__telefony{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(8px,1.2vw,16px)}
+.statly__telefony .telefon:nth-child(even){transform:translateY(40px)}
+.statly__lista{margin-top:28px;display:grid;gap:14px}
+.statly__lista li{list-style:none;display:grid;grid-template-columns:4.2em 1fr;gap:12px;color:var(--txt2);font-size:16px}
+.statly__lista li b{color:var(--akcent);font-weight:400}
+@media (max-width:900px){.statly{grid-template-columns:1fr}.statly__telefony{grid-template-columns:repeat(2,minmax(0,1fr))}.statly__telefony .telefon:nth-child(even){transform:none}}
+
+/* automatyzacje i strony */
+.reszta{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,24px)}
+.rzecz{border-radius:18px;padding:clamp(24px,2.6vw,36px);background:rgba(31,12,13,.06);display:grid;gap:12px;align-content:start}
+.rzecz h3{font-size:clamp(22px,2vw,28px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase;line-height:1.05}
+.rzecz p{color:var(--jtxt2)}
+.rzecz__kiedy{font-size:14px;color:var(--przycisk);font-weight:700}
+.strony{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(24px,4vw,56px);align-items:center;background:var(--jtxt);color:var(--txt)}
+.strony p{color:var(--txt2)}
+.strony__zrzuty{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.strony__zrzuty img{border-radius:14px;aspect-ratio:9/16;object-fit:cover;object-position:top;width:100%}
+@media (max-width:900px){.reszta,.strony{grid-template-columns:1fr}}
+
+/* koniec */
+.koniec{padding:clamp(100px,14vw,180px) var(--m) 48px;text-align:left}
+.koniec h2{font-size:clamp(44px,8vw,120px);line-height:.92;font-weight:900;letter-spacing:-.04em;text-transform:uppercase;max-width:12ch}
+.koniec h2 em{font-style:normal;color:var(--akcent)}
+.koniec__akcje{margin-top:36px;display:flex;gap:12px;flex-wrap:wrap}
+.stopka{margin-top:clamp(80px,10vw,140px);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--szary);font-size:14px;border-top:1px solid var(--rama);padding-top:20px}
+
+@media (max-width:720px){
+  .tasma{grid-template-columns:28px 1fr}
+  .tasma__tor::before,.tasma__postep{left:13px}
+  .stacja{grid-template-columns:1fr}
+  .stacja__nr{left:calc(-28px - clamp(16px,3vw,40px));width:28px}
+  .stacja__nr span{display:none}
+}
+
+/* ===== druk / PDF (A4 poziomo) ===== */
+.tylko-druk{display:none}
+@page{size:A4 landscape;margin:0}
+@media print{
+  html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact;background:var(--tlo)}
+  html{scroll-behavior:auto}
+  .pasek,.start__akcje,.filmy__dopisek a,.film__graj{display:none!important}
+  .tylko-druk{display:block}
+  *{animation:none!important;transition:none!important}
+  [data-wejscie]{opacity:1!important;transform:none!important;filter:none!important}
+  .start{min-height:0;height:210mm;padding-top:60px;break-after:page}
+  .linia{padding-top:48px}
+  .linia__naglowek{margin-bottom:24px}
+  .stacja{padding:28px 0;break-inside:avoid}
+  .stacja__nr{top:28px}
+  .tasma__postep{transform:scaleY(1)}
+  .stacja__kropka{background:var(--akcent);box-shadow:none}
+  .wykres__pas i{transform:scaleX(1)}
+  .sekcja{break-before:page;padding-top:48px;padding-bottom:48px}
+  #statly{padding-top:48px}
+  .film,.agent,.rzecz,.statly__telefony,.filmy__grupa{break-inside:avoid}
+  .filmy{gap:10px}
+  .koniec{break-before:page;padding-top:80px}
+  .druk-link{color:var(--akcent)}
+  /* układ komputerowy wymuszony w druku */
+  .stacja{grid-template-columns:1fr 1.05fr}
+  .filmy{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .filmy .film{max-height:330px;aspect-ratio:auto;height:330px}
+  .zespol{grid-template-columns:repeat(3,1fr)}
+  .agent{min-height:0}
+  .statly{grid-template-columns:.9fr 1.3fr}
+  .statly__telefony{grid-template-columns:repeat(4,1fr)}
+  .statly__telefony .telefon:nth-child(even){transform:translateY(30px)}
+  .statly h2{font-size:44px}
+  #statly{break-before:page}
+  .reszta{grid-template-columns:1fr 1fr}
+  .strony{grid-template-columns:1fr 1.4fr}
+  .strony__zrzuty img{aspect-ratio:9/14}
+  .sekcja h2{font-size:56px}
+  #zespol h2{font-size:44px}
+  #zespol .sekcja__wstep{margin-top:10px}
+  .zespol{margin-top:20px}
+  .agent{padding:16px 20px;gap:6px}
+  .agent h3{font-size:19px;margin-top:0}
+  .agent p{font-size:14px}
+  .agent__inicjaly{width:40px;height:40px;font-size:15px}
+  .statly{grid-template-columns:.7fr 1.5fr}
+  .jasne{min-height:210mm}
+}
+</style>
+</head>
+<body>
+<header class="pasek">
+  <a class="pasek__marka" href="#start">Michał Frycz</a>
+  <nav><a href="../" lang="pl">PL</a><a href="#linia">How a video is made</a><a href="#filmy">Videos</a><a href="#zespol">Agents</a><a href="#kontakt">Contact</a></nav>
+</header>
+
+<main>
+<section class="start" id="start">
+  <div class="start__film" aria-hidden="true"><video src="../media/showreel-16x9.mp4" poster="../media/okladka-16x9.jpg" data-podglad></video></div>
+  <div>
+    <h1>Videos with results. <em>Systems</em> that make them.</h1>
+    <div class="start__dol">
+      <p>I make short videos for TikTok and Reels, and I built a factory for them in Claude: from the idea and the script, through editing, to checking which sentence makes viewers drop off.</p>
+      <p class="tylko-druk" style="color:var(--txt);font-weight:700">Videos with sound and the showreel: <a class="druk-link" href="https://fryczu7.github.io/portfolio/projekty/en/">fryczu7.github.io/portfolio/projekty</a> · <a class="druk-link" href="mailto:frycz.wideo@gmail.com">frycz.wideo@gmail.com</a></p>
+      <div class="start__akcje">
+        <button class="btn" data-film="../media/showreel-16x9.mp4" data-podpis="Showreel – 55 seconds"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>Showreel 55 s</button>
+        <a class="btn btn--obrys" href="#linia">See how it works</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="linia" id="linia">
+  <div class="linia__naglowek" data-wejscie>
+    <h2>How one video is made</h2>
+    <p>Nine stations. Each one has a tool I built with Claude, and what it produces.</p>
+  </div>
+  <div class="tasma">
+    <div class="tasma__tor" aria-hidden="true"><div class="tasma__postep"></div></div>
+    <div>
+      <article class="stacja" data-wejscie>
+        <div class="stacja__nr" aria-hidden="true"><i class="stacja__kropka"></i><span class="liczba">01</span></div>
+        <div>
+          <h3>Idea</h3>
+          <p class="stacja__co">Before I write anything, I check what already works. One agent breaks down competitors' winning videos, another collects paid ads from the Meta and TikTok ad libraries.</p>
+          <div class="stacja__efekt"><b class="liczba">30</b><span>winning competitor videos broken down into a recipe with numbers</span></div>
+          <ul class="stacja__narzedzia"><li>profile breakdown</li><li>ad research</li><li>director</li></ul>
+        </div>
+        <div class="stacja__obraz"><div class="okno-ui"><div class="okno-ui__glowa"><i></i><i></i><i></i></div>
+          <div class="wiersze">
+            <div><b>Reels over 100k</b><span class="ok liczba">26 of 185</span></div>
+            <div><b>Profile median</b><span class="liczba">9.6k</span></div>
+            <div><b>Average shot</b><span class="liczba">2.6 s</span></div>
+            <div><b>Speech rate</b><span class="liczba">5.3–6.2 syllables/s</span></div>
+          </div></div></div>
+      </article>
+
+      <article class="stacja" data-wejscie>
+        <div class="stacja__nr" aria-hidden="true"><i class="stacja__kropka"></i><span class="liczba">02</span></div>
+        <div>
+          <h3>Script</h3>
+          <p class="stacja__co">For every topic I get several versions of the first line, write the script in the brand's voice and run it through a filter that removes the “written by AI” sound.</p>
+          <div class="stacja__efekt"><b class="liczba">5–10</b><span>hook variants for every topic</span></div>
+          <ul class="stacja__narzedzia"><li>hook generator</li><li>script writer</li><li>anti-slop</li></ul>
+        </div>
+        <div class="stacja__obraz hooki">
+          <p>Your exam is three months away? <small>rejected variant (example)</small></p>
+          <p>Two types of people at a yellow light. <small>chosen – 1.2M views</small></p>
+          <p>You'll pass sooner than you think. <small>rejected variant (example)</small></p>
+        </div>
+      </article>
+
+      <article class="stacja" data-wejscie>
+        <div class="stacja__nr" aria-hidden="true"><i class="stacja__kropka"></i><span class="liczba">03</span></div>
+        <div>
+          <h3>Voice-over</h3>
+          <p class="stacja__co">My voice, cloned from recorded conversations. Text turns into a recording, and the pace is measured, not guessed.</p>
+          <div class="stacja__efekt"><b class="liczba">4.8–5.0</b><span>syllables per second – target pace measured on videos that work</span></div>
+          <ul class="stacja__narzedzia"><li>voice clone</li><li>ElevenLabs</li><li>WhisperX</li></ul>
+        </div>
+        <div class="stacja__obraz okno-ui" aria-hidden="true"><div class="fala" id="fala"></div></div>
+      </article>
+
+      <article class="stacja" data-wejscie>
+        <div class="stacja__nr" aria-hidden="true"><i class="stacja__kropka"></i><span class="liczba">04</span></div>
+        <div>
+          <h3>Editing</h3>
+          <p class="stacja__co">A raw recording becomes a ready Premiere project with layers: cuts, b-roll, zooms, UI animations and effects. I open it and adjust by hand only what I want.</p>
+          <div class="stacja__efekt"><b class="liczba">66</b><span>ready-made animation blocks: captions, bubbles, cards, maps</span></div>
+          <ul class="stacja__narzedzia"><li>Premiere Pro</li><li>Remotion</li><li>HyperFrames</li></ul>
+        </div>
+        <div class="stacja__obraz" style="max-width:320px;justify-self:center;width:100%">
+          <button class="film" data-film="../media/filmy/39-pelny.mp4" data-podpis="App interface animation – Złap Termin">
+            <video src="../media/filmy/39.mp4" poster="../media/filmy/39.jpg" data-podglad></video>
+            <span class="film__graj"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span>
+            <span class="film__opis"><span class="film__tytul">App interface animation made in code</span></span>
+          </button>
+        </div>
+      </article>
+
+      <article class="stacja" data-wejscie>
+        <div class="stacja__nr" aria-hidden="true"><i class="stacja__kropka"></i><span class="liczba">05</span></div>
+        <div>
+          <h3>Captions</h3>
+          <p class="stacja__co">Word by word, synced to the voice, broken by meaning. I fix a typo in the text, not frame by frame.</p>
+          <div class="stacja__efekt"><b>1</b><span>word on screen at a time, synced to the voice</span></div>
+          <ul class="stacja__narzedzia"><li>Premiere captions</li><li>transcription</li></ul>
+        </div>
+        <div class="stacja__obraz"><div class="napisy" aria-hidden="true"><p id="napis">When entering the mall</p></div></div>
+      </article>
+
+      <article class="stacja" data-wejscie>
+        <div class="stacja__nr" aria-hidden="true"><i class="stacja__kropka"></i><span class="liczba">06</span></div>
+        <div>
+          <h3>Sound</h3>
+          <p class="stacja__co">My own effects library: clicks, transitions, notifications. Each has a description and a checked licence, and the volume sets itself.</p>
+          <div class="stacja__efekt"><b class="liczba">512</b><span>sound files, 123 of them described and ready for videos</span></div>
+          <ul class="stacja__narzedzia"><li>sound library</li><li>licence register</li></ul>
+        </div>
+        <div class="stacja__obraz okno-ui"><div class="wiersze">
+          <div><b>whoosh</b><span>transition</span></div>
+          <div><b>notification</b><span>interface</span></div>
+          <div><b>mouse click</b><span>interface</span></div>
+          <div><b>heartbeat</b><span>tension</span></div>
+        </div></div>
+      </article>
+
+      <article class="stacja" data-wejscie>
+        <div class="stacja__nr" aria-hidden="true"><i class="stacja__kropka"></i><span class="liczba">07</span></div>
+        <div>
+          <h3>Quality check</h3>
+          <p class="stacja__co">Before a video goes out, an automated check watches it for me. Each point either passes or reports the second and size of the error.</p>
+          <div class="stacja__efekt"><b class="liczba">5</b><span>things checked in every video before release</span></div>
+          <ul class="stacja__narzedzia"><li>video check</li><li>ffmpeg</li></ul>
+        </div>
+        <div class="stacja__obraz okno-ui"><div class="wiersze">
+          <div><b>Picture and quality</b><span class="ok">passes</span></div>
+          <div><b>Audio without clipping</b><span class="ok">passes</span></div>
+          <div><b>Black frames</b><span class="ok">passes</span></div>
+          <div><b>Empty frame over 1 s</b><span class="ok">passes</span></div>
+          <div><b>Captions and spelling</b><span class="ok">passes</span></div>
+        </div></div>
+      </article>
+
+      <article class="stacja" data-wejscie>
+        <div class="stacja__nr" aria-hidden="true"><i class="stacja__kropka"></i><span class="liczba">08</span></div>
+        <div>
+          <h3>Publishing</h3>
+          <p class="stacja__co">Every evening an agent checks what actually went out on TikTok, fills in the publishing sheet and plans the next videos for working days.</p>
+          <div class="stacja__efekt"><b class="liczba mono" style="font-family:inherit">20:30</b><span>daily, without reminders</span></div>
+          <ul class="stacja__narzedzia"><li>publishing schedule</li></ul>
+        </div>
+        <div class="stacja__obraz okno-ui"><div class="wiersze" aria-label="Example week">
+          <div><b>Monday</b><span class="ok">published</span></div>
+          <div><b>Tuesday</b><span class="ok">published</span></div>
+          <div><b>Wednesday</b><span>scheduled</span></div>
+          <div><b>Thursday</b><span>scheduled</span></div>
+        </div></div>
+      </article>
+
+      <article class="stacja" data-wejscie>
+        <div class="stacja__nr" aria-hidden="true"><i class="stacja__kropka"></i><span class="liczba">09</span></div>
+        <div>
+          <h3>Retention</h3>
+          <p class="stacja__co">A bot reads from TikTok Studio how many viewers stay after 3 seconds and how many watch to the end, then maps it onto the sentences of the recording. I know which sentence killed the video.</p>
+          <div class="stacja__efekt"><b class="liczba">87</b><span>saved measurements from 3 accounts</span></div>
+          <ul class="stacja__narzedzia"><li>retention loop</li><li>TikTok Studio</li></ul>
+        </div>
+        <div class="stacja__obraz okno-ui">
+          <div class="wykres" data-wykres></div>
+          <div class="wykres__legenda" style="margin-top:16px"><span class="a">stayed after 3 s</span><span>watched to the end</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sekcja jasne" id="filmy">
+  <div class="sekcja__w">
+    <h2 data-wejscie>What came out of it</h2>
+    <p class="sekcja__wstep" data-wejscie>Złap Termin is an app that catches earlier driving-test dates. I've run its TikTok since July 2025: <b>15.6M views from 230 videos</b> (as of 18 Nov 2026).</p>
+    <div class="filmy">
+      <div class="filmy__grupa"><h3>Złap Termin</h3><p>driving licence · organic and ads</p></div>
+      <button class="film" data-film="../media/filmy/52-pelny.mp4" data-podpis="Two types of people at a yellow light – 1.2M views" data-wejscie><video src="../media/filmy/52.mp4" poster="../media/filmy/52.jpg" data-podglad></video><span class="film__graj"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="film__opis"><span class="film__wynik liczba">1.2M</span><span class="film__tytul">Two types of people at a yellow light</span></span></button>
+      <button class="film" data-film="../media/filmy/29-pelny.mp4" data-podpis="Sales ad – 803k views" data-wejscie><video src="../media/filmy/29.mp4" poster="../media/filmy/29.jpg" data-podglad></video><span class="film__graj"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="film__opis"><span class="film__wynik liczba">803k</span><span class="film__tytul">Sales ad: animation, voice-over, captions</span></span></button>
+      <button class="film" data-film="../media/filmy/53-pelny.mp4" data-podpis="Entering the mall – 767k views" data-wejscie><video src="../media/filmy/53.mp4" poster="../media/filmy/53.jpg" data-podglad></video><span class="film__graj"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="film__opis"><span class="film__wynik liczba">767k</span><span class="film__tytul">When entering the mall becomes a driving test</span></span></button>
+      <button class="film" data-film="../media/filmy/54-pelny.mp4" data-podpis="Halloween costume – 678k views" data-wejscie><video src="../media/filmy/54.mp4" poster="../media/filmy/54.jpg" data-podglad></video><span class="film__graj"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="film__opis"><span class="film__wynik liczba">678k</span><span class="film__tytul">A Halloween costume that will scare you</span></span></button>
+
+      <div class="filmy__grupa"><h3>Medical plans</h3><p>healthcare · animation, 3D character, explainers</p></div>
+      <button class="film" data-film="../media/filmy/05-pelny.mp4" data-podpis="Animated doctor character – healthcare" data-wejscie><video src="../media/filmy/05.mp4" poster="../media/filmy/05.jpg" data-podglad></video><span class="film__graj"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="film__opis"><span class="film__tytul">Animated doctor character made in code</span></span></button>
+      <button class="film" data-film="../media/filmy/06-pelny.mp4" data-podpis="Explainer – 17k views" data-wejscie><video src="../media/filmy/06.mp4" poster="../media/filmy/06.jpg" data-podglad></video><span class="film__graj"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="film__opis"><span class="film__wynik liczba">17k</span><span class="film__tytul">Explainer: face, photos, captions</span></span></button>
+      <button class="film" data-film="../media/filmy/71-pelny.mp4" data-podpis="A 3D character explains when to see a doctor – healthcare" data-wejscie><video src="../media/filmy/71.mp4" poster="../media/filmy/71.jpg" data-podglad></video><span class="film__graj"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg></span><span class="film__opis"><span class="film__tytul">A 3D character explains when to see a doctor</span></span></button>
+      <div class="filmy__dopisek" data-wejscie><p>Every one of these videos went through the line above: from breaking down patterns to measuring retention.</p><a href="#linia">Back to the line</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="sekcja" id="zespol">
+  <div class="sekcja__w">
+    <h2 data-wejscie>A team that works when I don't</h2>
+    <p class="sekcja__wstep" data-wejscie>Named agents with their own jobs. Each has a card with a role, working hours and a measure I use to judge whether it does its job.</p>
+    <div class="zespol">
+      <article class="agent" data-wejscie><span class="agent__inicjaly">AK</span><h3>Aleksander the Manager</h3><p>Takes my requests, splits them between agents and every evening gives me one five-line summary of the day.</p><span class="agent__stan dziala">daily 9 pm</span></article>
+      <article class="agent" data-wejscie><span class="agent__inicjaly">FP</span><h3>Florence the Tidy</h3><p>Cleans the disk after AI work: old renders, copies, downloads. Asks before deleting anything.</p><span class="agent__stan dziala"><span class="agent__wynik liczba">12,666 files · 3.26 GB recovered</span></span></article>
+      <article class="agent" data-wejscie><span class="agent__inicjaly">KK</span><h3>Kinga the Compass</h3><p>An agent I give tasks to from my phone. When she's done, I get a notification on my iPhone.</p><span class="agent__stan dziala">from the phone</span></article>
+      <article class="agent" data-wejscie><span class="agent__inicjaly">MO</span><h3>Maria the Explorer</h3><p>Finds companies with weak social media and scores each 0–10 with proof: a link and the date of the last post.</p><span class="agent__stan">ready, switched on per campaign</span></article>
+      <article class="agent" data-wejscie><span class="agent__inicjaly">MP</span><h3>Marek the Writer</h3><p>Writes the first message to companies on Maria's list. He's on probation, so I review every draft myself.</p><span class="agent__stan">probation</span></article>
+      <article class="agent" data-wejscie><span class="agent__inicjaly">LW</span><h3>Leonardo the Inventor</h3><p>Every week reviews the team's mistakes and proposes one improvement so the same problem doesn't come back.</p><span class="agent__stan">in preparation</span></article>
+    </div>
+  </div>
+</section>
+
+<section class="sekcja" id="statly" style="padding-top:0">
+  <div class="sekcja__w statly">
+    <div data-wejscie>
+      <h2>Statly – an app for my day</h2>
+      <p class="sekcja__wstep">Plan, food, workouts, shopping and goals in one place. I talk to it normally and Claude logs and counts. At night four automations work on it.</p>
+      <ul class="statly__lista">
+        <li><b class="mono">02:00</b>night assistant drafts today's plan</li>
+        <li><b class="mono">02:00</b>coach counts workouts, calories and progress</li>
+        <li><b class="mono">05:00</b>today's menu is waiting in the app</li>
+        <li><b class="mono">evening</b>coach asks what got in the way, and answers</li>
+      </ul>
+    </div>
+    <div class="statly__telefony" data-wejscie>
+      <div class="telefon"><img src="../media/statly/jedzenie.jpg" alt="Food screen: the day's calories and protein" loading="lazy"></div>
+      <div class="telefon"><img src="../media/statly/trening.jpg" alt="Workout screen with the coach's analysis" loading="lazy"></div>
+      <div class="telefon"><img src="../media/statly/coach.jpg" alt="Coach screen: evening check-in" loading="lazy"></div>
+      <div class="telefon"><img src="../media/statly/asystent.jpg" alt="Assistant screen with today's suggestion" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sekcja jasne" id="automaty">
+  <div class="sekcja__w">
+    <h2 data-wejscie>Automations and websites</h2>
+    <p class="sekcja__wstep" data-wejscie>Things that happen on their own, and websites I build faster than one video.</p>
+    <div class="reszta">
+      <article class="rzecz" data-wejscie><span class="rzecz__kiedy">weekly</span><h3>Online store report</h3><p>Week-over-week sales, products about to run out and clearance suggestions – straight from the inventory system.</p></article>
+      <article class="rzecz" data-wejscie><span class="rzecz__kiedy">before every livestream</span><h3>Reminders and weekly plan</h3><p>Draft emails and posts for a YouTube channel. Nothing is sent automatically – I click “send”.</p></article>
+      <article class="rzecz" data-wejscie><span class="rzecz__kiedy">daily</span><h3>Deal hunter</h3><p>Scans listings for used hardware, rejects fakes and sellers without reviews, calculates each offer as a percentage of the new price and returns a top 5.</p></article>
+      <article class="rzecz" data-wejscie><span class="rzecz__kiedy">on demand</span><h3>Day manager</h3><p>In the morning it sets priorities with me, splits the work across several parallel AI chats and tells me only what I have to do myself.</p></article>
+      <article class="rzecz strony" data-wejscie>
+        <div><span class="rzecz__kiedy" style="color:var(--akcent)">11 ready demos</span><h3 style="margin-top:12px">Websites for small businesses</h3><p style="margin-top:12px">A system that assembles a website for a garage, a salon or a physiotherapist: several styles, a mobile version, a “call” button. Screenshots show test sites.</p></div>
+        <div class="strony__zrzuty">
+          <img src="../media/strony/warsztat-kowalski-demo.jpg" alt="Car repair shop demo site, classic style" loading="lazy">
+          <img src="../media/strony/salon-fryzjerski-salon-demo.jpg" alt="Hair salon demo site" loading="lazy">
+          <img src="../media/strony/warsztat-kowalski-pogotowie-demo.jpg" alt="Car repair shop demo site, emergency style" loading="lazy">
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="koniec" id="kontakt">
+  <div class="sekcja__w">
+    <h2 data-wejscie>Want this <em>for your team?</em></h2>
+    <div class="koniec__akcje" data-wejscie>
+      <a class="btn" href="mailto:frycz.wideo@gmail.com">frycz.wideo@gmail.com</a>
+      <a class="btn btn--obrys" href="tel:+48533766075">533 766 075</a>
+    </div>
+    <div class="stopka"><span>Michał Frycz · Warsaw</span><span>Figures as of Nov 2026</span></div>
+  </div>
+</section>
+</main>
+
+<script src="../wspolne.js"></script>
+<script>
+// postęp taśmy i aktywna stacja
+(function(){
+  const tasma=document.querySelector('.tasma'),post=document.querySelector('.tasma__postep'),st=[...document.querySelectorAll('.stacja')];
+  function licz(){
+    const r=tasma.getBoundingClientRect(),h=innerHeight*.55;
+    const p=Math.min(1,Math.max(0,(h-r.top)/r.height));post.style.setProperty('--p',p);
+    st.forEach(s=>{const t=s.getBoundingClientRect().top;s.classList.toggle('aktywna',t<h);});
+  }
+  addEventListener('scroll',licz,{passive:true});addEventListener('resize',licz);licz();
+  // fala głosu
+  const f=document.getElementById('fala');if(f){f.innerHTML=Array.from({length:48},(_,i)=>`<i style="height:${20+Math.abs(Math.sin(i*.55)*70+Math.sin(i*1.7)*20)}%;animation-delay:${(i%12)*-.13}s"></i>`).join('');}
+  // napisy słowo po słowie
+  const n=document.getElementById('napis'),zd=['When','entering','the','mall','becomes','a','driving','test'];let i=0;
+  if(n&&!matchMedia('(prefers-reduced-motion: reduce)').matches){setInterval(()=>{i=(i+1)%zd.length;const s=Math.max(0,i-3);n.innerHTML=zd.slice(s,i+1).map((w,k)=>k===i-s?`<span>${w}</span>`:w).join(' ');},420);}
+})();
+</script>
+<script>
+// tryb druku (?druk): podglądy wideo zamienione na okładki, wszystko widoczne od razu
+if(location.search.includes('druk')){
+  document.querySelectorAll('video').forEach(v=>{const i=document.createElement('img');i.src=v.getAttribute('poster');i.alt='';i.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;'+(v.closest('.start__film')?'opacity:.55':'');v.replaceWith(i);});
+  document.querySelectorAll('.czeka').forEach(e=>e.classList.remove('czeka'));
+  document.querySelectorAll('img[loading]').forEach(i=>i.loading='eager');
+}
+</script>
+</body>
+</html>
