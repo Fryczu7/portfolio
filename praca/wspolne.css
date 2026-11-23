@@ -1,16 +1,17 @@
 /* Wspólne dla index.html i cv.html (tor B – strona dla pracodawców).
    Kolory tylko tutaj: podmiana palety = zmiana wartości na :root. */
 :root{
-  --tlo:#0b0712;          /* czerń strony */
-  --txt:#f2f1f4;          /* biel tekstu */
-  --szary:#91899f;        /* etykiety, źródła */
-  --txt2:#c6c2cc;         /* tekst drugiego planu na ciemnym */
+  --tlo:#160709;          /* czerń strony */
+  --txt:#f6ece6;          /* biel tekstu */
+  --szary:#a8908a;        /* etykiety, źródła */
+  --txt2:#dcc8c0;         /* tekst drugiego planu na ciemnym */
   --linia:rgba(242,241,244,.18);
-  --przycisk:#2b1810;   /* brąz przycisków (wybór Michała 23.11) */
-  --jasne-tlo:#f0e5e0; /* sekcje odwrócone */
-  --jasne-txt:#110e16;
-  --jasne-szary:#72615a;  /* 6,9:1 na #f4f4f2 */
-  --akcent:#b66644;    /* tu wejdzie fiolet/brąz w etapie 2 */
+  --przycisk:#8a1f1a;   /* brąz przycisków (figa – wybór Michała 23.11) */
+  --akcent-jasny:#8a1f1a;  /* liczby i obrys na jasnych sekcjach (7,5:1) */
+  --jasne-tlo:#f4e6da; /* sekcje odwrócone */
+  --jasne-txt:#1f0c0d;
+  --jasne-szary:#7a5c55;  /* 6,9:1 na #f4f4f2 */
+  --akcent:#df8f75;    /* tu wejdzie fiolet/brąz w etapie 2 */
   --ease:cubic-bezier(.16,1,.3,1);
   --margines:clamp(16px,5vw,72px);
 }
@@ -76,3 +77,5 @@ html[data-j=pl] .en,html[data-j=en] .pl{display:none!important}
 .jasne .przycisk.pelny:hover{background:transparent;color:var(--przycisk)}
 .wiersz-l b,.licz{color:var(--akcent)}
 ::selection{background:var(--akcent);color:var(--tlo)}
+.jasne .licz,.jasne .wiersz-l b{color:var(--akcent-jasny)}
+.jasne :focus-visible{outline-color:var(--akcent-jasny)}
