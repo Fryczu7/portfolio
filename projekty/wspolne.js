@@ -19,7 +19,7 @@
   // podglądy grają tylko, gdy są widoczne
   const podglady=document.querySelectorAll('video[data-podglad]');
   const io=new IntersectionObserver(w=>w.forEach(x=>{
-    if(x.isIntersecting){x.target.play().catch(()=>{});}else x.target.pause();
+    if(x.isIntersecting&&!matchMedia('(prefers-reduced-motion: reduce)').matches){x.target.play().catch(()=>{});}else x.target.pause();
   }),{threshold:.25});
   podglady.forEach(p=>{p.muted=true;p.loop=true;p.playsInline=true;io.observe(p);});
 

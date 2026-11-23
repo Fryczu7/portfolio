@@ -16,18 +16,19 @@
 .pasek nav{display:flex;gap:clamp(14px,2.6vw,34px)}
 .pasek nav a{text-decoration:none;color:var(--txt2);transition:color .3s}
 .pasek nav a:hover{color:var(--txt)}
-@media (max-width:720px){.pasek nav a:not(:last-child):not([lang]){display:none}}
+@media (max-width:720px){.pasek nav a[href="#linia"],.pasek nav a[href="#zespol"]{display:none}}
 
 /* otwarcie */
-.start{position:relative;min-height:100svh;display:grid;align-items:end;padding:120px var(--m) clamp(40px,7vh,80px);overflow:hidden}
-.start__film{position:absolute;inset:0;z-index:-1}
-.start__film video{width:100%;height:100%;object-fit:cover;opacity:.55;filter:saturate(.8) sepia(.25)}
-.start__film::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,7,9,.35) 0%,rgba(22,7,9,.2) 40%,var(--tlo) 96%),radial-gradient(ellipse at 20% 80%,rgba(138,31,26,.35),transparent 60%)}
-.start h1{font-size:clamp(46px,8.6vw,124px);line-height:.92;font-weight:900;letter-spacing:-.04em;text-transform:uppercase;max-width:11ch}
+.start{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);align-items:center;gap:clamp(40px,6vw,112px);padding:clamp(96px,12vh,140px) var(--m) clamp(48px,8vh,96px);overflow:hidden;background:radial-gradient(ellipse at 75% 50%,rgba(138,31,26,.28),transparent 55%)}
+.start h1{font-size:clamp(44px,6.2vw,96px);line-height:.92;font-weight:900;letter-spacing:-.04em;text-transform:uppercase;max-width:10ch;text-wrap:balance}
 .start h1 em{font-style:normal;color:var(--akcent)}
-.start__dol{display:flex;flex-wrap:wrap;gap:28px 48px;align-items:end;justify-content:space-between;margin-top:clamp(28px,4vw,48px)}
-.start__dol p{max-width:46ch;font-size:clamp(18px,1.6vw,22px);color:var(--txt2)}
-.start__akcje{display:flex;gap:12px;flex-wrap:wrap}
+.start__tekst>p{max-width:46ch;font-size:clamp(18px,1.6vw,22px);color:var(--txt2);margin-top:clamp(24px,3vw,36px)}
+.start__akcje{display:flex;gap:12px;flex-wrap:wrap;margin-top:clamp(24px,3vw,36px)}
+.start__reel{position:relative;justify-self:end;height:min(76svh,720px);aspect-ratio:9/16;margin:0;border-radius:20px;overflow:hidden;background:#0d0405;box-shadow:0 40px 80px -30px rgba(0,0,0,.8),0 0 0 1px var(--rama)}
+.start__reel video{display:block;width:100%;height:100%;object-fit:cover}
+.start__dzwiek{position:absolute;left:14px;bottom:14px;padding:10px 16px;font-size:14px}
+@media (max-width:1023px){.start{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)}.start__reel{height:min(62svh,520px)}}
+@media (max-width:720px){.start{grid-template-columns:1fr;align-items:start;min-height:0;gap:24px;padding-top:96px}.start__tekst{display:contents}.start h1{order:1;font-size:clamp(40px,11vw,52px)}.start__reel{order:2;justify-self:start;height:auto;width:min(70vw,280px)}.start__tekst>p{order:3;margin-top:0}.start__akcje{order:4;margin-top:0}.start__akcje .btn{flex:1 1 100%;justify-content:center}}
 
 /* linia */
 .linia{position:relative;padding:clamp(80px,12vw,160px) var(--m) 40px}
@@ -38,7 +39,8 @@
 .tasma__tor{position:relative;grid-row:1/-1}
 .tasma__tor::before,.tasma__postep{content:"";position:absolute;left:35px;top:0;width:2px;bottom:0;background:var(--rama);border-radius:2px}
 .tasma__postep{background:linear-gradient(180deg,var(--przycisk),var(--akcent));transform-origin:top;transform:scaleY(var(--p,0))}
-.stacja{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(40px,6vw,80px) 0;border-top:1px solid var(--rama)}
+.stacja{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(28px,4vw,56px) 0;border-top:1px solid var(--rama)}
+@media (max-width:720px){.stacja .stacja__narzedzia{display:none}.stacja:nth-of-type(n+6) .stacja__obraz{display:none}}
 .stacja:first-of-type{border-top:0}
 .stacja__nr{position:absolute;left:calc(-72px - clamp(16px,3vw,40px));top:clamp(40px,6vw,80px);width:72px;display:grid;justify-items:center;gap:8px}
 .stacja__kropka{width:22px;height:22px;border-radius:50%;background:var(--tlo);box-shadow:inset 0 0 0 2px var(--rama);transition:box-shadow .6s var(--ease),background .6s}
@@ -68,7 +70,7 @@
 .fala i{flex:1;border-radius:3px;background:var(--akcent);opacity:.85;animation:fala 1.6s var(--ease) infinite alternate}
 @keyframes fala{to{transform:scaleY(.35)}}
 .napisy{display:grid;place-items:center;aspect-ratio:9/12;max-width:340px;margin:0 auto;border-radius:16px;background:url(../media/filmy/53.jpg) center/cover;position:relative;overflow:hidden}
-.napisy::before{content:"";position:absolute;inset:0;background:rgba(22,7,9,.35)}
+.napisy::before{content:"";position:absolute;inset:0;background:rgba(22,7,9,.45);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .napisy p{position:relative;font-size:clamp(24px,2.6vw,34px);font-weight:900;text-transform:uppercase;letter-spacing:-.02em;text-align:center;line-height:1.05;padding:0 16px;text-shadow:0 3px 14px rgba(0,0,0,.6)}
 .napisy p span{color:#ffd84a}
 
@@ -117,7 +119,7 @@
 .rzecz{border-radius:18px;padding:clamp(24px,2.6vw,36px);background:rgba(31,12,13,.06);display:grid;gap:12px;align-content:start}
 .rzecz h3{font-size:clamp(22px,2vw,28px);font-weight:900;letter-spacing:-.02em;text-transform:uppercase;line-height:1.05}
 .rzecz p{color:var(--jtxt2)}
-.rzecz__kiedy{font-size:14px;color:var(--przycisk);font-weight:700}
+.rzecz__kiedy{order:3;font-size:14px;color:var(--jtxt2);font-weight:500}
 .strony{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(24px,4vw,56px);align-items:center;background:var(--jtxt);color:var(--txt)}
 .strony p{color:var(--txt2)}
 .strony__zrzuty{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
@@ -126,7 +128,7 @@
 
 /* koniec */
 .koniec{padding:clamp(100px,14vw,180px) var(--m) 48px;text-align:left}
-.koniec h2{font-size:clamp(44px,8vw,120px);line-height:.92;font-weight:900;letter-spacing:-.04em;text-transform:uppercase;max-width:12ch}
+.koniec h2{font-size:clamp(44px,7vw,104px);line-height:.92;font-weight:900;letter-spacing:-.04em;text-transform:uppercase;max-width:12ch}
 .koniec h2 em{font-style:normal;color:var(--akcent)}
 .koniec__akcje{margin-top:36px;display:flex;gap:12px;flex-wrap:wrap}
 .stopka{margin-top:clamp(80px,10vw,140px);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--szary);font-size:14px;border-top:1px solid var(--rama);padding-top:20px}
@@ -193,23 +195,24 @@
 <body>
 <header class="pasek">
   <a class="pasek__marka" href="#start">Michał Frycz</a>
-  <nav><a href="../" lang="pl">PL</a><a href="#linia">How a video is made</a><a href="#filmy">Videos</a><a href="#zespol">Agents</a><a href="#kontakt">Contact</a></nav>
+  <nav><a href="#linia">How a video is made</a><a href="#filmy">Videos</a><a href="#zespol">Agents</a><a href="#kontakt">Contact</a><a href="../" lang="pl">PL</a></nav>
 </header>
 
 <main>
 <section class="start" id="start">
-  <div class="start__film" aria-hidden="true"><video src="../media/showreel-16x9.mp4" poster="../media/okladka-16x9.jpg" data-podglad></video></div>
-  <div>
+  <div class="start__tekst">
     <h1>Videos with results. <em>Systems</em> that make them.</h1>
-    <div class="start__dol">
       <p>I make short videos for TikTok and Reels, and I built a factory for them in Claude: from the idea and the script, through editing, to checking which sentence makes viewers drop off.</p>
-      <p class="tylko-druk" style="color:var(--txt);font-weight:700">Videos with sound and the showreel: <a class="druk-link" href="https://fryczu7.github.io/portfolio/projekty/en/">fryczu7.github.io/portfolio/projekty</a> · <a class="druk-link" href="mailto:frycz.wideo@gmail.com">frycz.wideo@gmail.com</a></p>
+      <p class="tylko-druk" style="color:var(--txt);font-weight:700">Videos with sound and the showreel: <a class="druk-link" href="https://fryczu7.github.io/portfolio/projekty/">fryczu7.github.io/portfolio/projekty</a> · <a class="druk-link" href="mailto:frycz.wideo@gmail.com">frycz.wideo@gmail.com</a></p>
       <div class="start__akcje">
-        <button class="btn" data-film="../media/showreel-16x9.mp4" data-podpis="Showreel – 55 seconds"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>Showreel 55 s</button>
-        <a class="btn btn--obrys" href="#linia">See how it works</a>
+        <a class="btn" href="#filmy">See the videos</a>
+        <a class="btn btn--obrys" href="#linia">How a video is made</a>
       </div>
-    </div>
   </div>
+  <figure class="start__reel">
+    <video src="../media/showreel-9x16.mp4" poster="../media/okladka-9x16.jpg" data-podglad aria-label="Showreel"></video>
+    <button class="btn start__dzwiek" data-film="../media/showreel-9x16.mp4" data-podpis="Showreel – 55 seconds"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>With sound · 55 s</button>
+  </figure>
 </section>
 
 <section class="linia" id="linia">
@@ -418,12 +421,12 @@
     <h2 data-wejscie>Automations and websites</h2>
     <p class="sekcja__wstep" data-wejscie>Things that happen on their own, and websites I build faster than one video.</p>
     <div class="reszta">
-      <article class="rzecz" data-wejscie><span class="rzecz__kiedy">weekly</span><h3>Online store report</h3><p>Week-over-week sales, products about to run out and clearance suggestions – straight from the inventory system.</p></article>
-      <article class="rzecz" data-wejscie><span class="rzecz__kiedy">before every livestream</span><h3>Reminders and weekly plan</h3><p>Draft emails and posts for a YouTube channel. Nothing is sent automatically – I click “send”.</p></article>
-      <article class="rzecz" data-wejscie><span class="rzecz__kiedy">daily</span><h3>Deal hunter</h3><p>Scans listings for used hardware, rejects fakes and sellers without reviews, calculates each offer as a percentage of the new price and returns a top 5.</p></article>
-      <article class="rzecz" data-wejscie><span class="rzecz__kiedy">on demand</span><h3>Day manager</h3><p>In the morning it sets priorities with me, splits the work across several parallel AI chats and tells me only what I have to do myself.</p></article>
+      <article class="rzecz" data-wejscie><h3>Online store report</h3><p>Week-over-week sales, products about to run out and clearance suggestions – straight from the inventory system.</p><p class="rzecz__kiedy">Runs: weekly</p></article>
+      <article class="rzecz" data-wejscie><h3>Reminders and weekly plan</h3><p>Draft emails and posts for a YouTube channel. Nothing is sent automatically – I click “send”.</p><p class="rzecz__kiedy">Runs: before every live stream</p></article>
+      <article class="rzecz" data-wejscie><h3>Deal hunter</h3><p>Scans listings for used hardware, rejects fakes and sellers without reviews, calculates each offer as a percentage of the new price and returns a top 5.</p><p class="rzecz__kiedy">Runs: daily</p></article>
+      <article class="rzecz" data-wejscie><h3>Day manager</h3><p>In the morning it sets priorities with me, splits the work across several parallel AI chats and tells me only what I have to do myself.</p><p class="rzecz__kiedy">Runs: on demand</p></article>
       <article class="rzecz strony" data-wejscie>
-        <div><span class="rzecz__kiedy" style="color:var(--akcent)">11 ready demos</span><h3 style="margin-top:12px">Websites for small businesses</h3><p style="margin-top:12px">A system that assembles a website for a garage, a salon or a physiotherapist: several styles, a mobile version, a “call” button. Screenshots show test sites.</p></div>
+        <div><h3>Websites for small businesses – 11 demos</h3><p style="margin-top:12px">A system that assembles a website for a garage, a salon or a physiotherapist: several styles, a mobile version, a “call” button. Screenshots show test sites.</p></div>
         <div class="strony__zrzuty">
           <img src="../media/strony/warsztat-kowalski-demo.jpg" alt="Car repair shop demo site, classic style" loading="lazy">
           <img src="../media/strony/salon-fryzjerski-salon-demo.jpg" alt="Hair salon demo site" loading="lazy">
@@ -436,12 +439,12 @@
 
 <section class="koniec" id="kontakt">
   <div class="sekcja__w">
-    <h2 data-wejscie>Want this <em>for your team?</em></h2>
+    <h2 data-wejscie>Let’s talk about <em>videos</em> and systems</h2>
     <div class="koniec__akcje" data-wejscie>
-      <a class="btn" href="mailto:frycz.wideo@gmail.com">frycz.wideo@gmail.com</a>
-      <a class="btn btn--obrys" href="tel:+48533766075">533 766 075</a>
+      <a class="btn" href="../../cv/Michal_Frycz_CV_wideo_EN.pdf">Download CV (PDF)</a>
+      <a class="btn btn--obrys" href="mailto:frycz.wideo@gmail.com">frycz.wideo@gmail.com</a>
     </div>
-    <div class="stopka"><span>Michał Frycz · Warsaw</span><span>Figures as of Nov 2026</span></div>
+    <div class="stopka"><span>Michał Frycz · Warszawa · <a href="tel:+48533766075">533 766 075</a></span><span>Figures as of Nov 2026</span></div>
   </div>
 </section>
 </main>
