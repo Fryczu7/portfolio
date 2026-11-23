@@ -364,6 +364,7 @@
       <p><span class="pl">Jedna strona, liczby przy każdym punkcie. Wersja animowana ma tę samą treść – i da się ją wydrukować.</span><span class="en">One page, a number on every line. The animated version has the same content – and it prints.</span></p>
       <div class="cv-akcje">
         <a class="przycisk pelny" href="../cv/Michal_Frycz_CV_wideo_PL.pdf" data-href-pl="../cv/Michal_Frycz_CV_wideo_PL.pdf" data-href-en="../cv/Michal_Frycz_CV_wideo_EN.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg><span class="pl">Pobierz CV (PDF)</span><span class="en">Download CV (PDF)</span></a>
+        <a class="przycisk" href="../showreel/" data-showreel><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" width="18" height="18"><path d="M7 5l12 7-12 7z"/></svg><span class="pl">Showreel · 55 s</span><span class="en">Showreel · 55 s</span></a>
         <a class="przycisk" href="cv.html" data-wew="cv.html"><span class="pl">Animowane CV</span><span class="en">Animated CV</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
       </div>
       <span class="mono"><span class="pl">PDF: montaż wideo short-form i AI · 1 strona</span><span class="en">PDF: short-form &amp; AI video editor · 1 page</span></span>
@@ -403,7 +404,7 @@ function animujLicznik(el){
   (function k(t){const p=wyj(ogr((t-t0)/D));el._p=p;el.textContent=fmt(el,(+el.dataset.do)*p);if(p<1)requestAnimationFrame(k)})(t0);
 }
 
-// --- ściana: 20 filmów
+//
 const sciana=document.getElementById('sciana');
 const FILMY=["52","03","53","39","05","54","28","06","55","68","29","60","71","61","25","69","62","04","70","40"];
 FILMY.forEach((nr,i)=>{const k=document.createElement('div');k.className='kafel';const v=document.createElement('video');
@@ -527,5 +528,6 @@ document.querySelectorAll('.kopiuj').forEach(b=>b.addEventListener('click',async
 }));
 })();
 </script>
+<script src="../showreel/okno.js"></script>
 </body>
 </html>

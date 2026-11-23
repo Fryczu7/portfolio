@@ -376,6 +376,7 @@ svg.ik{width:1em;height:1em;stroke:currentColor;fill:none;stroke-width:1.8;strok
 
 <section class="sekcja" id="liczby" aria-labelledby="h-liczby">
   <h2 class="naglowek" id="h-liczby" data-t="h-liczby">Nie obiecuję zasięgów. Pokazuję te, które już są.</h2>
+  <a class="przycisk" href="../showreel/" data-showreel style="margin:0 0 34px"><svg class="ik"><use href="#i-graj"/></svg><span data-t="sr">Zobacz showreel · 55 s</span></a>
   <ul class="liczby">
     <li class="wejdz"><b>15,6 mln</b><div><p data-t="n1">wyświetleń konta Złap Termin na TikToku. 230 filmów od 07/2025.</p><a href="https://www.tiktok.com/@zlap.termin" target="_blank" rel="noopener"><span data-t="n1a">Zobacz konto</span><svg class="ik"><use href="#i-strzalka"/></svg></a></div></li>
     <li class="wejdz"><b>1,2 mln+</b><div><p data-t="n2">wyświetleń jednego filmu na tym koncie.</p></div></li>
@@ -536,6 +537,7 @@ const EN={
   przewin:'Scroll',dzwiek:'Sound on',podpis:'Złap Termin · sales ad · 803K views',
   l1:'views on the Złap Termin TikTok. 230 videos, I have run it since 07/2025',l2:'views on a single video',l3:'views and 80K followers on my own account',
   'h-liczby':'I don’t promise reach. I show the reach I already have.',
+  'sr':'Watch the showreel · 55 s',
   n1:'views on the Złap Termin TikTok. 230 videos since 07/2025.',n1a:'See the account',
   n2:'views on a single video on that account.',n3:'views on Instagram in three months (02–05.2026).',
   n4:'views on my own account, built from zero to 80K followers.',
@@ -734,5 +736,6 @@ let start='pl';try{start=localStorage.getItem('jezyk')||'pl'}catch(e){}
 const zUrl=new URLSearchParams(location.search).get('lang');if(zUrl)start=zUrl==='en'?'en':'pl';
 ustawJezyk(start);
 </script>
+<script src="../showreel/okno.js"></script>
 </body>
 </html>
