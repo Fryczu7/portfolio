@@ -1,2 +1,3 @@
 User-agent: *
-Disallow: /
+Allow: /
+Sitemap: https://fryczu7.github.io/portfolio/sitemap.xml
